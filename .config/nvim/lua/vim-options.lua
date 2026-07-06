@@ -15,6 +15,7 @@ o.relativenumber = false
 o.ruler = true
 o.cursorline = true
 o.guifont = "Jetbrainsmono Nerd Font:h10"
+o.mouse = "a"
 
 g.goyo_width = 120
 
