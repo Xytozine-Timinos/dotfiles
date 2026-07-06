@@ -151,6 +151,15 @@ return {
 					},
 					{
 						function()
+							return " Neotree"
+						end,
+						color = { fg = "#81ccee", gui = "bold" },
+						on_click = function()
+							vim.cmd("Neotree toggle")
+						end,
+					},
+					{
+						function()
 							return "󰉢 Format"
 						end,
 						color = { fg = "#81ccee", gui = "bold" },
@@ -161,6 +170,15 @@ return {
 								return
 							end
 							vim.lsp.buf.format({ async = true })
+						end,
+					},
+					{
+						function()
+							return " Undotree"
+						end,
+						color = { fg = "#81ccee", gui = "bold" },
+						on_click = function()
+							vim.cmd("UndotreeToggle")
 						end,
 					},
 				},
