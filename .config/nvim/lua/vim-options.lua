@@ -41,7 +41,7 @@ km.set("n", "<leader><bs>", "<cmd>:q<CR>")
 km.set("n", "Q", "<cmd>:wq<CR>")
 km.set("n", "qq", "<cmd>:q<CR>")
 km.set("n", "ee", "<cmd>:w<CR>")
-km.set('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
+km.set("n", "<C-a>", "ggVG", { noremap = true, silent = true })
 
 km.set("n", "<TAB>", "<Cmd>BufferLineCycleNext<CR>")
 km.set("n", "<S-TAB>", "<Cmd>BufferLineCyclePrev<CR>")
@@ -112,6 +112,16 @@ km.set("n", "i", "a", { noremap = true, silent = true })
 km.set("n", "j", "w", { noremap = true, silent = true })
 km.set("n", "k", "s", { noremap = true, silent = true })
 km.set("n", "l", "d", { noremap = true, silent = true })
+
+-- vim macro
+km.set("n", "4", function()
+	if vim.fn.reg_recording() == "" then
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("qq", true, true, true), "n", false)
+	else
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("q", true, true, true), "n", false)
+	end
+end, { silent = true, desc = "Toggle Macro Recording (Register q)" })
+km.set("n", "5", "@q", { remap = true, silent = true, desc = "Play Macro (Register q)" })
 
 km.set("n", "2", "a", { noremap = true, silent = true })
 km.set("n", "3", "dd", { noremap = true, silent = true })
