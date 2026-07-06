@@ -13,7 +13,7 @@ return {
 			local commands = {
 				c = "gcc " .. filename .. " -o " .. exe_out .. " && " .. exe_out,
 				cpp = "g++ -std=c++17 " .. filename .. " -o " .. exe_out .. " && " .. exe_out,
-				java = "javac " .. filename .. " && java " .. vim.fn.expand("%:p:r"),
+				java = "java " .. filename,
 				python = "python3 " .. filename,
 				javascript = "node " .. filename,
 				typescript = "ts-node " .. filename,
@@ -21,6 +21,7 @@ return {
 				rust = "cargo run",
 				sh = "bash " .. filename,
 				html = "xdg-open " .. filename,
+				lua = "lua " .. filename,
 			}
 
 			return commands[filetype]
@@ -76,15 +77,67 @@ return {
 			winbar = {
 				lualine_a = {},
 				lualine_b = {},
-				lualine_c = {},
+				lualine_c = {
+					{
+						function()
+							return "󰈆 Quit"
+						end,
+						color = { fg = "#ff6f91", gui = "bold" },
+						on_click = function()
+							if not vim.bo.modified then
+								vim.cmd("q")
+								return
+							end
+
+							vim.ui.select(
+								{ "Save and Quit", "Quit Without Saving", "Cancel" },
+								{ prompt = "Unsaved changes detected:" },
+								function(choice)
+									if choice == "Save and Quit" then
+										vim.cmd("wq")
+									elseif choice == "Quit Without Saving" then
+										vim.cmd("q!")
+									end
+								end
+							)
+						end,
+					},
+					{
+						function()
+							return "󰳻 Open"
+						end,
+						color = { fg = "#81ccee", gui = "bold" },
+						on_click = function()
+							vim.cmd("Telescope oldfiles")
+						end,
+					},
+					{
+						function()
+							return "󰳻 Save"
+						end,
+						color = { fg = "#81ccee", gui = "bold" },
+						on_click = function()
+							vim.cmd("w")
+						end,
+					},
+				},
 				lualine_x = {
 					{
 						function()
 							return " Run Code"
 						end,
-						color = { fg = "#98c379", gui = "bold" },
+						color = { fg = "#a6e3a1", gui = "bold" },
 						on_click = function()
 							_G.lualine_run_code()
+						end,
+					},
+					{
+						function()
+							return " Open Terminal"
+						end,
+						color = { fg = "#eba0ac", gui = "bold" },
+						on_click = function()
+							vim.cmd("ToggleTerm direction=horizontal")
 						end,
 					},
 				},
