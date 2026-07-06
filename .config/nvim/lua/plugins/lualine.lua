@@ -41,7 +41,7 @@ return {
 			options = {
 				icons_enabled = true,
 				theme = "auto",
-				component_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
 				section_separators = { left = " ", right = " " },
 				disabled_filetypes = {
 					statusline = {
@@ -139,6 +139,27 @@ return {
 						color = { fg = "#81ccee", gui = "bold" },
 						on_click = function()
 							vim.cmd("w")
+						end,
+					},
+					{
+						function()
+							return "%="
+						end,
+						separator = "",
+						padding = 0,
+					},
+					{
+						function()
+							return "󰉢 Format"
+						end,
+						color = { fg = "#81ccee", gui = "bold" },
+						on_click = function()
+							local clients = vim.lsp.get_clients({ bufnr = 0 })
+							if #clients == 0 then
+								vim.notify("No active LSP formatter available!", vim.log.levels.WARN)
+								return
+							end
+							vim.lsp.buf.format({ async = true })
 						end,
 					},
 				},
