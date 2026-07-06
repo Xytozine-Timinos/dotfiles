@@ -48,6 +48,7 @@ return {
 						"NvimTree",
 						"neo-tree",
 						"toggleterm",
+						"startup",
 						"dapui_scopes",
 						"dapui_breakpoints",
 						"dapui_stacks",
