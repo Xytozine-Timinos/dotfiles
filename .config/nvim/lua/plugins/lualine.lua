@@ -12,7 +12,7 @@ return {
 			-- Map filetypes to their respective execution commands
 			local commands = {
 				c = "gcc " .. filename .. " -o " .. exe_out .. " && " .. exe_out,
-				cpp = "g++ -std=c++17 " .. filename .. " -o " .. exe_out .. " && " .. exe_out,
+				cpp = "g++ " .. filename .. " -o " .. exe_out .. " && " .. exe_out,
 				java = "java " .. filename,
 				python = "python3 " .. filename,
 				javascript = "node " .. filename,
@@ -44,8 +44,29 @@ return {
 				component_separators = { left = "", right = "" },
 				section_separators = { left = " ", right = " " },
 				disabled_filetypes = {
-					statusline = { "NvimTree", "neo-tree", "toggleterm" },
-					winbar = { "NvimTree", "neo-tree", "toggleterm", "startup" }, -- Keeps top bar out of popups/sidebars
+					statusline = {
+						"NvimTree",
+						"neo-tree",
+						"toggleterm",
+						"dapui_scopes",
+						"dapui_breakpoints",
+						"dapui_stacks",
+						"dapui_watches",
+						"dapui_console",
+						"dap-repl",
+					},
+					winbar = {
+						"NvimTree",
+						"neo-tree",
+						"toggleterm",
+						"startup",
+						"dapui_scopes",
+						"dapui_breakpoints",
+						"dapui_stacks",
+						"dapui_watches",
+						"dapui_console",
+						"dap-repl",
+					},
 				},
 				ignore_focus = {},
 				always_divide_middle = true,
@@ -124,7 +145,7 @@ return {
 				lualine_x = {
 					{
 						function()
-							return " Run Code"
+							return " Run"
 						end,
 						color = { fg = "#a6e3a1", gui = "bold" },
 						on_click = function()
@@ -133,11 +154,46 @@ return {
 					},
 					{
 						function()
-							return " Open Terminal"
+							local dapui = package.loaded["dapui"]
+							if dapui and dapui.visible and dapui.visible() then
+								return " Close Debug"
+							end
+							return " Debug"
+						end,
+						color = { fg = "#f9e2af", gui = "bold" },
+						on_click = function()
+							local ok, dapui = pcall(require, "dapui")
+							if ok then
+								dapui.toggle()
+							else
+								vim.notify("dap-ui is not loaded yet!", vim.log.levels.WARN)
+							end
+						end,
+					},
+					{
+						function()
+							return " Terminal"
 						end,
 						color = { fg = "#eba0ac", gui = "bold" },
 						on_click = function()
-							vim.cmd("ToggleTerm direction=horizontal")
+							local layout_options = { "Horizontal", "Vertical", "Float" }
+
+							vim.ui.select(layout_options, {
+								prompt = "Select Terminal Layout:",
+							}, function(choice)
+								if not choice then
+									return
+								end
+
+								local direction = choice:lower()
+								local cmd = "ToggleTerm direction=" .. direction
+								if direction == "vertical" then
+									local one_third_width = math.floor(vim.o.columns / 3)
+									cmd = cmd .. " size=" .. one_third_width
+								end
+
+								vim.cmd(cmd)
+							end)
 						end,
 					},
 				},
