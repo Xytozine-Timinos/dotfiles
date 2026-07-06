@@ -20,6 +20,7 @@ return {
 				go = "go run " .. filename,
 				rust = "cargo run",
 				sh = "bash " .. filename,
+				html = "xdg-open " .. filename,
 			}
 
 			return commands[filetype]
