@@ -111,12 +111,12 @@ return {
 							end
 
 							vim.ui.select(
-								{ "Save and Quit", "Quit Without Saving", "Cancel" },
+								{ "󰸧 Save and Quit", "󱙃 Quit Without Saving", " Cancel" },
 								{ prompt = "Unsaved changes detected:" },
 								function(choice)
-									if choice == "Save and Quit" then
+									if choice == "󰸧 Save and Quit" then
 										vim.cmd("wq")
-									elseif choice == "Quit Without Saving" then
+									elseif choice == "󱙃 Quit Without Saving" then
 										vim.cmd("q!")
 									end
 								end
@@ -176,7 +176,7 @@ return {
 						end,
 						color = { fg = "#eba0ac", gui = "bold" },
 						on_click = function()
-							local layout_options = { "Horizontal", "Vertical", "Float" }
+							local layout_options = { "Horizontal", "Vertical", "Float", " Cancel" }
 
 							vim.ui.select(layout_options, {
 								prompt = "Select Terminal Layout:",
