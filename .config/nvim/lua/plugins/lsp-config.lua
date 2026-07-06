@@ -21,6 +21,7 @@ return {
 					"clangd",
 					"hyprls",
 				},
+				automatic_enable = false,
 			})
 
 			require("mason-tool-installer").setup({
@@ -32,6 +33,7 @@ return {
 					"stylua",
 					"clang-format",
 					"markdownlint",
+					"jdtls",
 				},
 			})
 		end,
@@ -44,36 +46,40 @@ return {
 			local servers = require("mason-lspconfig").get_installed_servers()
 
 			for _, server in ipairs(servers) do
-				local config = {
-					capabilities = capabilities,
-				}
-
-				-- Hyprland Lua LSP Support (Only works in the hyprland configuration directory)
-				if server == "lua_ls" then
-					config.on_init = function(client)
-						if client.workspace_folders and client.workspace_folders[1].name:match(".config/hypr_lua") then
-							client.config.settings.Lua =
-								vim.tbl_deep_extend("force", client.config.settings.Lua or {}, {
-									workspace = { library = { "/usr/share/hypr/stubs" } },
-								})
-							client:notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-						end
-						return true
-					end
-				end
-
-				-- Inject Zsh support if the server is bashls
-				if server == "bashls" then
-					config.filetypes = { "sh", "bash", "zsh" }
-					config.settings = {
-						bashIde = {
-							globPattern = "**/*@(.sh|.inc|.bash|.command|.zsh)",
-						},
+				if server ~= "jdtls" then
+					local config = {
+						capabilities = capabilities,
 					}
-				end
 
-				vim.lsp.config(server, config)
-				vim.lsp.enable(server)
+					-- Hyprland Lua LSP Support (Only works in the hyprland configuration directory)
+					if server == "lua_ls" then
+						config.on_init = function(client)
+							if
+								client.workspace_folders and client.workspace_folders[1].name:match(".config/hypr_lua")
+							then
+								client.config.settings.Lua =
+									vim.tbl_deep_extend("force", client.config.settings.Lua or {}, {
+										workspace = { library = { "/usr/share/hypr/stubs" } },
+									})
+								client:notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+							end
+							return true
+						end
+					end
+
+					-- Inject Zsh support if the server is bashls
+					if server == "bashls" then
+						config.filetypes = { "sh", "bash", "zsh" }
+						config.settings = {
+							bashIde = {
+								globPattern = "**/*@(.sh|.inc|.bash|.command|.zsh)",
+							},
+						}
+					end
+
+					vim.lsp.config(server, config)
+					vim.lsp.enable(server)
+				end
 			end
 		end,
 	},
