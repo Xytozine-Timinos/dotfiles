@@ -104,7 +104,7 @@ return {
 					},
 					{
 						function()
-							return "󰳻 Open"
+							return "󰈞 Open"
 						end,
 						color = { fg = "#81ccee", gui = "bold" },
 						on_click = function()
