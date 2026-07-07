@@ -46,7 +46,6 @@ return {
 				disabled_filetypes = {
 					statusline = {
 						"NvimTree",
-						"neo-tree",
 						"toggleterm",
 						"startup",
 						"dapui_scopes",
@@ -58,7 +57,6 @@ return {
 					},
 					winbar = {
 						"NvimTree",
-						"neo-tree",
 						"toggleterm",
 						"startup",
 						"dapui_scopes",
@@ -95,6 +93,12 @@ return {
 					"encoding",
 					"fileformat",
 					"filetype",
+					{
+						function()
+							return "󰥔 " .. os.date("%I:%M %p")
+						end,
+						color = { fg = "#81ccee", gui = "bold" },
+					},
 				},
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
@@ -188,15 +192,6 @@ return {
 				lualine_x = {
 					{
 						function()
-							return "Time: " .. os.date("%I:%M %p")
-						end,
-						color = { fg = "#81ccee", gui = "bold" },
-						on_click = function()
-							os.execute("~/.config/rofi/modules/rofi-calendar")
-						end,
-					},
-					{
-						function()
 							return " Run"
 						end,
 						color = { fg = "#a6e3a1", gui = "bold" },
@@ -235,10 +230,13 @@ return {
 							}, function(choice)
 								if not choice then
 									return
+								elseif choice == " Cancel" then
+									return
 								end
 
 								local direction = choice:lower()
 								local cmd = "ToggleTerm direction=" .. direction
+
 								if direction == "vertical" then
 									local one_third_width = math.floor(vim.o.columns / 3)
 									cmd = cmd .. " size=" .. one_third_width
