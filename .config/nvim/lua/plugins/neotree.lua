@@ -1,6 +1,6 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	branch = "v3.x",
+	branch = "main",
 	dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim" },
 	config = function()
 		local neotree = require("neo-tree")
@@ -11,7 +11,7 @@ return {
 			enable_diagnostics = true,
 			open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
 			open_files_using_relative_paths = false,
-			sort_case_insensitive = false, -- used when sorting files and directories in the tree
+			sort_case_insensitive = false,                -- used when sorting files and directories in the tree
 			sort_function = function(a, b)
 				if a.type == b.type then
 					return a.path > b.path
@@ -19,6 +19,11 @@ return {
 					return a.type > b.type
 				end
 			end, -- this sorts files and directories descendantly
+
+			source_selector = {
+				winbar = true,
+				statusline = true
+			},
 
 			default_component_configs = {
 				indent = {
@@ -77,7 +82,7 @@ return {
 			},
 			window = {
 				position = "left",
-				width = 35,
+				width = 40,
 				mapping_options = {
 					noremap = true,
 					nowait = true,

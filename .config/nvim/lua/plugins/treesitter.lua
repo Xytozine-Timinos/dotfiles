@@ -5,11 +5,6 @@ return {
 	config = function()
 		local treesitter = require("nvim-treesitter")
 
-		treesitter.setup({
-			highlight = { enable = true },
-			indent = { enable = true },
-		})
-
 		treesitter.install({ "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" })
 
 		vim.api.nvim_create_autocmd("FileType", {

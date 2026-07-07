@@ -72,14 +72,14 @@ return {
 				ignore_focus = {},
 				always_divide_middle = true,
 				always_show_tabline = true,
-				globalstatus = false,
+				globalstatus = true,
 				refresh = {
 					statusline = 100,
 					tabline = 100,
 					winbar = 100,
 				},
 			},
-			-- BOTTOM STATUSLINE (Now clean and tidy)
+
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff", "diagnostics" },
@@ -99,7 +99,7 @@ return {
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
-			winbar = {
+			tabline = {
 				lualine_a = {},
 				lualine_b = {},
 				lualine_c = {
@@ -255,13 +255,12 @@ return {
 			inactive_sections = {
 				lualine_a = {},
 				lualine_b = {},
-				lualine_c = { "filename" },
-				lualine_x = { "location" },
+				lualine_c = {},
+				lualine_x = {},
 				lualine_y = {},
 				lualine_z = {},
 			},
 			inactive_winbar = {},
-			tabline = {},
 			extensions = {},
 		})
 	end,
