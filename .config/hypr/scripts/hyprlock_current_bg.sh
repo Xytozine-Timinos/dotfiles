@@ -6,6 +6,10 @@ CONFIG="$HOME/.config/hypr/hyprlock.conf"
 # Extract wallpaper path from swaybg
 WALLPAPER=$(ps aux | grep swaybg | grep -v grep | grep -oP '(?<=-i )\S+')
 
+if [[ $WALLPAPER == "" ]]; then
+	WALLPAPER=~/.dtf_default_wallpaper/evening-sky-by-mei-ying.png
+fi
+
 # Default wallpaper path (reset value)
 DEFAULT=""
 
