@@ -129,15 +129,16 @@ return {
 					"encoding",
 					"fileformat",
 					"filetype",
+				},
+				lualine_y = { "progress", "location" },
+				lualine_z = {
 					{
 						function()
 							return "󰥔 " .. os.date("%I:%M %p")
 						end,
-						color = { fg = "#81ccee", gui = "bold" },
+						-- color = { fg = "#81ccee", gui = "bold" },
 					},
 				},
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
 			},
 			tabline = {
 				lualine_a = {},
@@ -187,7 +188,7 @@ return {
 					},
 					{
 						function()
-							return "󰳻 New"
+							return " New"
 						end,
 						color = { fg = "#81ccee", gui = "bold" },
 						on_click = function()
