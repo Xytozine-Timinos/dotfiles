@@ -138,3 +138,40 @@ km.set("v", "<S-s>", "<PageDown>", { noremap = true, silent = true })
 km.set("v", "<S-w>", "<PageUp>", { noremap = true, silent = true })
 km.set("v", "<S-a>", "^", { noremap = true, silent = true })
 km.set("v", "<S-d>", "$", { noremap = true, silent = true })
+
+local function get_run_command()
+	local filetype = vim.bo.filetype
+	local filename = vim.fn.expand("%:p")
+	local filename_no_ext_no_path = vim.fn.expand("%:t:r")
+	local temp_dir = vim.fn.stdpath("run") or "/tmp"
+	local exe_out = temp_dir .. "/" .. filename_no_ext_no_path
+
+	-- Map filetypes to their respective execution commands
+	local commands = {
+		c = "gcc " .. filename .. " -o " .. exe_out .. " && " .. exe_out,
+		cpp = "g++ " .. filename .. " -o " .. exe_out .. " && " .. exe_out,
+		java = "java " .. filename,
+		python = "python3 " .. filename,
+		javascript = "node " .. filename,
+		typescript = "ts-node " .. filename,
+		go = "go run " .. filename,
+		rust = "cargo run",
+		sh = "bash " .. filename,
+		html = "xdg-open " .. filename,
+		lua = "lua " .. filename,
+	}
+
+	return commands[filetype]
+end
+
+_G.lualine_run_code = function()
+	local cmd = get_run_command()
+
+	if cmd then
+		require("toggleterm").exec(cmd, 9)
+	else
+		vim.notify("No run command configured for filetype: " .. vim.bo.filetype, vim.log.levels.WARN)
+	end
+end
+
+km.set("n", "<F1>", _G.lualine_run_code, { noremap = true })
