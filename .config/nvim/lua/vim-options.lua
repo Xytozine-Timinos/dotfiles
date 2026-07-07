@@ -24,8 +24,6 @@ km.set("n", "<C-Space>", "<Esc>", { noremap = true, silent = true })
 km.set("i", "<C-Space>", "<Esc>", { noremap = true, silent = true })
 km.set("v", "<C-Space>", "<Esc>", { noremap = true, silent = true })
 
-vim.keymap.set('i', '<M-f>', '<Esc>', { desc = 'Exit insert mode' })
-
 km.set("n", "<leader>SO", "<cmd>source %<CR>")
 km.set("n", "<leader>l", "<cmd>Lazy<CR>")
 km.set("n", "<leader>m", "<cmd>Mason<CR>")
