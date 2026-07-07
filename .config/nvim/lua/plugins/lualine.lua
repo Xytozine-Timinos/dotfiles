@@ -83,10 +83,46 @@ return {
 				lualine_b = { "branch", "diff", "diagnostics" },
 				lualine_c = {
 					{
-						"filename",
-						file_status = true,
-						path = 1,
-						symbols = { modified = "󰷫 ", readonly = " ", unnamed = "[No Name]", newfile = "[New]" },
+						function()
+							local path_opt = 1 -- 0: Just filename, 1: Relative path, 2: Absolute path
+							local name = ""
+							if path_opt == 1 then
+								name = vim.fn.expand("%:~:.") -- Relative path
+							elseif path_opt == 2 then
+								name = vim.fn.expand("%:p") -- Absolute path
+							else
+								name = vim.fn.expand("%:t") -- Filename only
+							end
+							if name == "" then
+								name = "[No Name]"
+							end
+
+							local has_devicons, devicons = pcall(require, "nvim-web-devicons")
+							local icon = ""
+							if has_devicons then
+								local f_name = vim.fn.expand("%:t")
+								local f_ext = vim.fn.expand("%:e")
+								local dev_icon, dev_icon_hi = devicons.get_icon(f_name, f_ext, { default = true })
+								if dev_icon then
+									icon = string.format("%%#%s#%s%%* ", dev_icon_hi, dev_icon)
+								end
+							end
+
+							local modified_sym = " %#DiagnosticWarn#󰷫%*"
+							local readonly_sym = " %#DiagnosticError#%*"
+							local newfile_sym = " %#DiagnosticInfo#[New]%*"
+
+							if vim.bo.modified then
+								return icon .. "%#DiagnosticWarn#" .. name .. "%*" .. modified_sym
+							elseif vim.bo.readonly or not vim.bo.modifiable then
+								return icon .. "%#DiagnosticError#" .. name .. "%*" .. readonly_sym
+							elseif vim.fn.filereadable(vim.fn.expand("%:p")) == 0 and name ~= "[No Name]" then
+								return icon .. "%#DiagnosticInfo#" .. name .. "%*" .. newfile_sym
+							else
+								return icon .. name
+							end
+						end,
+						file_status = false,
 					},
 				},
 				lualine_x = {
