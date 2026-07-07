@@ -44,8 +44,7 @@ km.set("n", "qq", "<cmd>:q<CR>")
 km.set("n", "ee", "<cmd>:w<CR>")
 km.set("n", "<C-a>", "ggVG", { noremap = true, silent = true })
 
-km.set("n", "<TAB>", "<Cmd>BufferLineCycleNext<CR>")
-km.set("n", "<S-TAB>", "<Cmd>BufferLineCyclePrev<CR>")
+km.set("n", "<TAB>", "<Cmd>Neotree buffers toggle<CR>")
 
 km.set("n", "<C-u>", "<Cmd>UndotreeToggle<CR>")
 
