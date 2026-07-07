@@ -87,15 +87,18 @@ return {
 					{
 						"filename",
 						file_status = true,
-						path = 1, -- Shortened path to save space
+						path = 1,
 						symbols = { modified = "󰷫 ", readonly = " ", unnamed = "[No Name]", newfile = "[New]" },
 					},
 				},
-				lualine_x = { "encoding", "fileformat", "filetype" }, -- Run button removed from here
+				lualine_x = {
+					"encoding",
+					"fileformat",
+					"filetype",
+				},
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
-			-- NEW: TOP BAR (Winbar) Configuration
 			winbar = {
 				lualine_a = {},
 				lualine_b = {},
@@ -183,6 +186,15 @@ return {
 					},
 				},
 				lualine_x = {
+					{
+						function()
+							return "Time: " .. os.date("%I:%M %p")
+						end,
+						color = { fg = "#81ccee", gui = "bold" },
+						on_click = function()
+							os.execute("~/.config/rofi/modules/rofi-calendar")
+						end,
+					},
 					{
 						function()
 							return " Run"
