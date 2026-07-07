@@ -109,7 +109,7 @@ km.set("n", "<C-w><Left>", "<C-W>H", { noremap = true, silent = true })
 km.set("n", "<C-w><Right>", "<C-W>L", { noremap = true, silent = true })
 
 km.set("n", "h", "a", { noremap = true, silent = true })
-km.set("n", "i", "a", { noremap = true, silent = true })
+km.set("n", "o", "a", { noremap = true, silent = true })
 km.set("n", "j", "w", { noremap = true, silent = true })
 km.set("n", "k", "s", { noremap = true, silent = true })
 km.set("n", "l", "d", { noremap = true, silent = true })
