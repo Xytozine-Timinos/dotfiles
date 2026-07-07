@@ -164,7 +164,7 @@ local function get_run_command()
 	return commands[filetype]
 end
 
-_G.lualine_run_code = function()
+_G.run_code = function()
 	local cmd = get_run_command()
 
 	if cmd then
@@ -174,4 +174,4 @@ _G.lualine_run_code = function()
 	end
 end
 
-km.set("n", "<F1>", _G.lualine_run_code, { noremap = true })
+km.set("n", "<F1>", _G.run_code, { noremap = true })
