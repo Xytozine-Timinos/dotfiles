@@ -11,7 +11,7 @@ return {
 			enable_diagnostics = true,
 			open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
 			open_files_using_relative_paths = false,
-			sort_case_insensitive = false,                -- used when sorting files and directories in the tree
+			sort_case_insensitive = false, -- used when sorting files and directories in the tree
 			sort_function = function(a, b)
 				if a.type == b.type then
 					return a.path > b.path
@@ -22,7 +22,7 @@ return {
 
 			source_selector = {
 				winbar = true,
-				statusline = true
+				statusline = true,
 			},
 
 			default_component_configs = {
@@ -88,6 +88,7 @@ return {
 					nowait = true,
 				},
 				mappings = {
+					["<Tab>"] = "",
 					["w"] = "",
 					["s"] = "",
 					["<space>"] = {},
@@ -130,8 +131,8 @@ return {
 					["q"] = "close_window",
 					["R"] = "refresh",
 					["?"] = "show_help",
-					["<"] = "prev_source",
-					[">"] = "next_source",
+					[","] = "prev_source",
+					["."] = "next_source",
 					["i"] = {
 						"show_file_details",
 						config = {
@@ -144,6 +145,24 @@ return {
 					},
 					["a"] = "navigate_up",
 					["d"] = "set_root",
+				},
+			},
+			buffers = {
+				window = {
+					mappings = {
+						["X"] = "buffer_delete",
+						["o"] = {
+							"show_help",
+							nowait = false,
+							config = { title = "Order by", prefix_key = "o" },
+						},
+						["oc"] = { "order_by_created", nowait = false },
+						["od"] = { "order_by_diagnostics", nowait = false },
+						["om"] = { "order_by_modified", nowait = false },
+						["on"] = { "order_by_name", nowait = false },
+						["os"] = { "order_by_size", nowait = false },
+						["ot"] = { "order_by_type", nowait = false },
+					},
 				},
 			},
 		})
