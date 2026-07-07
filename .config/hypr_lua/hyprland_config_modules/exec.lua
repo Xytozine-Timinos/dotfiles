@@ -46,7 +46,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd('notify-send -t 2500 "Press 󰖳 + = to open the keybind menu!"')
 	hl.exec_cmd('notify-send -t 2500 "Press 󰖳 + i to open the settings menu!"')
 	-- Wallpapers
-	hl.exec_cmd("waypaper --restore")
+	hl.exec_cmd(home .. "/.config/hypr/scripts/wallpaper.sh")
 	-- KDE Connect daemon
 	hl.exec_cmd("kdeconnectd")
 	-- Logitech app
