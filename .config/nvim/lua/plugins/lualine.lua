@@ -187,6 +187,15 @@ return {
 					},
 					{
 						function()
+							return "󰳻 New"
+						end,
+						color = { fg = "#81ccee", gui = "bold" },
+						on_click = function()
+							vim.cmd("lua require'startup'.new_file()")
+						end,
+					},
+					{
+						function()
 							return "%="
 						end,
 						separator = "",
