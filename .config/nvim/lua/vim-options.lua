@@ -108,10 +108,10 @@ km.set("n", "<C-w><Down>", "<C-W>J", { noremap = true, silent = true })
 km.set("n", "<C-w><Left>", "<C-W>H", { noremap = true, silent = true })
 km.set("n", "<C-w><Right>", "<C-W>L", { noremap = true, silent = true })
 
-km.set("n", "h", "a", { noremap = true, silent = true })
+km.set("n", "h", "b", { noremap = true, silent = true })
 km.set("n", "k", "a", { noremap = true, silent = true })
 km.set("n", "j", "w", { noremap = true, silent = true })
-km.set("n", "l", "d", { noremap = true, silent = true })
+km.set("n", "l", "a", { noremap = true, silent = true })
 
 -- vim macro
 km.set("n", "4", function()
