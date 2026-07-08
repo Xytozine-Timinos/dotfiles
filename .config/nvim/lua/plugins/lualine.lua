@@ -141,16 +141,15 @@ return {
 						function()
 							return "󰂚"
 						end,
-						on_click = function ()
+						on_click = function()
 							vim.cmd("Telescope notify")
-						end
+						end,
 					},
 				},
 			},
 			tabline = {
 				lualine_a = {},
-				lualine_b = {},
-				lualine_c = {
+				lualine_b = {
 					{
 						function()
 							return "󰈆"
@@ -202,6 +201,8 @@ return {
 							vim.cmd("lua require'startup'.new_file()")
 						end,
 					},
+				},
+				lualine_c = {
 					{
 						function()
 							return "%="
@@ -242,7 +243,8 @@ return {
 						end,
 					},
 				},
-				lualine_x = {
+				lualine_x = {},
+				lualine_y = {
 					{
 						function()
 							return ""
@@ -296,7 +298,6 @@ return {
 						end,
 					},
 				},
-				lualine_y = {},
 				lualine_z = {},
 			},
 			inactive_sections = {
