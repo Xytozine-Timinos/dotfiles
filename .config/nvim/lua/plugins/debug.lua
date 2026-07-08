@@ -32,7 +32,13 @@ return {
 		end,
 	},
 	{
+		"theHamsta/nvim-dap-virtual-text",
+		dependencies = { "mfussenegger/nvim-dap" },
+	},
+	{
+		"williamboman/mason-nvim-dap.nvim",
+	},
+	{
 		"mfussenegger/nvim-jdtls",
-		ft = "java",
 	},
 }

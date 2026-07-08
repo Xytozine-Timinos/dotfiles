@@ -1,36 +1,43 @@
 local jdtls = require("jdtls")
 
-local mason_registry = require("mason-registry")
-local jdtls_pkg = mason_registry.get_package("jdtls")
-local jdtls_path = jdtls_pkg:get_install_path()
-
-local java_debug_pkg = mason_registry.get_package("java-debug-adapter")
-local java_debug_path = java_debug_pkg:get_install_path()
-
-local java_test_pkg = mason_registry.get_package("java-test")
-local java_test_path = java_test_pkg:get_install_path()
+local mason_path = vim.fn.stdpath("data") .. "/mason/packages"
+local jdtls_path = mason_path .. "/jdtls"
+local java_debug_path = mason_path .. "/java-debug-adapter"
+local java_test_path = mason_path .. "/java-test"
 
 local bundles = {
 	vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", true),
 }
 vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar", true), "\n"))
 
-local root_dir = require("jdtls.setup").find_root({ "pom.xml", "build.gradle", ".git" })
-local workspace_dir = vim.fn.stdpath("data") .. "/jdtls-workspace/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local workspace_dir = vim.fn.stdpath("data") .. "/jdtls-workspace/" .. project_name
 
 local config = {
-	cmd = { jdtls_path .. "/bin/jdtls", "-data", workspace_dir },
-	root_dir = root_dir,
+	cmd = {
+		"java",
+		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
+		"-Dosgi.bundles.defaultStartLevel=4",
+		"-Declipse.product=org.eclipse.jdt.ls.core.product",
+		"-Dlog.protocol=true",
+		"-Dlog.level=ALL",
+		"-jar",
+		vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+		"-configuration",
+		jdtls_path .. "/config_linux",
+		"-data",
+		workspace_dir,
+	},
+	root_dir = require("jdtls.setup").find_root({ ".git", "pom.xml", "build.gradle" }),
+	settings = {
+		java = {
+			configuration = { updateBuildConfiguration = "interactive" },
+		},
+	},
 	init_options = {
 		bundles = bundles,
 	},
-	on_attach = function(client, bufnr)
-		jdtls.setup_dap({ hotcodereplace = "auto" })
-		require("jdtls.dap").setup_dap_main_class_configs()
-
-		vim.keymap.set("n", "<leader>df", jdtls.test_class, { buffer = bufnr, desc = "Debug: Test Class" })
-		vim.keymap.set("n", "<leader>dn", jdtls.test_nearest_method, { buffer = bufnr, desc = "Debug: Test Nearest" })
-	end,
 }
 
 jdtls.start_or_attach(config)
+jdtls.setup_dap({ hotcodereplace = "auto" })
