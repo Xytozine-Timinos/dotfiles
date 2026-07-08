@@ -1,7 +1,7 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "main",
-	dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim" },
+	dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim", "folke/snacks.nvim" },
 	config = function()
 		local neotree = require("neo-tree")
 		neotree.setup({
@@ -32,10 +32,10 @@ return {
 				statusline = false,
 				show_scrolled_off_parent_node = false,
 				sources = {
-					{ source = "filesystem" },
-					{ source = "buffers" },
-					{ source = "git_status" },
-					{ source = "document_symbols" },
+					{ source = "filesystem", display_name = "󰉓" },
+					{ source = "buffers", display_name = "󰈙" },
+					{ source = "git_status", display_name = "󰊢" },
+					{ source = "document_symbols", display_name = "󰮄" },
 				},
 				content_layout = "center",
 				highlight_tab = "NeoTreeTabInactive",
