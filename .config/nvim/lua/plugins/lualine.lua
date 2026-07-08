@@ -136,7 +136,14 @@ return {
 						function()
 							return "󰥔 " .. os.date("%I:%M %p")
 						end,
-						-- color = { fg = "#81ccee", gui = "bold" },
+					},
+					{
+						function()
+							return "󰂚"
+						end,
+						on_click = function ()
+							vim.cmd("Telescope notify")
+						end
 					},
 				},
 			},
