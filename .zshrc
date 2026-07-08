@@ -82,7 +82,7 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --icon=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --icon always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:*' prefix '·'
 # give a preview of commandline arguments when completing `kill`
@@ -100,6 +100,21 @@ zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|
 zstyle ':fzf-tab:complete:-command-:*' fzf-preview \
 	'(out=$(tldr --color always "$word") 2>/dev/null && echo $out) || (out=$(MANWIDTH=$FZF_PREVIEW_COLUMNS man "$word") 2>/dev/null && echo $out) || (out=$(which "$word") && echo $out) || echo "${(P)word}"'
 zstyle ':fzf-tab:complete:-command-:*' fzf-flags --preview-window=right:55%
+zstyle ':fzf-tab:complete:(\||mv|rm|cp|cd):*' fzf-preview '
+  if [ -d "$realpath" ]; then
+    lsd --color always --icon always "$realpath"
+  else
+    case $(file --mime-type --brief "$realpath") in
+      *image*) 
+        kitten icat --clear --transfer-mode=stream --unicode-placeholder --stdin=no --place=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0 "$realpath" 
+        ;;
+      *) 
+        # Optional: use bat or cat for text files instead of lsd
+        bat --color=always "$realpath" 2>/dev/null || cat "$realpath"
+        ;;
+    esac
+  fi
+'
 
 #Oh-my-zsh settings options
 DISABLE_AUTO_UPDATE=true
@@ -139,8 +154,8 @@ if [[ $- == *i* ]]; then
 	if command -v zoxide >/dev/null 2>&1; then
 		eval "$(zoxide init zsh)"
 		export _ZO_MAXAGE=120
-		alias cd="z"
-		alias cdi="zi"
+	# 	alias cd="z"
+	# 	alias cdi="zi"
 	fi
 
 	# Reset caret to line after exit neovim
