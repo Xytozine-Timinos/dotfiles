@@ -6,9 +6,6 @@ return {
 			local group = vim.api.nvim_create_augroup("ImageHoverPreview", { clear = true })
 			local preview_win, preview_img
 
-			-- tune this per your terminal/font: lower = shorter preview for the same width
-			local cell_aspect = 0.45
-
 			local function close_preview()
 				if preview_img then
 					preview_img:clear()
@@ -58,18 +55,32 @@ return {
 					return
 				end
 
-				local max_width, max_height = 50, 25 -- cap in terminal cells
-				local width, height = 40, 20 -- fallback if `identify` isn't available
-
 				local size = get_image_size(path)
+				local width, height = 40, 20
+				local win_width, win_height = 1, 1
+
 				if size then
-					local aspect = (size.h / size.w) * cell_aspect
-					width = max_width
-					height = math.floor(width * aspect)
-					if height > max_height then
-						height = max_height
-						width = math.floor(height / aspect)
+					local aspect = (size.w / size.h) * 0.4
+
+					if aspect >= 1 then
+						aspect = 0.8
 					end
+
+					width = math.floor(width * aspect)
+					height = math.floor(height * aspect)
+					win_width = width
+					win_height = height / 2
+					-- vim.notify(
+					-- 	string.format(
+					-- 		"Aspect: %.4f, Width: %d, Height: %d, winW: %d, winH: %d",
+					-- 		aspect,
+					-- 		width,
+					-- 		height,
+					-- 		win_width,
+					-- 		win_height
+					-- 	),
+					-- 	vim.log.levels.INFO
+					-- )
 				end
 
 				local buf = vim.api.nvim_create_buf(false, true)
@@ -77,10 +88,10 @@ return {
 					relative = "cursor",
 					row = 1,
 					col = 0,
-					width = width,
-					height = height,
+					width = win_width,
+					height = win_height,
 					style = "minimal",
-					border = "none",
+					border = "rounded",
 					focusable = false,
 				})
 
@@ -90,7 +101,7 @@ return {
 					window = preview_win,
 					buffer = buf,
 					x = 0,
-					y = 0,
+					y = -1,
 					width = width,
 					height = height,
 				})
@@ -118,8 +129,9 @@ return {
 						only_render_image_at_cursor = true,
 					},
 				},
-				max_width_window_percentage = 50,
-				max_height_window_percentage = 50,
+				scale_factor = 1.0,
+				max_width_window_percentage = 100,
+				max_height_window_percentage = 100,
 				hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" },
 			})
 		end,
