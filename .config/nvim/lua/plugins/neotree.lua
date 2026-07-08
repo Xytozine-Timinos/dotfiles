@@ -20,9 +20,34 @@ return {
 				end
 			end, -- this sorts files and directories descendantly
 
+			sources = {
+				"filesystem",
+				"buffers",
+				"git_status",
+				"document_symbols",
+			},
+
 			source_selector = {
 				winbar = true,
-				statusline = true,
+				statusline = false,
+				show_scrolled_off_parent_node = false,
+				sources = {
+					{ source = "filesystem" },
+					{ source = "buffers" },
+					{ source = "git_status" },
+					{ source = "document_symbols" },
+				},
+				content_layout = "center",
+				highlight_tab = "NeoTreeTabInactive",
+				highlight_tab_active = "NeoTreeTabActive",
+				highlight_background = "NeoTreeTabInactive",
+				highlight_separator = "NeoTreeTabSeparatorInactive",
+				highlight_separator_active = "NeoTreeTabSeparatorActive",
+			},
+
+			document_symbols = {
+				follow_cursor = true,
+				follow_tree_cursor = true,
 			},
 
 			default_component_configs = {
