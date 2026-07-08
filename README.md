@@ -101,7 +101,7 @@ Install Hyprland dependencies
 ```
 sudo add-apt-repository ppa:cppiber/hyprland
 sudo apt update
-sudo apt install zsh hyprland swaybg hyprsunset hypridle hyprlock waybar rofi ncal neovim alacritty dunst libnotify-bin btop thunar blueman pipewire-pulse pipewire network-manager fzf udev lsd jq wl-clipboard acpi bsdmainutils light iw wlr-randr gawk pulseaudio-utils xwayland hyprpolkitagent hyprland-qt-support0 tty-clock socat inotify-tools
+sudo apt install $(curl -s https://raw.githubusercontent.com/Xgameisdabest/dotfiles/main/dependencies.txt)
 ```
 
 Install oh-my-zsh (command taken from the official [page](https://github.com/ohmyzsh/ohmyzsh))
