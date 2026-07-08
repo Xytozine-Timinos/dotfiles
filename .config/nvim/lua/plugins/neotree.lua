@@ -120,61 +120,73 @@ return {
 					["<2-LeftMouse>"] = "open",
 					["<cr>"] = "open",
 					["<esc>"] = "cancel", -- close preview or floating neo-tree window
-					["P"] = {
-						"toggle_preview",
-						config = {
-							use_float = true,
-							use_snacks_image = true,
-							use_image_nvim = true,
-						},
-					},
-					-- Read `# Preview Mode` for more information
-					["["] = "open_split",
-					["]"] = "open_vsplit",
-					["\\"] = "close_node",
 					["|"] = "close_all_nodes",
-					["="] = {
-						"add",
-						config = {
-							show_path = "absolute",
-						},
-					},
-					["+"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
-					["-"] = "delete",
-					["_"] = "rename",
-					["0"] = "rename_basename",
-					["y"] = "copy_to_clipboard",
-					["x"] = "cut_to_clipboard",
-					["p"] = "paste_from_clipboard",
-					["c"] = {
-						"copy",
-						config = {
-							show_path = "absolute",
-						},
-					},
-					["m"] = "move",
+					["\\"] = "close_node",
 					["q"] = "close_window",
 					["R"] = "refresh",
 					["?"] = "show_help",
 					[","] = "prev_source",
 					["."] = "next_source",
-					["i"] = {
-						"show_file_details",
-						config = {
-							created_format = "%Y-%m-%d %I:%M %p",
-							modified_format = "relative", -- equivalent to the line below
-							modified_format = function(seconds)
-								return require("neo-tree.utils").relative_date(seconds)
-							end,
-						},
-					},
-					["a"] = "navigate_up",
-					["d"] = "set_root",
 				},
 			},
+
+			filesystem = {
+				window = {
+					mappings = {
+						["y"] = "copy_to_clipboard",
+						["x"] = "cut_to_clipboard",
+						["p"] = "paste_from_clipboard",
+						["c"] = {
+							"copy",
+							config = {
+								show_path = "absolute",
+							},
+						},
+						["P"] = {
+							"toggle_preview",
+							config = {
+								use_float = true,
+								use_snacks_image = true,
+								use_image_nvim = true,
+							},
+						},
+						["["] = "open_split",
+						["]"] = "open_vsplit",
+						["="] = {
+							"add",
+							config = {
+								show_path = "absolute",
+							},
+						},
+						["+"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
+						["-"] = "delete",
+						["_"] = "rename",
+						["0"] = "rename_basename",
+						["m"] = "move",
+						["i"] = {
+							"show_file_details",
+							config = {
+								created_format = "%Y-%m-%d %I:%M %p",
+								modified_format = "relative", -- equivalent to the line below
+								modified_format = function(seconds)
+									return require("neo-tree.utils").relative_date(seconds)
+								end,
+							},
+						},
+						["a"] = "navigate_up",
+						["d"] = "set_root",
+					},
+				},
+			},
+
 			buffers = {
 				window = {
 					mappings = {
+						["y"] = "copy_to_clipboard",
+						["x"] = "cut_to_clipboard",
+						["p"] = "paste_from_clipboard",
+						["a"] = "navigate_up",
+						["d"] = "set_root",
 						["X"] = "buffer_delete",
 						["o"] = {
 							"show_help",
