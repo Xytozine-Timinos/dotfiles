@@ -101,7 +101,7 @@ zstyle ':fzf-tab:complete:-command-:*' fzf-preview \
 	'(out=$(tldr --color always "$word") 2>/dev/null && echo $out) || (out=$(MANWIDTH=$FZF_PREVIEW_COLUMNS man "$word") 2>/dev/null && echo $out) || (out=$(which "$word") && echo $out) || echo "${(P)word}"'
 zstyle ':fzf-tab:complete:-command-:*' fzf-flags --preview-window=right:55%
 # Image/path preview
-zstyle ':fzf-tab:complete:(\||mv|rm|cp|cd):*' fzf-preview '
+zstyle ':fzf-tab:complete:(\||mv|rm|cp|cd|v|nvim):*' fzf-preview '
   if [ -d "$realpath" ]; then
     lsd --color always --icon always "$realpath"
   else
