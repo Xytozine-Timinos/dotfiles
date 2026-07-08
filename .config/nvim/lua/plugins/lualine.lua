@@ -153,7 +153,7 @@ return {
 				lualine_c = {
 					{
 						function()
-							return "󰈆 Quit"
+							return "󰈆"
 						end,
 						color = { fg = "#ff6f91", gui = "bold" },
 						on_click = function()
@@ -177,7 +177,7 @@ return {
 					},
 					{
 						function()
-							return "󰈞 Open"
+							return "󰈞"
 						end,
 						color = { fg = "#81ccee", gui = "bold" },
 						on_click = function()
@@ -186,7 +186,7 @@ return {
 					},
 					{
 						function()
-							return "󰳻 Save"
+							return "󰳻"
 						end,
 						color = { fg = "#81ccee", gui = "bold" },
 						on_click = function()
@@ -195,7 +195,7 @@ return {
 					},
 					{
 						function()
-							return " New"
+							return ""
 						end,
 						color = { fg = "#81ccee", gui = "bold" },
 						on_click = function()
@@ -211,7 +211,7 @@ return {
 					},
 					{
 						function()
-							return " Neotree"
+							return ""
 						end,
 						color = { fg = "#81ccee", gui = "bold" },
 						on_click = function()
@@ -220,7 +220,7 @@ return {
 					},
 					{
 						function()
-							return "󰉢 Format"
+							return "󰉢"
 						end,
 						color = { fg = "#81ccee", gui = "bold" },
 						on_click = function()
@@ -234,7 +234,7 @@ return {
 					},
 					{
 						function()
-							return " Undotree"
+							return ""
 						end,
 						color = { fg = "#81ccee", gui = "bold" },
 						on_click = function()
@@ -245,7 +245,7 @@ return {
 				lualine_x = {
 					{
 						function()
-							return " Run"
+							return ""
 						end,
 						color = { fg = "#a6e3a1", gui = "bold" },
 						on_click = function()
@@ -254,11 +254,7 @@ return {
 					},
 					{
 						function()
-							local dapui = package.loaded["dapui"]
-							if dapui and dapui.visible and dapui.visible() then
-								return " Close Debug"
-							end
-							return " Debug"
+							return ""
 						end,
 						color = { fg = "#f9e2af", gui = "bold" },
 						on_click = function()
@@ -272,7 +268,7 @@ return {
 					},
 					{
 						function()
-							return " Terminal"
+							return ""
 						end,
 						color = { fg = "#eba0ac", gui = "bold" },
 						on_click = function()
