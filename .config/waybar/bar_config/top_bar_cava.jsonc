@@ -11,7 +11,7 @@
 		"custom/hyprsunset",
 		"custom/notification-center",
 		"custom/temperature",
-		"tray",
+		"group/tray-group",
 		"custom/window"
 	],
 	"modules-center": ["custom/cava", "hyprland/workspaces", "custom/cava"],
@@ -50,6 +50,19 @@
 	"tray": {
 		"icon-size": 24,
 		"spacing": 11
+	},
+	"custom/expand": {
+		"format": ">",
+		"tooltip": false
+	},
+	"group/tray-group": {
+		"orientation": "horizontal",
+		"modules": ["custom/expand", "tray"],
+		"drawer": {
+			"transition-duration": 500,
+			"children-class": "tray-drawer",
+			"click-to-reveal": true
+		}
 	},
 	"custom/bluetooth": {
 		"format": "{}",

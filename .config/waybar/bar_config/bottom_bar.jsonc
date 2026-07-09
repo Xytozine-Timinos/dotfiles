@@ -11,18 +11,15 @@
 		"custom/hyprsunset",
 		"custom/notification-center",
 		"custom/temperature",
-		"tray",
+		"group/tray-group",
 		"custom/window"
 	],
-	"modules-center": [
-		"hyprland/workspaces"
-	],
+	"modules-center": ["hyprland/workspaces"],
 	"modules-right": [
 		"custom/dtf-update",
 		"clock",
 		"custom/network",
 		"custom/bluetooth",
-		// "battery",
 		"custom/battery",
 		"custom/audio",
 		"custom/power",
@@ -52,6 +49,19 @@
 	"tray": {
 		"icon-size": 24,
 		"spacing": 11
+	},
+	"custom/expand": {
+		"format": ">",
+		"tooltip": false
+	},
+	"group/tray-group": {
+		"orientation": "horizontal",
+		"modules": ["custom/expand", "tray"],
+		"drawer": {
+			"transition-duration": 500,
+			"children-class": "tray-drawer",
+			"click-to-reveal": true
+		}
 	},
 	"custom/bluetooth": {
 		"format": "{}",
@@ -97,13 +107,7 @@
 		"format-charging": "󰔵  {capacity}%",
 		"format-not-charging": "  {capacity}%",
 		"format-plugged": "󱐋  {capacity}%",
-		"format-icons": [
-			" ",
-			" ",
-			" ",
-			" ",
-			" "
-		],
+		"format-icons": [" ", " ", " ", " ", " "],
 		"on-click": "(~/.config/rofi/modules/rofi-power-mode & disown)"
 	},
 	"custom/network": {
