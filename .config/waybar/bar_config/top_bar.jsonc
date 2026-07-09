@@ -54,7 +54,7 @@
 	"custom/expand": {
 		"format": "󰐒",
 		"tooltip": true,
-		"tooltip-format": "󰳽 Click To Expand"
+		"tooltip-format": "󰳽 Click To Toggle Show/Hide"
 	},
 	"group/tray-group": {
 		"orientation": "horizontal",
