@@ -1,0 +1,170 @@
+{
+	"position": "bottom",
+	"layer": "top",
+	"margin-bottom": 5,
+	"margin-top": 0,
+	"margin-left": 10,
+	"margin-right": 10,
+	"spacing": 4,
+	"modules-left": [
+		"custom/padd",
+		"custom/hyprsunset",
+		"custom/notification-center",
+		"custom/temperature",
+		"tray",
+		"custom/window",
+		"custom/cava",
+	],
+	"modules-center": [
+		"hyprland/workspaces"
+	],
+	"modules-right": [
+		"custom/dtf-update",
+		"custom/cava",
+		"clock",
+		"custom/network",
+		"custom/bluetooth",
+		// "battery",
+		"custom/battery",
+		"custom/audio",
+		"custom/power",
+		"custom/padd"
+	],
+	"hyprland/workspaces": {
+		"format": "{id}",
+		"on-scroll-up": "~/.config/waybar/scripts/scroll_workspace.sh next",
+		"on-scroll-down": "~/.config/waybar/scripts/scroll_workspace.sh prev",
+		"cursor": "pointer"
+	},
+	"custom/window": {
+		"format": "{}",
+		"exec": "~/.config/waybar/scripts/window_title.sh",
+		"return-type": "json",
+		"on-click": "setsid ~/.config/hypr/rofi_hyprland/rofi-window-list.sh &",
+		"on-click-right": "setsid ~/.config/rofi/scripts/drun.sh &",
+		"tooltip": true
+	},
+	"hyprland/window": {
+		"format": "󰘔  {class}",
+		"rewrite": {
+			"^$": "󰘔  Hyprland"
+		},
+		"on-click": "(~/.config/hypr/rofi_hyprland/rofi-window-list.sh & disown)"
+	},
+	"tray": {
+		"icon-size": 24,
+		"spacing": 11
+	},
+	"custom/bluetooth": {
+		"format": "{}",
+		"exec": "~/.config/waybar/scripts/bluetooth.sh",
+		"interval": 2,
+		"return-type": "json",
+		"on-click": "(~/.config/rofi/modules/rofi-bluetooth & disown)",
+		"on-click-right": "(~/.config/waybar/scripts/toggle_bluetooth.sh & disown)",
+		"tooltip": true
+	},
+	"clock": {
+		"interval": 60,
+		"format": "󰥔 {:%I:%M %p}",
+		"tooltip-format": "  Date: {:%a, %d/%b/%Y\r󰨳  Week number: %V\r󰴟  Timezone: %z}",
+		"on-click": "setsid ~/.config/rofi/modules/rofi-calendar &",
+		"tooltip": true
+	},
+	"custom/temperature": {
+		"format": " {}",
+		"exec": "~/.config/waybar/scripts/cpu_temp.sh",
+		"return-type": "json",
+		"interval": 3,
+		"on-click": "(~/.config/rofi/modules/waybar-rofi-sysmonitor.sh & disown)"
+	},
+	"custom/battery": {
+		"exec": "~/.config/waybar/scripts/battery_status.sh",
+		"return-type": "json",
+		"interval": 2,
+		"on-click": "(~/.config/rofi/modules/rofi-power-mode & disown)",
+		"tooltip": true
+	},
+	"battery": {
+		"interval": 3,
+		"states": {
+			"LVL0": 100,
+			"LVL1": 85,
+			"LVL2": 65,
+			"LVL3": 45,
+			"LVL4": 25,
+			"LVL5": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-charging": "󰔵  {capacity}%",
+		"format-not-charging": "  {capacity}%",
+		"format-plugged": "󱐋  {capacity}%",
+		"format-icons": [
+			" ",
+			" ",
+			" ",
+			" ",
+			" "
+		],
+		"on-click": "(~/.config/rofi/modules/rofi-power-mode & disown)"
+	},
+	"custom/network": {
+		"format": "{}",
+		"exec": "~/.config/waybar/scripts/network_status.sh",
+		"return-type": "json",
+		"on-click": "setsid ~/.config/rofi/modules/rofi-wifi-menu &",
+		"on-click-right": "(~/.config/waybar/scripts/toggle_wifi.sh & disown)"
+	},
+	"custom/audio": {
+		"format": "{}",
+		"exec": "~/.config/waybar/scripts/volume_status.sh",
+		"tail": true,
+		"return-type": "json",
+		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"on-click-middle": "(~/.config/dunst/scripts/volume.sh volume_status & disown)",
+		"on-click-right": "setsid ~/.config/rofi/modules/rofi-sound-settings &",
+		"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ $(pactl get-sink-volume @DEFAULT_SINK@ | awk -v max=153 '/Volume:/ {v=$5+3; sub(/%/,\"\",v); print (v>max?max:v)\"%\"}' | head -n1)",
+		"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -3%"
+	},
+	"custom/power": {
+		"format": "󰐥",
+		"on-click": "setsid ~/.config/rofi/modules/rofi-power-menu &",
+		"tooltip": true,
+		"tooltip-format": "󰐥 Power Button"
+	},
+	"custom/notification-center": {
+		"format": "{}",
+		"exec": "~/.config/waybar/scripts/notification-indicator",
+		"return-type": "json",
+		"interval": 2,
+		"on-click": "(~/.config/rofi/modules/rofi-noti-center.sh & disown)",
+		"on-click-right": "dunstctl history-clear"
+	},
+	"custom/hyprsunset": {
+		"format": " ",
+		"on-click": "setsid ~/.config/rofi/modules/rofi-hyprsunset &",
+		"on-click-right": "hyprctl hyprsunset identity && killall hyprsunset",
+		"tooltip": true,
+		"tooltip-format": "  Blue Light Filter"
+	},
+	"custom/hyprland-settings": {
+		"format": "",
+		"on-click": "(~/.config/rofi/modules/rofi-user-settings & disown)",
+		"tooltip": true,
+		"tooltip-format": "Settings"
+	},
+	"custom/dtf-update": {
+		"format": "{}",
+		"exec": "~/.config/hypr/scripts/hypr_dtf_update.sh",
+		"on-click": "setsid ~/.config/hypr/scripts/dtf_update_update.sh &"
+	},
+	"custom/cava": {
+		"format": "{}",
+		"exec": "~/.config/waybar/scripts/cava.sh"
+	},
+	"custom/padd": {
+		"format": " ",
+		"interval": "once",
+		"tooltip": false
+	}
+}
