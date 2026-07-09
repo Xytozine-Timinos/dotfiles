@@ -64,6 +64,7 @@ tooltip label {
 	padding: 5px;
 }
 
+#custom-expand,
 #tray {
 	background-color: #9eaad1;
 }
@@ -78,6 +79,7 @@ tooltip label {
 }
 
 #tray,
+#custom-expand,
 #battery,
 #custom-battery,
 #clock,

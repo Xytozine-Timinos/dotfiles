@@ -78,6 +78,7 @@ tooltip label {
 }
 
 #tray,
+#custom-expand,
 #battery,
 #custom-battery,
 #clock,
@@ -110,6 +111,7 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
+#custom-expand,
 #tray {
 	background-color: #3f4454;
 	color: #bbc4df;
