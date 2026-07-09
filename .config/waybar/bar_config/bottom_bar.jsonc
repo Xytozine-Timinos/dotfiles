@@ -52,7 +52,8 @@
 	},
 	"custom/expand": {
 		"format": "󰐒",
-		"tooltip": false
+		"tooltip": true,
+		"tooltip-format": "󰳽 Click To Expand"
 	},
 	"group/tray-group": {
 		"orientation": "horizontal",
