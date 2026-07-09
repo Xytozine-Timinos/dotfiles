@@ -12,13 +12,11 @@
 		"custom/notification-center",
 		"custom/temperature",
 		"tray",
-		"custom/window",
-		"custom/cava",
+		"custom/window"
 	],
-	"modules-center": ["hyprland/workspaces"],
+	"modules-center": ["custom/cava", "hyprland/workspaces", "custom/cava"],
 	"modules-right": [
 		"custom/dtf-update",
-		"custom/cava",
 		"clock",
 		"custom/network",
 		"custom/bluetooth",

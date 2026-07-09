@@ -10,7 +10,7 @@ bars=(▁ ▂ ▃ ▄ ▅ ▆ ▇ █)
 config_file="/tmp/polybar_cava_config"
 cat <<EOF >"$config_file"
 [general]
-bars = 18
+bars = 9
 
 [output]
 method = raw

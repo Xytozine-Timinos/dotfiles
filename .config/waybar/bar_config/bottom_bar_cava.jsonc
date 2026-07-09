@@ -12,15 +12,11 @@
 		"custom/notification-center",
 		"custom/temperature",
 		"tray",
-		"custom/window",
-		"custom/cava",
+		"custom/window"
 	],
-	"modules-center": [
-		"hyprland/workspaces"
-	],
+	"modules-center": ["custom/cava", "hyprland/workspaces", "custom/cava"],
 	"modules-right": [
 		"custom/dtf-update",
-		"custom/cava",
 		"clock",
 		"custom/network",
 		"custom/bluetooth",
@@ -99,13 +95,7 @@
 		"format-charging": "󰔵  {capacity}%",
 		"format-not-charging": "  {capacity}%",
 		"format-plugged": "󱐋  {capacity}%",
-		"format-icons": [
-			" ",
-			" ",
-			" ",
-			" ",
-			" "
-		],
+		"format-icons": [" ", " ", " ", " ", " "],
 		"on-click": "(~/.config/rofi/modules/rofi-power-mode & disown)"
 	},
 	"custom/network": {
