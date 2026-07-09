@@ -75,6 +75,10 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
+#custom-cava {
+	color: #9ed8f2;
+}
+
 #tray,
 #battery,
 #custom-battery,
