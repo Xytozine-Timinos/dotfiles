@@ -29,7 +29,7 @@ active_addr=$(hyprctl activewindow -j | jq -r '.address')
 window_data=$(hyprctl -j clients | jq -r '
     sort_by(.workspace.id, .title)[] 
     | (if .workspace.id == -98 then "Hidden" else "Workspace \(.workspace.id)" end) as $ws_label
-    | "\($ws_label) -> \(.class): \(.title)\t\(.address)\t\(.workspace.id)"
+    | "\($ws_label): \(.class): \(.title)\t\(.address)\t\(.workspace.id)"
 ')
 
 window_list=$(echo "$window_data" | cut -f1)
