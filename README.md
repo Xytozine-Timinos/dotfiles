@@ -231,6 +231,9 @@ welcome_notification=true #(OPTIONS: true/false) (One time only)
 # Changes polybar/waybar color to black or white
 bar_color=black #(OPTIONS: white/black) (Reload required)
 
+# Added cava to the bar, thanks to https://github.com/ray-pH/waybar-cava
+bar_cava=false #(OPTIONS: true/false) (Reload required)
+
 # Material expressive style inspired for waybar
 # REQUIRED BAR SET TO BLACK
 bar_expressive_style=true #(OPTIONS: true/false) (Reload required)
