@@ -52,7 +52,7 @@
 		"spacing": 11
 	},
 	"custom/expand": {
-		"format": ">",
+		"format": "󰐒",
 		"tooltip": false
 	},
 	"group/tray-group": {
