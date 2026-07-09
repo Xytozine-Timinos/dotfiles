@@ -232,6 +232,7 @@ welcome_notification=true #(OPTIONS: true/false) (One time only)
 bar_color=black #(OPTIONS: white/black) (Reload required)
 
 # Added cava to the bar, thanks to https://github.com/ray-pH/waybar-cava
+# WARNING, THIS IS AN EXPERIMENTAL FEATURE, IT IS KNOWN TO BREAK WAYBAR TOOLTIP WHEN PLAYING MUSIC
 bar_cava=false #(OPTIONS: true/false) (Reload required)
 
 # Material expressive style inspired for waybar
