@@ -17,6 +17,7 @@ bar_top=${bar_top:-false}
 bar_expressive_style=${bar_expressive_style:-false}
 bar_dynamic_style=${bar_dynamic_style:-false}
 bar_dynamic_round_style=${bar_dynamic_round_style:-false}
+bar_cava=${bar_cava:-false}
 
 CONFIG_DIR="$HOME/.config/waybar/bar_config"
 STYLE_DIR="$HOME/.config/waybar/bar_style"
@@ -24,7 +25,13 @@ STYLE_DIR="$HOME/.config/waybar/bar_style"
 CONF="bottom_bar.jsonc"
 STYLE="dark.css"
 
-if [[ $bar_top == "true" ]]; then
+if [[ $bar_cava == "true" ]]; then
+	CONF="bottom_bar_cava.jsonc"
+fi
+
+if [[ $bar_top == "true" && $bar_cava == "true" ]]; then
+	CONF="top_bar_cava.jsonc"
+elif [[ $bar_top == "true" && $bar_cava != "true" ]]; then
 	CONF="top_bar.jsonc"
 fi
 
