@@ -8,11 +8,12 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-main_menu_height=437px
-main_menu_width=375px
+main_menu_height=470px
+main_menu_width=390px
 
 wm_settings="󰢹  Desktop Settings "
 usr_settings="  User Settings"
+hyprland_custom_settings="  Hyprland Custom Settings"
 monitor_settings="󱒃  Monitor Settings "
 power_mode_settings="󰓅  Power Mode Settings "
 default_browser="󰖟  Default Web Browser "
@@ -21,7 +22,7 @@ system_update_upgrade="󰚰  Full System Upgrade"
 system_information="  System Info "
 quit="Exit 󰈆 "
 
-select=$(echo -e "$wm_settings\n$usr_settings\n$system_update_upgrade\n$monitor_settings\n$power_mode_settings\n$default_browser\n$default_file_manager\n$system_information\n$quit" | rofi -x11 -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
+select=$(echo -e "$wm_settings\n$usr_settings\n$hyprland_custom_settings\n$system_update_upgrade\n$monitor_settings\n$power_mode_settings\n$default_browser\n$default_file_manager\n$system_information\n$quit" | rofi -x11 -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
 
 case $select in
 $wm_settings)
@@ -55,5 +56,8 @@ $system_update_upgrade)
 	;;
 $system_information)
 	~/.config/rofi/modules/rofi-os-about
+	;;
+$hyprland_custom_settings)
+	$TERMINAL -e nvim ~/.config/hypr/custom/user_config.conf &
 	;;
 esac
