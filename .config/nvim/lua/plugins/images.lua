@@ -1,7 +1,7 @@
 return {
 	{
 		"3rd/image.nvim",
-		dependencies = { "luarocks.nvim" },
+		dependencies = { "vhyrro/luarocks.nvim" },
 		config = function()
 			local group = vim.api.nvim_create_augroup("ImageHoverPreview", { clear = true })
 			local preview_win, preview_img
