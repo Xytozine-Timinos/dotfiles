@@ -50,6 +50,9 @@ This one I edited on GIMP to make the background match the bar, making it disapp
 
 Install the font:
 
+> [!WARNING]
+> Make sure make backups of your dotfiles before install this
+
 - FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
 
 > [!NOTE]
