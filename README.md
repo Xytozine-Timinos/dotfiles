@@ -339,6 +339,8 @@ touch ~/.config/dtf-config/zsh-custom-config
 <BR>
 Follow the zsh online guide/manual to learn to how to config your own zsh setup<BR>
 
+<BR>
+
 >[!NOTE]
 >All of your zsh custom config will override the original shipped with this dotfiles
 
