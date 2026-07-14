@@ -36,9 +36,9 @@ bar_dynamic_round_style=true
 bar_top=false
 ```
 This one I edited on GIMP to make the background match the bar, making it disappear
-![alt text](https://codeberg.org/Xytozine/dotfiles-image/src/branch/main/2026-07-14_09-36-21_desktop.png)
+![alt text](https://codeberg.org/Xytozine/dotfiles-image/raw/branch/main/2026-07-14_09-36-21_desktop.png)
 <BR>
-![alt text](https://codeberg.org/Xytozine/dotfiles-image/src/branch/main/2026-07-14_09-42-50_desktop.png)
+![alt text](https://codeberg.org/Xytozine/dotfiles-image/raw/branch/main/2026-07-14_09-42-50_desktop.png)
 
 ## Installation
 
