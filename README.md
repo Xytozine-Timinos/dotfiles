@@ -38,11 +38,7 @@ bar_top=false
 This one I edited on GIMP to make the background match the bar, making it disappear
 ![alt text](https://codeberg.org/Xytozine/dotfiles-image/src/branch/main/2026-07-14_09-36-21_desktop.png?raw=true)
 <BR>
-![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-14_10-38-19_desktop.png?raw=true)
-<BR>
-![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-14_10-43-17_desktop.png?raw=true)
-<BR>
-![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-14_11-24-56_desktop.png?raw=true)
+![alt text](https://codeberg.org/Xytozine/dotfiles-image/src/branch/main/2026-07-14_09-42-50_desktop.png?raw=true)
 
 ## Installation
 
