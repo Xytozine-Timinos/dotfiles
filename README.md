@@ -2,7 +2,9 @@
 
 ___DEVELOPED ON UBUNTU 26.04 AND LINUX MINT - zena (Ubuntu 24.04 LTS)___<BR>
 
-__Project Size__
+Moved to _Codeberg__ on 14/7/2026 <BR>
+
+__Project Size__<BR>
 
 - dotfiles repo: 35 ~> 36 Megabytes<BR>
 - TOTAL (dotfiles, dependencies, build from source apps): ~800 Megabytes<BR>
