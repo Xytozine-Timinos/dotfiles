@@ -35,10 +35,14 @@ bar_dynamic_style=true
 bar_dynamic_round_style=true
 bar_top=false
 ```
-This one I edited on GIMP to make the background match the bar, making it disappear
+This one I edited on GIMP to make the background match the bar, making it disappear <BR>
+This is on a ultra-wide monitor (2560x1080) <BR>
 ![alt text](https://codeberg.org/Xytozine/dotfiles-image/raw/branch/main/2026-07-14_09-36-21_desktop.png)
-<BR>
+This is on my laptop monitor full hd (1920x1080)<BR>
 ![alt text](https://codeberg.org/Xytozine/dotfiles-image/raw/branch/main/2026-07-14_09-42-50_desktop.png)
+
+>[!NOTE]
+>Waybar on smaller monitors/resolution will become big and clutter, do not recommend using this dotfiles on any monitor smallerthan 1920x1080 or fullhd
 
 ## Installation
 
