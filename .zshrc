@@ -11,7 +11,6 @@ reset='\033[0m'
 # Check for config file if it exists
 if [[ -d "$HOME/.config/dtf-config" ]]; then
 	[[ -r "$HOME/.config/dtf-config/config" ]] && source "$HOME/.config/dtf-config/config"
-	[[ -r "$HOME/.config/dtf-config/zsh-custom-config" ]] && source "$HOME/.config/dtf-config/zsh-custom-config"
 fi
 
 #ENVIRONMENT VARIABLES
@@ -156,7 +155,7 @@ if [[ $- == *i* ]]; then
 	if command -v zoxide >/dev/null 2>&1; then
 		eval "$(zoxide init zsh)"
 		export _ZO_MAXAGE=120
-	# 	alias cd="z"
+		# 	alias cd="z"
 		alias cdi="zi"
 	fi
 
@@ -274,4 +273,7 @@ PROMPT='$(git_prompt_info)
 
 RPROMPT='%(?:%B%F{#a6e3a1}|%f%F{#e0e6ed}%f%T%F{#a6e3a1}|%f%b %B%F{#a6e3a1}✔%f%b:%B%F{#ff6f91}|%f%F{#e0e6ed}%f%T%F{#ff6f91}|%f%b %B%F{#ff6f91}✗%f%b)%F{#e0e6ed}%f '
 
+if [[ -d "$HOME/.config/dtf-config" ]]; then
+	[[ -r "$HOME/.config/dtf-config/zsh-custom-config" ]] && source "$HOME/.config/dtf-config/zsh-custom-config"
+fi
 echo -ne "\e[6 q"

@@ -327,7 +327,21 @@ easyeffects_onstart=true #(OPTIONS: true/false) (Relaunch window manager require
 # Open lazygit whenever cd in a directory with .git directory in it
 lazygit_in_git_repo_dir=true #(OPTIONS: true/false)
 ```
+<BR>
 
+You can now create your own ```zshrc``` in this dotfiles without overriding it.<BR>
+Here's how:<BR>
+```
+Create a file name called zsh-custom-config under the dtf-config directory:
+mkdir ~/.config/dtf-config/
+touch ~/.config/dtf-config/zsh-custom-config
+```
+<BR>
+Follow the zsh online guide/manual to learn to how to config your own zsh setup<BR>
+
+>[!NOTE]
+>All of your zsh custom config will override the original shipped with this dotfiles
+<BR>
 __FOR HYPRLAND__<BR>
 
 Now support custom configs. <BR>
