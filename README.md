@@ -24,8 +24,6 @@ __If you encounter any issue just open an issue on the GitHub page, thanks!__<BR
 
 Posted on r/unixporn on 14 May 2026: <BR>
 https://www.reddit.com/r/unixporn/s/v6qrrSL9JR <BR>
-#6 post on r/unixporn 15 May 2026 at 10:21 AM UTC +07, thank you so much 🙏 <BR>
-![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-15_10-18-35_desktop.png?raw=true)
 
 ## Preview
 Wallpaper: aris (armed) & kei from blue archive by feilingdong <BR>
@@ -38,7 +36,7 @@ bar_dynamic_round_style=true
 bar_top=false
 ```
 This one I edited on GIMP to make the background match the bar, making it disappear
-![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-15_18-55-32_desktop.png?raw=true)
+![alt text](https://codeberg.org/Xytozine/dotfiles-image/src/branch/main/2026-07-14_09-36-21_desktop.png?raw=true)
 <BR>
 ![alt text](https://github.com/Xgameisdabest/dotfiles-preview-images/blob/main/2026-05-14_10-38-19_desktop.png?raw=true)
 <BR>
