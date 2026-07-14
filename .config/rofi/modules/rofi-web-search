@@ -155,7 +155,7 @@ main() {
 		github
 		;;
 	$this_dotfiles)
-		xdg-open https://github.com/xgameisdabest/dotfiles &
+		xdg-open https://codeberg.org/Xytozine/dotfiles &
 		exit 0
 		;;
 	$nerdfonts)
