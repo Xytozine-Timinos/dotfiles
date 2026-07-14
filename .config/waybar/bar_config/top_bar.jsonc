@@ -58,7 +58,7 @@
 	},
 	"group/tray-group": {
 		"orientation": "horizontal",
-		"modules": ["custom/expand", "tray"],
+		"modules": ["custom/expand", "tray", "custom/hyprland-settings"],
 		"drawer": {
 			"transition-duration": 500,
 			"children-class": "tray-drawer",
