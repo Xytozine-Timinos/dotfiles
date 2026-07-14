@@ -9,8 +9,9 @@ yellow='\e[0;33m'
 reset='\033[0m'
 
 # Check for config file if it exists
-if [[ -f "$HOME/.config/dtf-config/config" ]]; then
-	source "$HOME/.config/dtf-config/config"
+if [[ -d "$HOME/.config/dtf-config" ]]; then
+	[[ -r "$HOME/.config/dtf-config/config" ]] && source "$HOME/.config/dtf-config/config"
+	[[ -r "$HOME/.config/dtf-config/zsh-custom-config" ]] && source "$HOME/.config/dtf-config/zsh-custom-config"
 fi
 
 #ENVIRONMENT VARIABLES
@@ -156,7 +157,7 @@ if [[ $- == *i* ]]; then
 		eval "$(zoxide init zsh)"
 		export _ZO_MAXAGE=120
 	# 	alias cd="z"
-	# 	alias cdi="zi"
+		alias cdi="zi"
 	fi
 
 	# Reset caret to line after exit neovim
