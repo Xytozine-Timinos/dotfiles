@@ -88,10 +88,16 @@ tooltip label {
 #custom-temperature,
 #custom-notification-center,
 #custom-hyprsunset,
-#custom-hyprland-settings,
 #custom-audio,
 #custom-power {
 	padding: 0 13px;
+	margin: 10px 4px;
+	border-radius: 4px;
+	transition: all 0.2s ease;
+}
+
+#custom-hyprland-settings {
+	padding: 0px 16px 0px 11px;
 	margin: 10px 4px;
 	border-radius: 4px;
 	transition: all 0.2s ease;
@@ -228,10 +234,17 @@ tooltip label {
 #custom-temperature:hover,
 #custom-notification-center:hover,
 #custom-hyprsunset:hover,
-#custom-hyprland-settings:hover,
 #custom-audio:hover,
 #custom-power:hover {
 	padding: 0 13px;
+	margin: 10px 4px;
+	border-radius: 4px;
+	color: rgba(22, 22, 29, 0.91);
+	transition: all 0.2s ease;
+}
+
+#custom-hyprland-settings:hover {
+	padding: 0px 16px 0px 11px;
 	margin: 10px 4px;
 	border-radius: 4px;
 	color: rgba(22, 22, 29, 0.91);
