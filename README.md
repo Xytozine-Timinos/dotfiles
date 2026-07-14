@@ -341,7 +341,9 @@ Follow the zsh online guide/manual to learn to how to config your own zsh setup<
 
 >[!NOTE]
 >All of your zsh custom config will override the original shipped with this dotfiles
+
 <BR>
+
 __FOR HYPRLAND__<BR>
 
 Now support custom configs. <BR>
