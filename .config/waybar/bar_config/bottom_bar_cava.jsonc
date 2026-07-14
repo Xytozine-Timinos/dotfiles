@@ -8,10 +8,10 @@
 	"spacing": 4,
 	"modules-left": [
 		"custom/padd",
+		"group/tray-group",
 		"custom/hyprsunset",
 		"custom/notification-center",
 		"custom/temperature",
-		"group/tray-group",
 		"custom/window"
 	],
 	"modules-center": ["custom/cava", "hyprland/workspaces", "custom/cava"],
@@ -57,7 +57,7 @@
 	},
 	"group/tray-group": {
 		"orientation": "horizontal",
-		"modules": ["custom/expand", "tray", "custom/hyprland-settings"],
+		"modules": ["custom/expand", "tray", "custom/hyprland-settings", "custom/hyprsunset"],
 		"drawer": {
 			"transition-duration": 500,
 			"children-class": "tray-drawer",
