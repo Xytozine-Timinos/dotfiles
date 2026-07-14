@@ -56,6 +56,8 @@ Install the font:
 - FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
 
 > [!NOTE]
+> `Picom` is package for __i3wm__ that provides animations, eye-candy features, no need for __Hyprland__.
+> Since this dotfiles no longer support __i3wm__, it is highly recommend to skip it. But if you intend to use it, go ahead.
 > `Picom` is a dependency that needs to be installed and build from source in order to work correctly.
 > [Install and build Picom from source, FOLLOW THE INSTRUCTIONS THERE](https://github.com/yshui/picom)
 
