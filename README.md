@@ -163,7 +163,7 @@ hyprpm enable hyprbars
 
 Then `win + shift + r` to reload Hyprland if 2 or more bars spawned.
 
-## USAGE ([link to the wiki (still under development)](https://github.com/Xgameisdabest/dotfiles/wiki))
+## USAGE
 
 THIS IS ___NOT___ YOUR NORMAL TYPICAL ___DESKTOP___ (the desktop interface on W\*ndows, macOS, Gnome, KDE, LXQT, XFCE4...) but a ___TILING WINDOW MANAGER___ (i3, hyprland, sway, dwm...).
 
@@ -188,7 +188,7 @@ Here is the list of keybinds for this dotfiles (all of this can be viewed in the
 - Press (win/mod + ARROW_KEYS) to change focus between the tiled windows.
 - Press (ctrl + win/mod + ARROW_LEFT/ARROW_RIGHT) to send the focused window to the next numerical workspace.
 
-__EASY PACKAGE MANAGER (COMMAND LINE)__ (Only available on V3 and above)<BR>
+__EASY PACKAGE MANAGER (COMMAND LINE)__<BR>
 Supported Distros (and package managers):
 
 - Arch (yay, pacman)
