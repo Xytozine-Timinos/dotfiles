@@ -13,10 +13,12 @@ else
 	path_to_theme_search="~/.config/rofi/rofi_theme/black/black-search.rasi"
 fi
 
-# web="  Web Search (Brave)  "
-web="  Web Search (Google)  "
+web="  Web Search  "
+web_search_brave="  Web Search (Brave)  "
+web_search_google="  Web Search (Google)  "
 yt="  Youtube  "
 github="  Github  "
+codeberg="  Codeberg  "
 ai="  Ai  "
 virustotal="󰨯  Virus Total 󰌧 "
 flathub="  Flathub 󰌧 "
@@ -26,8 +28,11 @@ back="Back 󰌍"
 quit="Exit 󰈆 "
 
 web() {
-	search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px;}" -p " Search   ")
-	# search_engine="https://search.brave.com/search?q="
+
+	options=$(echo -e "$web_search_brave\n$web_search_google\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 350px;}" -p " Search Engines   ")
+
+	web_search_google_func(){
+	search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px;}" -p " Google   ")
 	search_engine="https://www.google.com/search?q="
 	main() {
 		if [[ -n "$search" ]]; then
@@ -40,6 +45,36 @@ web() {
 	}
 	main
 	exit 0
+	}
+
+	web_search_brave_func(){
+	search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px;}" -p " Brave   ")
+	search_engine="https://search.brave.com/search?q="
+	main() {
+		if [[ -n "$search" ]]; then
+			url="$search_engine$search"
+			xdg-open "$url" &
+			exit 0
+		else
+			exit 0
+		fi
+	}
+	main
+	exit 0
+	}
+
+	case $options in
+		$web_search_brave)
+			web_search_brave_func
+			;;
+		$web_search_google)
+			web_search_google_func
+			;;
+		$back)
+			main
+			;;
+
+	esac
 }
 
 yt() {
@@ -116,6 +151,46 @@ github() {
 
 }
 
+codeberg() {
+	local open_the_webpage_git="󰖟  Open the website 󰌧 "
+	local open_the_search_bar_git="  Search for repositories  "
+
+	# Combined the menu choices into Rofi
+	local choice
+	choice=$(echo -e "$open_the_webpage_git\n$open_the_search_bar_git\n$back" | rofi -x11 -dmenu -theme "$path_to_theme" -theme-str "window {height: 210px; width: 400px;}" -p " Codeberg   ")
+
+	search_codeberg() {
+		local search
+		search=$(echo | rofi -x11 -dmenu -theme "$path_to_theme_search" -theme-str "window {height: 90px;}" -p " Repositories   ")
+
+		# Codeberg/Forgejo use /explore/repos for global repository searching
+		local search_engine="https://codeberg.org/explore/repos?q="
+
+		if [[ -n "$search" ]]; then
+			# URL encoding the search query safely
+			local query
+			query=$(echo "$search" | sed 's/ /+/g')
+			xdg-open "${search_engine}${query}" &
+			exit 0
+		else
+			exit 0
+		fi
+	}
+
+	case "$choice" in
+	"$open_the_webpage_git")
+		xdg-open "https://codeberg.org" &
+		exit 0
+		;;
+	"$open_the_search_bar_git")
+		search_codeberg
+		;;
+	"$back")
+		main
+		;;
+	esac
+}
+
 ai() {
 	gemini="  Gemini 󰌧 "
 	chatgpt="  ChatGpt 󰌧 "
@@ -142,7 +217,7 @@ ai() {
 }
 
 main() {
-	select=$(echo -e "$web\n$yt\n$ai\n$github\n$flathub\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 435px; width: 350px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcut & Search  ")
+	select=$(echo -e "$web\n$yt\n$ai\n$codeberg\n$github\n$flathub\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 475px; width: 350px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcuts & Search  ")
 
 	case $select in
 	$web)
@@ -172,6 +247,9 @@ main() {
 	$flathub)
 		xdg-open https://flathub.org &
 		exit 0
+		;;
+	$codeberg)
+		codeberg
 		;;
 	esac
 }
