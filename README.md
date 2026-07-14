@@ -1,5 +1,7 @@
 ## About
 
+moved to codeberg
+
 ___DEVELOPED ON UBUNTU 26.04 AND LINUX MINT - zena (Ubuntu 24.04 LTS)___<BR>
 
 __Project Size__
