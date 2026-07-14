@@ -18,11 +18,11 @@ __If you encounter any issue just open an issue on Codeberg, thanks!__<BR>
 <BR>
 
 > [!NOTE]
-> It is recommend for developers, ricers or people who want more technical to take a look at the `.config/rofi/rofi-modules`, scripts that are lied in `.config/hypr/scripts` to get some of my ideas.
+> It is recommend for developers, ricers or people who want more technical to take a look at the `.config/rofi/rofi-modules`, scripts that are lied in `.config/hypr/scripts` to get some of my ideas.<BR>
 
 > [!NOTE]
-> This dotfiles repo is coded and made on the latest version of Ubuntu, so it is expected to have some compatibility issues with older versions of Ubutu and other distros like Debian or something like that so beware. Arch is fine though.
-> I suggest that if you use Debian based distros like Linux Mint, Ubuntu, use ([pacstall](https://pacstall.dev/)) to solve the issue.
+> This dotfiles repo is coded and made on the latest version of Ubuntu, so it is expected to have some compatibility issues with older versions of Ubutu and other distros like Debian or something like that so beware. Arch is fine though.<BR>
+> I suggest that if you use Debian based distros like Linux Mint, Ubuntu, use ([pacstall](https://pacstall.dev/)) to solve the issue.<BR>
 
 Posted on r/unixporn on 14 May 2026: <BR>
 https://www.reddit.com/r/unixporn/s/v6qrrSL9JR <BR>
@@ -56,10 +56,10 @@ Install the font:
 - FONT: Jetbrainsmono Nerd Font Regular and Jetbrainsmono Nerd Font Bold ([link to download fonts](https://www.nerdfonts.com/font-downloads))
 
 > [!NOTE]
-> `Picom` is package for __i3wm__ that provides animations, eye-candy features, no need for __Hyprland__.
-> Since this dotfiles no longer support __i3wm__, it is highly recommend to skip it. But if you intend to use it, go ahead.
-> `Picom` is a dependency that needs to be installed and build from source in order to work correctly.
-> [Install and build Picom from source, FOLLOW THE INSTRUCTIONS THERE](https://github.com/yshui/picom)
+> `Picom` is package for __i3wm__ that provides animations, eye-candy features, no need for __Hyprland__.<BR>
+> Since this dotfiles no longer support __i3wm__, it is highly recommend to skip it. But if you intend to use it, go ahead.<BR>
+> `Picom` is a dependency that needs to be installed and build from source in order to work correctly.<BR>
+> [Install and build Picom from source, FOLLOW THE INSTRUCTIONS THERE](https://github.com/yshui/picom)<BR>
 
 > [!NOTE]
 > From what I have experienced, the terminal emulator `kitty` starts quite slow when installed from apt (from apt is 0.50 seconds, from source is 0.15 seconds), so it is highly recommend to build it from source.
