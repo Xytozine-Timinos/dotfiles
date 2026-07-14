@@ -44,7 +44,7 @@ This is on my laptop monitor full hd (1920x1080)<BR>
 ![alt text](https://codeberg.org/Xytozine/dotfiles-image/raw/branch/main/2026-07-14_09-42-50_desktop.png)
 
 >[!NOTE]
->Waybar on smaller monitors/resolution will become big and clutter, do not recommend using this dotfiles on any monitor smallerthan 1920x1080 or fullhd
+>Waybar on smaller monitors/resolution will become big and clutter, I do not recommend using this dotfiles on any monitor smaller than 1920x1080 or fullhd
 
 ## Installation
 
