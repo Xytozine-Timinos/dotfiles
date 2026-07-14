@@ -10,7 +10,7 @@ __Project Size__<BR>
 - TOTAL (dotfiles, dependencies, build from source apps): ~800 Megabytes<BR>
 
 __About:__<BR>
-Been brewing since late __March 2024__ Github<BR>
+Been brewing since late __March 2024__ on Github<BR>
 Repo officially started in __1st June 2024__ on Github<BR>
 The purpose of this project is to share my configs, my ideas as openly as possible. Feel free to open a VM or try it on your own machine!<BR>
 <BR>
