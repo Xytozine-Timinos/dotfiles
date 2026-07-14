@@ -1,7 +1,5 @@
 ## About
 
-moved to codeberg
-
 ___DEVELOPED ON UBUNTU 26.04 AND LINUX MINT - zena (Ubuntu 24.04 LTS)___<BR>
 
 __Project Size__
@@ -106,7 +104,7 @@ Install Hyprland dependencies
 ```
 sudo add-apt-repository ppa:cppiber/hyprland
 sudo apt update
-sudo apt install $(curl -s https://raw.githubusercontent.com/Xgameisdabest/dotfiles/main/dependencies.txt)
+sudo apt install $(curl -s https://codeberg.org/xytozine/dotfiles/main/dependencies.txt)
 ```
 
 Install oh-my-zsh (command taken from the official [page](https://github.com/ohmyzsh/ohmyzsh))
@@ -130,7 +128,7 @@ Install the dotfiles
 
 ```
 cd ~
-git clone https://github.com/Xgameisdabest/dotfiles.git
+git clone https://codeberg.org/Xytozine/dotfiles.git
 cd dotfiles
 stow .
 sudo updatedb # Update find/locate command
