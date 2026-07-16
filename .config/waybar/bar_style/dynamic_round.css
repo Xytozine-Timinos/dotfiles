@@ -306,7 +306,7 @@ tooltip label {
 	min-width: 30px;
 }
 
-#custom-hyprsunset:hover,
+/* #custom-hyprsunset:hover, */
 #custom-network:hover {
 	min-width: 37px;
 }
