@@ -13,7 +13,6 @@
 		"custom/temperature",
 		"custom/window"
 	],
-
 	"modules-center": ["hyprland/workspaces"],
 	"modules-right": [
 		"custom/dtf-update",
@@ -58,7 +57,14 @@
 	},
 	"group/tray-group": {
 		"orientation": "horizontal",
-		"modules": ["custom/expand", "tray", "custom/hyprland-settings", "custom/search", "custom/apps", "custom/hyprsunset"],
+		"modules": [
+			"custom/expand",
+			"tray",
+			"custom/hyprland-settings",
+			"custom/search",
+			"custom/apps",
+			"custom/hyprsunset"
+		],
 		"drawer": {
 			"transition-duration": 500,
 			"children-class": "tray-drawer",
