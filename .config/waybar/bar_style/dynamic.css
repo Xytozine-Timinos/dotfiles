@@ -96,8 +96,16 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
+#custom-search,
 #custom-hyprland-settings {
 	padding: 0px 16px 0px 11px;
+	margin: 10px 4px;
+	border-radius: 4px;
+	transition: all 0.2s ease;
+}
+
+#custom-apps {
+	padding: 0px 14px 0px 13px;
 	margin: 10px 4px;
 	border-radius: 4px;
 	transition: all 0.2s ease;
@@ -151,6 +159,7 @@ tooltip label {
 	color: #7f849c;
 }
 
+#custom-apps,
 #custom-bluetooth.no-devices {
 	background-color: #345a6a;
 	color: #9ed8f2;
@@ -176,6 +185,7 @@ tooltip label {
 	color: #f3c6cd;
 }
 
+#custom-search,
 #custom-network.strength-3 {
 	background-color: #563b40;
 	color: #fac6d1;
@@ -243,8 +253,17 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
+#custom-search:hover,
 #custom-hyprland-settings:hover {
 	padding: 0px 16px 0px 11px;
+	margin: 10px 4px;
+	border-radius: 4px;
+	color: rgba(22, 22, 29, 0.91);
+	transition: all 0.2s ease;
+}
+
+#custom-apps:hover {
+	padding: 0px 14px 0px 13px;
 	margin: 10px 4px;
 	border-radius: 4px;
 	color: rgba(22, 22, 29, 0.91);
@@ -335,6 +354,7 @@ tooltip label {
 	background-color: #7f849c;
 }
 
+#custom-apps:hover,
 #custom-bluetooth.no-devices:hover {
 	background-color: #74c7ec;
 }
@@ -356,6 +376,7 @@ tooltip label {
 	background-color: #eba0ac;
 }
 
+#custom-search:hover,
 #custom-network.strength-3:hover {
 	background-color: #f7a8b8;
 }

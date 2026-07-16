@@ -98,8 +98,17 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
+#custom-search,
 #custom-hyprland-settings {
 	padding: 0px 16px 0px 11px;
+	margin: 10px 4px;
+	border-radius: 4px;
+	color: #16161d;
+	transition: all 0.2s ease;
+}
+
+#custom-apps {
+	padding: 0px 14px 0px 13px;
 	margin: 10px 4px;
 	border-radius: 4px;
 	color: #16161d;
@@ -151,6 +160,7 @@ tooltip label {
 	background-color: #7f849c;
 }
 
+#custom-apps,
 #custom-bluetooth.no-devices {
 	background-color: #74c7ec;
 }
@@ -172,6 +182,7 @@ tooltip label {
 	background-color: #eba0ac;
 }
 
+#custom-search,
 #custom-network.strength-3 {
 	background-color: #f7a8b8;
 }

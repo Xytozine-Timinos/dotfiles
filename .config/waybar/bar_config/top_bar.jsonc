@@ -59,7 +59,7 @@
 	},
 	"group/tray-group": {
 		"orientation": "horizontal",
-		"modules": ["custom/expand", "tray", "custom/hyprland-settings", "custom/hyprsunset"],
+		"modules": ["custom/expand", "tray", "custom/hyprland-settings", "custom/search", "custom/apps", "custom/hyprsunset"],
 		"drawer": {
 			"transition-duration": 500,
 			"children-class": "tray-drawer",
@@ -156,12 +156,24 @@
 		"format": "",
 		"on-click": "(~/.config/rofi/modules/rofi-user-settings & disown)",
 		"tooltip": true,
-		"tooltip-format": "Settings"
+		"tooltip-format": "  Settings"
 	},
 	"custom/dtf-update": {
 		"format": "{}",
 		"exec": "~/.config/hypr/scripts/hypr_dtf_update.sh",
 		"on-click": "setsid ~/.config/hypr/scripts/dtf_update_update.sh &"
+	},
+	"custom/search": {
+		"format": "",
+		"on-click": "setsid ~/.config/rofi/modules/rofi-web-search &",
+		"tooltip": true,
+		"tooltip-format": "  Search"
+	},
+	"custom/apps": {
+		"format": "󰾍",
+		"on-click": "setsid ~/.config/rofi/scripts/drun.sh &",
+		"tooltip": true,
+		"tooltip-format": "󰾍  Apps"
 	},
 	"custom/padd": {
 		"format": " ",
