@@ -13,6 +13,9 @@ vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/ser
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = vim.fn.stdpath("data") .. "/jdtls-workspace/" .. project_name
 
+-- Safely get the launcher jar
+local launcher_jar = vim.split(vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"), "\n")[1]
+
 local config = {
 	cmd = {
 		"java",
@@ -22,16 +25,22 @@ local config = {
 		"-Dlog.protocol=true",
 		"-Dlog.level=ALL",
 		"-jar",
-		vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+		launcher_jar,
 		"-configuration",
 		jdtls_path .. "/config_linux",
 		"-data",
 		workspace_dir,
 	},
-	root_dir = require("jdtls.setup").find_root({ ".git", "pom.xml", "build.gradle" }),
+	-- Added fallback to current working directory so single-folder projects work
+	root_dir = require("jdtls.setup").find_root({ ".git", "pom.xml", "build.gradle" }) or vim.fn.getcwd(),
 	settings = {
 		java = {
-			configuration = { updateBuildConfiguration = "interactive" },
+			autobuild = { enabled = true }, -- Forces automatic compilation/indexing on save
+			signatureHelp = { enabled = true },
+			contentProvider = { preferred = "fernflower" },
+			configuration = {
+				updateBuildConfiguration = "interactive",
+			},
 		},
 	},
 	init_options = {
