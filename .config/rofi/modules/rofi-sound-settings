@@ -5,7 +5,7 @@
 source ~/.config/dtf-config/config
 
 main_menu_height=325px
-main_menu_width=390px
+main_menu_width=370px
 manual_menu_height=90px
 manual_menu_width=480px
 
@@ -72,7 +72,7 @@ quit="Exit 󰈆 "
 outputdev_opt="󰜟  Outpur Device  "
 inputdev_opt="󱦉  Input Device  "
 devconfig_opt="  Device Configuration  "
-manual_volume_opt="   Manual Volume Level  "
+manual_volume_opt="   Set Volume Level  "
 pavucontrol_opt="󰖯  Pulseaudio Control GUI"
 
 opt_list="$manual_volume_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$pavucontrol_opt\n$quit"
