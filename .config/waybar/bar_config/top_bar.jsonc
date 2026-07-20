@@ -159,7 +159,7 @@
 	},
 	"custom/hyprland-settings": {
 		"format": "",
-		"on-click": "(~/.config/rofi/modules/rofi-user-settings & disown)",
+		"on-click": "LAUNCHED_FROM_BAR=true setsid ~/.config/rofi/modules/rofi-user-settings &",
 		"tooltip": true,
 		"tooltip-format": "  Settings"
 	},
@@ -170,13 +170,13 @@
 	},
 	"custom/search": {
 		"format": "",
-		"on-click": "setsid ~/.config/rofi/modules/rofi-web-search &",
+		"on-click": "LAUNCHED_FROM_BAR=true setsid ~/.config/rofi/modules/rofi-web-search &",
 		"tooltip": true,
 		"tooltip-format": "  Search"
 	},
 	"custom/apps": {
 		"format": "󰾍",
-		"on-click": "setsid ~/.config/rofi/scripts/drun.sh &",
+		"on-click": "LAUNCHED_FROM_BAR=true setsid ~/.config/rofi/scripts/drun.sh &",
 		"tooltip": true,
 		"tooltip-format": "󰾍  Apps"
 	},

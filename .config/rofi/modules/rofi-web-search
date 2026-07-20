@@ -3,7 +3,26 @@
 #THIS SCRIPT WAS FABRICATED BY ME (Xgameisdabest, aka xytozine)
 
 source ~/.config/dtf-config/config
+bar_top=${bar_top:-false}
 rofi_theme=${rofi_theme:-black}
+
+if [[ $LAUNCHED_FROM_BAR == "true" ]]; then
+	if [[ $bar_top == "true" ]]; then
+		location="north west"
+
+		main_menu_x_offset=10px
+		main_menu_y_offset=70px
+	else
+		location="south west"
+
+		main_menu_x_offset=10px
+		main_menu_y_offset=-70px
+	fi
+else
+	location="center"
+	main_menu_x_offset=0px
+	main_menu_y_offset=0px
+fi
 
 if [[ $rofi_theme == "white" ]]; then
 	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
@@ -29,50 +48,50 @@ quit="Exit 󰈆 "
 
 web() {
 
-	options=$(echo -e "$web_search_brave\n$web_search_google\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 350px;}" -p " Search Engines   ")
+	options=$(echo -e "$web_search_brave\n$web_search_google\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 350px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Search Engines   ")
 
-	web_search_google_func(){
-	search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px;}" -p " Google   ")
-	search_engine="https://www.google.com/search?q="
-	main() {
-		if [[ -n "$search" ]]; then
-			url="$search_engine$search"
-			xdg-open "$url" &
-			exit 0
-		else
-			exit 0
-		fi
-	}
-	main
-	exit 0
+	web_search_google_func() {
+		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Google   ")
+		search_engine="https://www.google.com/search?q="
+		main() {
+			if [[ -n "$search" ]]; then
+				url="$search_engine$search"
+				xdg-open "$url" &
+				exit 0
+			else
+				exit 0
+			fi
+		}
+		main
+		exit 0
 	}
 
-	web_search_brave_func(){
-	search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px;}" -p " Brave   ")
-	search_engine="https://search.brave.com/search?q="
-	main() {
-		if [[ -n "$search" ]]; then
-			url="$search_engine$search"
-			xdg-open "$url" &
-			exit 0
-		else
-			exit 0
-		fi
-	}
-	main
-	exit 0
+	web_search_brave_func() {
+		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Brave   ")
+		search_engine="https://search.brave.com/search?q="
+		main() {
+			if [[ -n "$search" ]]; then
+				url="$search_engine$search"
+				xdg-open "$url" &
+				exit 0
+			else
+				exit 0
+			fi
+		}
+		main
+		exit 0
 	}
 
 	case $options in
-		$web_search_brave)
-			web_search_brave_func
-			;;
-		$web_search_google)
-			web_search_google_func
-			;;
-		$back)
-			main
-			;;
+	$web_search_brave)
+		web_search_brave_func
+		;;
+	$web_search_google)
+		web_search_google_func
+		;;
+	$back)
+		main
+		;;
 
 	esac
 }
@@ -81,10 +100,10 @@ yt() {
 	open_the_webpage_yt="󰖟  Open the website 󰌧 "
 	open_the_search_bar_yt="  Search for videos  "
 
-	choice=$(echo -e "$open_the_webpage_yt\n$open_the_search_bar_yt\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 350px;}" -p " Videos   ")
+	choice=$(echo -e "$open_the_webpage_yt\n$open_the_search_bar_yt\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 350px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Videos   ")
 
 	search_yt() {
-		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px;}" -p " Videos   ")
+		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Videos   ")
 		search_engine="https://www.youtube.com/results?search_query="
 		main() {
 			if [[ -n "$search" ]]; then
@@ -117,10 +136,10 @@ github() {
 	open_the_webpage_git="󰖟  Open the website 󰌧 "
 	open_the_search_bar_git="  Search for repositories  "
 
-	choice=$(echo -e "$open_the_webpage_git\n$open_the_search_bar_git\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 400px;}" -p " Github   ")
+	choice=$(echo -e "$open_the_webpage_git\n$open_the_search_bar_git\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 210px; width: 400px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Github   ")
 
 	search_github() {
-		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px;}" -p " Repositories   ")
+		search=$(echo | rofi -x11 -dmenu -theme $path_to_theme_search -theme-str "window {height: 90px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Repositories   ")
 		search_engine="https://github.com/search?q="
 		main() {
 			if [[ -n "$search" ]]; then
@@ -157,11 +176,11 @@ codeberg() {
 
 	# Combined the menu choices into Rofi
 	local choice
-	choice=$(echo -e "$open_the_webpage_git\n$open_the_search_bar_git\n$back" | rofi -x11 -dmenu -theme "$path_to_theme" -theme-str "window {height: 210px; width: 400px;}" -p " Codeberg   ")
+	choice=$(echo -e "$open_the_webpage_git\n$open_the_search_bar_git\n$back" | rofi -x11 -dmenu -theme "$path_to_theme" -theme-str "window {height: 210px; width: 400px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Codeberg   ")
 
 	search_codeberg() {
 		local search
-		search=$(echo | rofi -x11 -dmenu -theme "$path_to_theme_search" -theme-str "window {height: 90px;}" -p " Repositories   ")
+		search=$(echo | rofi -x11 -dmenu -theme "$path_to_theme_search" -theme-str "window {height: 90px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -p " Repositories   ")
 
 		# Codeberg/Forgejo use /explore/repos for global repository searching
 		local search_engine="https://codeberg.org/explore/repos?q="
@@ -195,7 +214,7 @@ ai() {
 	gemini="  Gemini 󰌧 "
 	chatgpt="  ChatGpt 󰌧 "
 	claude="  Claude 󰌧 "
-	model_choice=$(echo -e "$gemini\n$chatgpt\n$claude\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 245px; width: 280px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Ai  ")
+	model_choice=$(echo -e "$gemini\n$chatgpt\n$claude\n$back" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 245px; width: 280px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Ai  ")
 
 	case $model_choice in
 	$gemini)
@@ -217,7 +236,7 @@ ai() {
 }
 
 main() {
-	select=$(echo -e "$web\n$yt\n$ai\n$codeberg\n$github\n$flathub\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 475px; width: 350px;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcuts & Search  ")
+	select=$(echo -e "$web\n$yt\n$ai\n$codeberg\n$github\n$flathub\n$virustotal\n$nerdfonts\n$this_dotfiles\n$quit" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 475px; width: 350px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcuts & Search  ")
 
 	case $select in
 	$web)

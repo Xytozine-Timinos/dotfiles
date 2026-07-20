@@ -1,7 +1,27 @@
 #!/bin/bash
 
 source ~/.config/dtf-config/config
+bar_top=${bar_top:-false}
 rofi_theme=${rofi_theme:-black}
+
+if [[ $LAUNCHED_FROM_BAR == "true" ]]; then
+	if [[ $bar_top == "true" ]]; then
+		location="north west"
+
+		main_menu_x_offset=10px
+		main_menu_y_offset=70px
+	else
+		location="south west"
+
+		main_menu_x_offset=10px
+		main_menu_y_offset=-70px
+	fi
+else
+	location="center"
+	main_menu_x_offset=0px
+	main_menu_y_offset=0px
+fi
+
 if [[ $rofi_theme == "white" ]]; then
 	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
 else
@@ -22,7 +42,7 @@ system_update_upgrade="󰚰  Full System Upgrade"
 system_information="  System Info "
 quit="Exit 󰈆 "
 
-select=$(echo -e "$wm_settings\n$usr_settings\n$hyprland_custom_settings\n$system_update_upgrade\n$monitor_settings\n$power_mode_settings\n$default_browser\n$default_file_manager\n$system_information\n$quit" | rofi -x11 -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height;}" -theme $path_to_theme)
+select=$(echo -e "$wm_settings\n$usr_settings\n$hyprland_custom_settings\n$system_update_upgrade\n$monitor_settings\n$power_mode_settings\n$default_browser\n$default_file_manager\n$system_information\n$quit" | rofi -x11 -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme)
 
 case $select in
 $wm_settings)
