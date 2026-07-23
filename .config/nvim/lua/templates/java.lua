@@ -1,7 +1,7 @@
 local M = {}
 
 local function get_template(choice, class_name)
-	if choice == "Class with main()" then
+	if choice == "Main function with clrscr()" then
 		return string.format(
 			[[public class %s {
     public static void main(String[] args) {
@@ -33,6 +33,13 @@ local function get_template(choice, class_name)
 }]],
 			class_name
 		)
+	elseif choice == "Enum" then
+		return string.format(
+			[[public enum %s {
+    // Enum constants here
+}]],
+			class_name
+		)
 	elseif choice == "Main method only" then
 		return [[
 public static void main(String[] args) {
@@ -52,7 +59,7 @@ function M.ask_and_insert()
 	end
 
 	if filename == "Main" then
-		local template = get_template("Class with main()", filename)
+		local template = get_template("Main function with clrscr()", filename)
 		vim.schedule(function()
 			M.insert(template)
 		end)
@@ -60,14 +67,15 @@ function M.ask_and_insert()
 	end
 
 	local options = {
-		"Class with main()",
+		"Main function with clrscr()",
 		"Class",
 		"Interface",
+		"Enum",
 		"Main method only",
 	}
 
 	vim.ui.select(options, {
-		prompt = "Select Java template to insert:",
+		prompt = "Select a Java template to insert:",
 	}, function(choice)
 		if choice then
 			local template = get_template(choice, filename)
