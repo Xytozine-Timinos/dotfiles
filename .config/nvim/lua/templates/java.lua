@@ -3,8 +3,7 @@ local M = {}
 function M.get_template()
 	local filename = vim.fn.expand("%:t:r")
 	return string.format(
-		[[
-public class %s {
+[[public class %s {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
     }
@@ -14,9 +13,7 @@ public class %s {
 static void clrscr() {
     System.out.print("\033[H\033[2J");
     System.out.flush();
-}
-
-]],
+}]],
 		filename,
 		filename
 	)
