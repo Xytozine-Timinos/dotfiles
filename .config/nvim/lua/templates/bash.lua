@@ -3,11 +3,6 @@ local M = {}
 -- Full Bash template
 M.template = [[
 #!/usr/bin/env bash
-# ============================================
-# Script: <script-name>
-# Description: <your-description-here>
-# Author: <your-name>
-# ============================================
 
 # Uncomment for strict mode:
 # set -e      # exit on error
@@ -24,7 +19,6 @@ main "$@"
 -- Insert the template into the buffer
 function M.insert()
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(M.template, "\n"))
-	vim.api.nvim_win_set_cursor(0, { 11, 4 })
 end
 
 -- Ask the user before inserting

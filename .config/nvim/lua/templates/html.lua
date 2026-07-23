@@ -1,13 +1,6 @@
 local M = {}
 
 M.html_template = [[
-<!--
-  Script: <file-name>.html
-  Description: <your-description-here>
-  Author: <your-name>
-  Credits: <credits-here>
--->
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -41,7 +34,6 @@ M.html_template = [[
 
 function M.insert()
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(M.html_template, "\n"))
-	vim.api.nvim_win_set_cursor(0, { 11, 8 })
 end
 
 function M.ask_and_insert()
