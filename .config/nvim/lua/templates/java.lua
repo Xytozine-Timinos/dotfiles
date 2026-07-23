@@ -7,12 +7,11 @@ function M.get_template()
     public static void main(String[] args) {
         System.out.println("Hello, World!");
     }
-}
-
 //Clear terminal screen function
 static void clrscr() {
     System.out.print("\033[H\033[2J");
     System.out.flush();
+    }
 }]],
 		filename,
 		filename
