@@ -1,33 +1,81 @@
 local M = {}
 
-function M.get_template()
-	local filename = vim.fn.expand("%:t:r")
-	return string.format(
-[[public class %s {
+local function get_template(choice, class_name)
+	if choice == "Class with main()" then
+		return string.format(
+			[[public class %s {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
     }
-//Clear terminal screen function
-static void clrscr() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
+
+    // Clear terminal screen function
+    static void clrscr() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }]],
-		filename,
-		filename
-	)
+			class_name
+		)
+	elseif choice == "Class" then
+		return string.format(
+			[[public class %s {
+    public %s() {
+        // Constructor
+    }
+}]],
+			class_name,
+			class_name
+		)
+	elseif choice == "Interface" then
+		return string.format(
+			[[public interface %s {
+
+}]],
+			class_name
+		)
+	elseif choice == "Main method only" then
+		return [[
+public static void main(String[] args) {
+    System.out.println("Hello, World!");
+}]]
+	end
 end
 
-function M.insert()
-	local template = M.get_template()
+function M.insert(template)
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(template, "\n"))
 end
 
 function M.ask_and_insert()
-	local ans = vim.fn.input("Insert Java template? [y/N]: ")
-	if ans:lower() == "y" then
-		M.insert()
+	local filename = vim.fn.expand("%:t:r")
+	if filename == "" then
+		filename = "Main"
 	end
+
+	if filename == "Main" then
+		local template = get_template("Class with main()", filename)
+		vim.schedule(function()
+			M.insert(template)
+		end)
+		return
+	end
+
+	local options = {
+		"Class with main()",
+		"Class",
+		"Interface",
+		"Main method only",
+	}
+
+	vim.ui.select(options, {
+		prompt = "Select Java template to insert:",
+	}, function(choice)
+		if choice then
+			local template = get_template(choice, filename)
+			vim.schedule(function()
+				M.insert(template)
+			end)
+		end
+	end)
 end
 
 function M.setup()
@@ -36,7 +84,9 @@ function M.setup()
 		callback = function()
 			local lines = vim.api.nvim_buf_get_lines(0, 0, 1, false)
 			if vim.api.nvim_buf_line_count(0) == 1 and lines[1] == "" then
-				M.ask_and_insert()
+				vim.schedule(function()
+					M.ask_and_insert()
+				end)
 			end
 		end,
 	})
