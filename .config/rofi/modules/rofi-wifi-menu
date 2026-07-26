@@ -39,8 +39,12 @@ fi
 
 if [[ $rofi_theme == "white" ]]; then
 	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+	path_to_theme_set="~/.config/rofi/rofi_theme/white/white-set.rasi"
+	path_to_theme_search="~/.config/rofi/rofi_theme/white/white-search.rasi"
 else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+	path_to_theme_set="~/.config/rofi/rofi_theme/black/black-set.rasi"
+	path_to_theme_search="~/.config/rofi/rofi_theme/black/black-search.rasi"
 fi
 
 #main
@@ -170,7 +174,7 @@ wifi_list_fn() {
 		height_per_wifi_entry=710
 	fi
 
-	chosen_network=$(echo -e "$wifi_list\n$goback_wifilist\n$quit" | rofi -x11 -dmenu -i -theme $path_to_theme -p " Wifi 󱚻 : " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset; height: ${height_per_wifi_entry}px;}")
+	chosen_network=$(echo -e "$wifi_list\n$goback_wifilist\n$quit" | rofi -x11 -dmenu -i -theme $path_to_theme_search -p " Wifi 󱚻 : " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset; height: ${height_per_wifi_entry}px;}")
 	echo $chosen_network
 	if [[ $chosen_network == $goback_wifilist ]]; then
 		main_menu
@@ -189,7 +193,7 @@ wifi_list_fn() {
 			notify-send "$attempt_message" && nmcli connection up id "$chosen_id" | grep "successfully" && notify-send "Connection Established!" "$success_message"
 		else
 			if [[ "$chosen_network" =~ "" ]]; then
-				wifi_password=$(rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 8%;}" -password -p "Password  " -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset;}")
+				wifi_password=$(rofi -x11 -dmenu -theme $path_to_theme_set -theme-str "window {height: 8%;}" -password -p "Password  " -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset;}")
 				case $wifi_password in
 				"")
 					exit 0
@@ -204,8 +208,8 @@ wifi_list_fn() {
 }
 
 connect_hidden_network() {
-	h_network_ssid=$(rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 8%;}" -p "SSID 󰓹 " -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset;}")
-	h_network_password=$(rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 8%;}" -password -p "Password  " -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset;}")
+	h_network_ssid=$(rofi -x11 -dmenu -theme $path_to_theme_set -theme-str "window {height: 8%;}" -p "SSID 󰓹 " -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset;}")
+	h_network_password=$(rofi -x11 -dmenu -theme $path_to_theme_set -theme-str "window {height: 8%;}" -password -p "Password  " -theme-str "window {location: $location; x-offset: $list_menu_x_offset; y-offset: $list_menu_y_offset;}")
 
 	if [[ -z $h_network_ssid ]] && [[ -z $h_network_password ]]; then
 		notify-send "Network not specified!"
