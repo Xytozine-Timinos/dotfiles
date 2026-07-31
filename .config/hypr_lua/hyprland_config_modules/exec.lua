@@ -21,7 +21,7 @@ hl.on("hyprland.start", function()
 	-- For layouts
 	hl.exec_cmd(home .. "/.config/hypr/scripts/layout.sh")
 	-- Set cava as background, using hyprwinwrap plugin
-	hl.exec_cmd(home .. "/.config/hypr/scripts/cavabg/cavabg-launch.sh")
+	-- hl.exec_cmd(home .. "/.config/hypr/scripts/cavabg/cavabg-launch.sh")
 	-- Gestures (Disabled since hyprland native handle better)
 	-- hl.exec_cmd("libinput-gestures-setup restart")
 	-- Auto sleep
@@ -68,7 +68,7 @@ hl.exec_cmd(home .. "/.config/hypr/scripts/decorations_options.sh")
 -- For layouts
 hl.exec_cmd(home .. "/.config/hypr/scripts/layout.sh")
 -- Set cava as background, using hyprwinwrap plugin
-hl.exec_cmd(home .. "/.config/hypr/scripts/cavabg/cavabg-launch.sh")
+-- hl.exec_cmd(home .. "/.config/hypr/scripts/cavabg/cavabg-launch.sh")
 -- Gestures
 hl.exec_cmd("libinput-gestures-setup restart")
 -- Auto sleep
