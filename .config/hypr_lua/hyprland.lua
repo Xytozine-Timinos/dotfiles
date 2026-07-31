@@ -6,7 +6,7 @@
 
 local home = os.getenv("HOME")
 local custom_dir = home .. "/.config/hypr/custom/"
-local main_cfg_dir = home .. "/.config/hypr_lua/hyprland_config_modules/"
+local main_cfg_dir = home .. "/.config/hypr/hyprland_config_modules/"
 
 -- Add the main_cfg_dir to the search path
 package.path = package.path .. ";" .. main_cfg_dir .. "?.lua"
@@ -28,16 +28,16 @@ end
 
 -- Add the custom dir to the search path
 package.path = package.path .. ";" .. custom_dir .. "?.lua"
-local p = io.popen("find " .. custom_dir .. ' -maxdepth 1 -name "*.lua"')
-if p then
-	for file in p:lines() do
+local p_custom = io.popen("find " .. custom_dir .. ' -maxdepth 1 -name "*.lua"')
+if p_custom then
+	for file in p_custom:lines() do
 		-- Extract just the filename without the path or .lua extension
 		local module_name = file:match("([^/]+)%.lua$")
 		if module_name then
 			require(module_name)
 		end
 	end
-	p:close()
+	p_custom:close()
 end
 
 -----------------------

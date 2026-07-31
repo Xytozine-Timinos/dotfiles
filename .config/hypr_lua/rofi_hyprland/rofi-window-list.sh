@@ -2,10 +2,23 @@
 
 CONFIG_FILE="$HOME/.config/dtf-config/config"
 [[ -f "$CONFIG_FILE" ]] && source "$CONFIG_FILE"
+bar_top=${bar_top:-false}
+
+if [[ $bar_top == "true" ]]; then
+	location="north west"
+
+	main_menu_x_offset=10px
+	main_menu_y_offset=70px
+else
+	location="south west"
+
+	main_menu_x_offset=10px
+	main_menu_y_offset=-70px
+fi
 
 rofi_theme=${rofi_theme:-black}
 theme_dir="$HOME/.config/rofi/rofi_theme/$rofi_theme"
-path_to_theme="$theme_dir/$rofi_theme.rasi"
+path_to_theme="$theme_dir/$rofi_theme-search.rasi"
 stack_file="/tmp/hide_window_pid_stack.txt"
 
 # Get screen width and currently focused window
@@ -16,7 +29,7 @@ active_addr=$(hyprctl activewindow -j | jq -r '.address')
 window_data=$(hyprctl -j clients | jq -r '
     sort_by(.workspace.id, .title)[] 
     | (if .workspace.id == -98 then "Hidden" else "Workspace \(.workspace.id)" end) as $ws_label
-    | "\($ws_label) -> \(.class): \(.title)\t\(.address)\t\(.workspace.id)"
+    | "\($ws_label): \(.class): \(.title)\t\(.address)\t\(.workspace.id)"
 ')
 
 window_list=$(echo "$window_data" | cut -f1)
@@ -33,7 +46,7 @@ final_h=$((calc_h > max_h ? max_h : calc_h))
 
 # Calculate dynamic width (Target: 10.5px per char, Max: 2/3 screen)
 max_chars=$(echo "$window_list" | wc -L)
-min_w=400
+min_w=500
 read -r max_w calc_w <<<"$(awk -v sw="$screen_width" -v mc="$max_chars" 'BEGIN { printf "%.0f %.0f", (sw*2/3), (mc*10.5)+80 }')"
 
 # Clamp width between min and max limits
@@ -49,7 +62,7 @@ choice=$(echo "$window_list" | rofi -x11 -dmenu -i \
 	-selected-row "$selected_row" \
 	-theme "$path_to_theme" \
 	-theme-str "listview {columns: 1; layout: vertical;}" \
-	-theme-str "window {height: ${final_h}px; width: ${final_w}px;}")
+	-theme-str "window {height: ${final_h}px; width: ${final_w}px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 
 [[ -z "$choice" ]] && exit 0
 

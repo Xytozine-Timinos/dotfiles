@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+#THIS SCRIPT WAS FABRICATED BY ME (Xgameisdabest, aka xytozine)
+
+source ~/.config/dtf-config/config
+rofi_theme=${rofi_theme:-black}
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
+HYPR_SETTINGS_PATH=~/.config/hypr/rofi_hyprland/hyprland_settings/
+
+source $HYPR_SETTINGS_PATH/hyprland_section
+source $HYPR_SETTINGS_PATH/waybar_section
+source $HYPR_SETTINGS_PATH/rofi_section
+source $HYPR_SETTINGS_PATH/dunst_section
+
+### MAIN MENU
+
+main_menu_height=515px
+main_menu_width=295px
+
+goback="Back 󰌍 "
+quit="Exit 󰈆 "
+
+hyprconfig="󰨇  Hyprland  "
+waybar="  Waybar  "
+hyprlock="󰷛  Lock Screen"
+arandr="󰨤  Resolution"
+wallpaper="  Wallpaper"
+gestures="󱠡  Gestures"
+rofi="󰮫  Rofi  "
+zshconfig="  Zsh"
+dunst="󰵙  Notification "
+main_menu() {
+	select=$(echo -e "$hyprconfig\n$rofi\n$waybar\n$dunst\n$zshconfig\n$hyprlock\n$gestures\n$wallpaper\n$arandr\n$goback\n$quit" | rofi -x11 -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Settings   " -theme $path_to_theme)
+
+	case $select in
+	$hyprconfig)
+		hypr_submenu
+		;;
+	$arandr)
+		wdisplays
+		;;
+	$wallpaper)
+		waypaper
+		;;
+	$gestures)
+		$TERMINAL -e nvim ~/.config/libinput-gestures.conf
+		;;
+	$rofi)
+		rofi_submenu
+		;;
+	$hyprlock)
+		$TERMINAL -e nvim ~/.config/hypr/hyprlock.conf
+		;;
+	$waybar)
+		waybar_submenu
+		;;
+	$zshconfig)
+		$TERMINAL -e nvim ~/.zshrc
+		;;
+	$dunst)
+		dunst_submenu
+		;;
+	$goback)
+		~/.config/rofi/modules/rofi-user-settings
+		;;
+	$quit)
+		echo "exit"
+		exit 0
+		;;
+	esac
+}
+
+### PROGRAM MAIN EXEC
+
+main_menu
