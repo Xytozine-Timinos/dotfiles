@@ -2,28 +2,28 @@ local home = os.getenv("HOME")
 
 -- Functions
 
-function movetoleft()
+local function movetoleft()
 	hl.dispatch(hl.dsp.window.move({ workspace = "-1", follow = false }))
 end
 
-function movetoright()
+local function movetoright()
 	hl.dispatch(hl.dsp.window.move({ workspace = "+1", follow = false }))
 end
 
-function open_rofi()
+local function open_rofi()
 	hl.dispatch(hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/fullscreen.sh"))
 end
 
-function close_rofi()
+local function close_rofi()
 	hl.dispatch(hl.dsp.exec_cmd("killall rofi"))
 end
 
-function show_window()
-	hl.dispatch(hl.dsp.exec_cmd("~/.config/hypr_lua/hide_unhide_window.sh s"))
+local function show_window()
+	hl.dispatch(hl.dsp.exec_cmd("~/.config/hypr_lua/scripts/hide_unhide_window.sh s"))
 end
 
-function hide_window()
-	hl.dispatch(hl.dsp.exec_cmd("~/.config/hypr_lua/hide_unhide_window.sh h"))
+local function hide_window()
+	hl.dispatch(hl.dsp.exec_cmd("~/.config/hypr_lua/scripts/hide_unhide_window.sh h"))
 end
 
 -- Workspace swipe via 3 fingers

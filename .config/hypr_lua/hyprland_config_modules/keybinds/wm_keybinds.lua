@@ -48,8 +48,8 @@ hl.bind(mod .. " + f", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind("F11", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 -- Hide/Unhide window
-hl.bind(mod .. "+ d", hl.dsp.exec_cmd(home .. "/.config/hypr_lua/hide_unhide_window.sh h"))
-hl.bind(mod .. "+ SHIFT + d", hl.dsp.exec_cmd(home .. "/.config/hypr_lua/hide_unhide_window.sh s"))
+hl.bind(mod .. "+ d", hl.dsp.exec_cmd(home .. "/.config/hypr_lua/scripts/hide_unhide_window.sh h"))
+hl.bind(mod .. "+ SHIFT + d", hl.dsp.exec_cmd(home .. "/.config/hypr_lua/scripts/hide_unhide_window.sh s"))
 
 -- Launch web search
 hl.bind(mod .. "+ s", hl.dsp.exec_cmd(home .. "/.config/rofi/modules/rofi-web-search"))
