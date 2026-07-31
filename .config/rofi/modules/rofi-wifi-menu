@@ -58,6 +58,9 @@ if [[ $INTERFACE_TYPE == "wifi" ]]; then
 elif [[ $INTERFACE_TYPE == "ethernet" ]]; then
 	notify-send "Current Interface Is Ethernet  "
 	display_msg="Interface: Ethernet  "
+else [[ -z "$INTERFACE_TYPE" ]];
+	notify-send "No Used Interface Available 󰛵 "
+	display_msg="Interface: N/A 󰛵 "
 fi
 
 connected_symbol="󰓢󱚽 "
@@ -165,7 +168,7 @@ wifi_list_fn() {
 	notify-send "Getting list of available Wi-Fi networks  " -t 1500
 	echo "getting list of wifi networks"
 
-	wifi_list=$(nmcli -t -f IN-USE,SECURITY,SSID,BARS,FREQ device wifi list | awk -F: -v symbol="$connected_symbol" '!seen[$3 $5]++ { selected = ($1 == "*") ? symbol : "   "; if ($2 == "") sec = ""; else if ($2 ~ /WPA/) sec = ""; else if ($2 ~ /802\\.1X/) sec = ""; else sec = $2; print selected ":" sec ":" $3 ":" $4 ":" $5 }' | sed -E 's/ //g; s/\*\*\*\*/▂▄▆█/g; s/\*\*\* /▂▄▆_/g; s/\*\*  /▂▄__/g; s/\*   /▂___/g; s/    /____/g; s/▂▄▆█/󰤨 /g; s/▂▄▆_/󰤥 /g; s/▂▄__/󰤢 /g; s/▂___/󰤟 /g; s/____/󰤯 /g; s/(2[4-6][0-9]{2}) MHz/ 2.4 GHz/g; s/(5[0-9]{3}) MHz/ 5.0 GHz/g; s/:/ /g')
+	wifi_list=$(nmcli -t -f IN-USE,SECURITY,SSID,BARS,FREQ device wifi list | awk -F: -v symbol="$connected_symbol" '!seen[$3 $5]++ { selected = ($1 == "*") ? symbol : "   "; if ($2 == "") sec = ""; else if ($2 ~ /WPA/) sec = ""; else if ($2 ~ /WPA2/) sec = ""; else if ($2 ~ /WEP/) sec = ""; else if ($2 ~ /802\\.1X/) sec = ""; else sec = $2; print selected ":" sec ":" $3 ":" $4 ":" $5 }' | sed -E 's/ //g; s/\*\*\*\*/▂▄▆█/g; s/\*\*\* /▂▄▆_/g; s/\*\*  /▂▄__/g; s/\*   /▂___/g; s/    /____/g; s/▂▄▆█/󰤨 /g; s/▂▄▆_/󰤥 /g; s/▂▄__/󰤢 /g; s/▂___/󰤟 /g; s/____/󰤯 /g; s/(2[4-6][0-9]{2}) MHz/ 2.4 GHz/g; s/(5[0-9]{3}) MHz/ 5.0 GHz/g; s/:/ /g')
 
 	wifi_list_menu_height=175
 	numbers_of_avail_wifi=$(echo "$wifi_list" | wc -l)
