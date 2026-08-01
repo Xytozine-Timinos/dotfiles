@@ -1,6 +1,11 @@
 #!/bin/bash
 
-get_current_window_id=$(hyprctl activewindow -j | jq -r '.address')
+get_current_window_id=$(hyprctl activewindow -j | jq -r '.address // empty')
+
+if [[ -z "$get_current_window_id" ]]; then
+	exit
+fi
+
 sleep 0.2
 
 source ~/.config/dtf-config/config
