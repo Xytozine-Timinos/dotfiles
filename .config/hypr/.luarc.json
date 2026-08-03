@@ -4,5 +4,6 @@
 	},
 	"diagnostics": {
 		"globals": ["hl"]
-	}
+	},
+    "runtime.unicodeName": true
 }

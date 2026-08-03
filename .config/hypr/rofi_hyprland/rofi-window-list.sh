@@ -83,12 +83,12 @@ if [[ -n "$addr" ]]; then
 		[[ -n "$target_pid" ]] && sed -i "/^$target_pid$/d" "$stack_file"
 
 		curr_ws=$(hyprctl activeworkspace -j | jq '.id')
-		hyprctl dispatch movetoworkspacesilent "$curr_ws",address:"$addr"
-		hyprctl dispatch focuswindow address:"$addr"
+		hyprctl dispatch "hl.dsp.window.move({ workspace = '$curr_ws', window = 'address:$addr' })"
+		hyprctl dispatch "hl.dsp.focus({ window = 'address:$addr' })"
 	else
 		# Handle visible window: switch workspace and focus
 		notify-send "Window switched!" "Process ID: $target_pid"
-		hyprctl dispatch workspace "$wsid"
-		hyprctl dispatch focuswindow address:"$addr"
+		hyprctl dispatch 'hl.dsp.focus({ workspace = '$wsid' })'
+		hyprctl dispatch "hl.dsp.focus({ window = 'address:$addr' })"
 	fi
 fi
