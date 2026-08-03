@@ -33,7 +33,7 @@ screensaver_logic() {
 
 	# no longer use due to waybar moved to top layer, providing better support
 	# pkill -USR1 waybar
-	hyprctl dispatch fullscreen 0
+	hyprctl dispatch "hl.dsp.window.fullscreen({ action = "toggle" })"
 	sleep 0.2
 	eval "$cmd"
 	# no longer use due to waybar moved to top layer, providing better support
