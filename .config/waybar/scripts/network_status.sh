@@ -43,16 +43,20 @@ get_dns() {
 }
 
 while sleep 3; do
-	# Detect Ethernet interface
+	# Detect Ethernet interface and check if it actually has an active IPv4 address
 	eth_iface=$(ip -o link show | awk -F': ' '/^[0-9]+: (en|eth)/ {print $2; exit}')
 	eth_up=$(ip link show "$eth_iface" 2>/dev/null | awk '/state/ {print $9}')
-	gateway_address=$(ip route show default | awk '{print $3}')
-	gateway_address=${gateway_address:-"N/A"}
+	eth_ip=""
 
-	# --- ETHERNET BLOCK ---
-	if [[ -n "$eth_iface" && "$eth_up" == "UP" ]]; then
-		ipaddr=$(ip addr show dev "$eth_iface" | awk '/inet / {print $2; exit}' | cut -d'/' -f1)
-		ipaddr=${ipaddr:-"N/A"}
+	if [[ -n "$eth_iface" ]]; then
+		eth_ip=$(ip addr show dev "$eth_iface" 2>/dev/null | awk '/inet / {print $2; exit}' | cut -d'/' -f1)
+	fi
+
+	# --- ETHERNET BLOCK (Only active if interface is UP AND has an assigned IP address) ---
+	if [[ -n "$eth_iface" && "$eth_up" == "UP" && -n "$eth_ip" ]]; then
+		ipaddr="$eth_ip"
+		gateway_address=$(ip route show default dev "$eth_iface" 2>/dev/null | awk '{print $3}')
+		gateway_address=${gateway_address:-"N/A"}
 		dns_address=$(get_dns "$eth_iface")
 
 		# Fast 3-packet probe for loss
@@ -103,6 +107,9 @@ while sleep 3; do
 	iface=$(iw dev | awk '$1=="Interface"{print $2; exit}')
 
 	if [[ -n "$iface" && -d "/sys/class/net/$iface" ]]; then
+		gateway_address=$(ip route show default dev "$iface" 2>/dev/null | awk '{print $3}')
+		gateway_address=${gateway_address:-"N/A"}
+
 		strength=$(awk -v iface="$iface" '$1==iface ":" {print int($3*100/70)}' /proc/net/wireless)
 		strength=${strength:-0}
 		[[ $strength -gt 100 ]] && strength=100
