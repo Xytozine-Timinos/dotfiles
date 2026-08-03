@@ -5,8 +5,8 @@
 -- custom config
 
 local home = os.getenv("HOME")
-local custom_dir = home .. "/.config/hypr_lua/custom/"
-local main_cfg_dir = home .. "/.config/hypr_lua/hyprland_config_modules/"
+local custom_dir = home .. "/.config/hypr/custom/"
+local main_cfg_dir = home .. "/.config/hypr/hyprland_config_modules/"
 
 -- Add the main_cfg_dir to the search path
 package.path = package.path .. ";" .. main_cfg_dir .. "?.lua"
