@@ -50,7 +50,7 @@ $hide_window)
 	;;
 $float_window)
 	hyprctl dispatch togglefloating && hyprctl dispatch resizeactive exact 70% 70%
-	hyprctl dispatch '
+	hyprctl eval '
 	    hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
 	    local monitor = hl.get_active_monitor()
 	    if monitor then
