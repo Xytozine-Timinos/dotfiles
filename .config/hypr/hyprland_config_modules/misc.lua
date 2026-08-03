@@ -14,7 +14,7 @@ hl.config({
 		animate_mouse_windowdragging = false,
 		mouse_move_enables_dpms = true,
 		key_press_enables_dpms = true,
-		allow_session_lock_restore = 1,
+		allow_session_lock_restore = true,
 	},
 
 	render = {

@@ -19,11 +19,11 @@ local function close_rofi()
 end
 
 local function show_window()
-	hl.dispatch(hl.dsp.exec_cmd("~/.config/hypr_lua/scripts/hide_unhide_window.sh s"))
+	hl.dispatch(hl.dsp.exec_cmd("~/.config/hypr/scripts/hide_unhide_window.sh s"))
 end
 
 local function hide_window()
-	hl.dispatch(hl.dsp.exec_cmd("~/.config/hypr_lua/scripts/hide_unhide_window.sh h"))
+	hl.dispatch(hl.dsp.exec_cmd("~/.config/hypr/scripts/hide_unhide_window.sh h"))
 end
 
 -- Workspace swipe via 3 fingers
