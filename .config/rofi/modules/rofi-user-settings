@@ -28,10 +28,11 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-main_menu_height=470px
+main_menu_height=510px
 main_menu_width=390px
 
 wm_settings="󰢹  Desktop Settings "
+wm_reload="󰑓  Desktop Reload"
 usr_settings="  User Settings"
 hyprland_custom_settings="  Hyprland Custom Settings"
 monitor_settings="󱒃  Monitor Settings "
@@ -42,7 +43,7 @@ system_update_upgrade="󰚰  Full System Upgrade"
 system_information="  System Info "
 quit="Exit 󰈆 "
 
-select=$(echo -e "$wm_settings\n$usr_settings\n$hyprland_custom_settings\n$system_update_upgrade\n$monitor_settings\n$power_mode_settings\n$default_browser\n$default_file_manager\n$system_information\n$quit" | rofi -x11 -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme)
+select=$(echo -e "$wm_settings\n$wm_reload\n$usr_settings\n$hyprland_custom_settings\n$system_update_upgrade\n$monitor_settings\n$power_mode_settings\n$default_browser\n$default_file_manager\n$system_information\n$quit" | rofi -x11 -dmenu -i -p ' Settings   ' -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme $path_to_theme)
 
 case $select in
 $wm_settings)
@@ -50,6 +51,13 @@ $wm_settings)
 		~/.config/hypr/rofi_hyprland/hyprland_settings/rofi-hyprland-settings
 	elif [[ $XDG_CURRENT_DESKTOP == "i3" ]]; then
 		~/.config/i3/scripts/i3-settings/rofi-i3-settings
+	fi
+	;;
+$wm_reload)
+	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
+		hyprctl reload
+	elif [[ $XDG_CURRENT_DESKTOP == "i3" ]]; then
+		i3-msg restart
 	fi
 	;;
 $usr_settings)
