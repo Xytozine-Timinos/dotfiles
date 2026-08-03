@@ -164,6 +164,7 @@ local float_classes = {
 	"wihotspot",
 	"protonvpn-app",
 	"com.github.wwmm.easyeffects",
+	"nm-connection-editor",
 }
 
 -- Float windows based on title
