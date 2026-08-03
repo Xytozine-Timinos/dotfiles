@@ -366,30 +366,38 @@ Put your configs such as Hyprland configs and env vars, also executables into th
 ```
 #FOR EXAMPLE
 ~/.config/hypr/custom
-               ├── system.conf
-               ├── user_custom_config.conf
+               ├── system.lua
+               ├── user_custom_config.lua
                ├── startup_script.sh
-               ├── it_can_be_anything_that_you_want.conf
-               └── window.conf
+               ├── it_can_be_anything_that_you_want.lua
+               └── window.lua
 ```
 
-Hyprland will automatically scan that directory and override any default settings that this dotfiles come with (__for .conf files__). <BR>
-For .sh files, such as startup scripts, you need to create a .conf file such as `startup.conf` or any other name, then put the script you want to exec in the __.conf__ file.<BR>
+Hyprland will automatically scan that directory and override any default settings that this dotfiles come with (__for .lua files__). <BR>
+For .sh files, such as startup scripts, you need to create a .lua file such as `startup.lua` or any other name, then put the script you want to exec in the __.lua__ file.<BR>
+In the rofi user settings, the ```Hyprland Custom Settings``` option will default to the ```user_config.lua``` file name.
 
 ```
 #EXAMPLE
-# Custom config goes here.
-# Use the custom directory for your own thing
-# For example:
-# exec = ~/.config/hypr/custom/your_own_thing.sh
-#
-# Maybe setup some env vars for a specific machine:
-# env = RADV_PERFTEST,gpl,aco
-#
-# or a Hyprland setting you do not want:
-# misc {
-# force_default_wallpaper = 1
-#}
+-- Custom config goes here.
+-- Use the custom directory for your own thing
+-- For example:
+hl.on("hyprland.start", function()
+ 	hl.dsp.exec_cmd("steam -silent")
+end)
+
+Maybe setup some env vars for a specific machine:
+hl.env("LIBVA_DRIVER_NAME", "radeonsi")
+hl.env("VDPAU_DRIVER", "radeonsi")
+hl.env("AMD_VULKAN_ICD", "RADV")
+hl.env("RADV_PERFTEST", "nggc")
+
+-- or a Hyprland setting you do not want:
+hl.config({
+    misc = {
+        force_default_wallpaper = 1, -- since this config comes with the value 0
+    }
+})
 ```
 
 __Have fun__
