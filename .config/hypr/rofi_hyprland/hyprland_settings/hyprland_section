@@ -9,7 +9,7 @@ else
 	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
 fi
 
-hypr_submenu_height=595px
+hypr_submenu_height=625px
 hypr_submenu_width=390px
 
 hypr_submenu() {
