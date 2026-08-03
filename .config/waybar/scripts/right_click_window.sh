@@ -30,15 +30,16 @@ else
 	main_menu_y_offset=-70px
 fi
 
-main_menu_height=245px
-main_menu_width=250px
+main_menu_height=280px
+main_menu_width=300px
 
 close_window="Close "
 hide_window="Hide "
 float_window="Toggle Float 󰖲"
+move_window_workspace="Move To Workspace 󰧸"
 quit="Exit 󰈆 "
 
-select=$(echo -e "$close_window\n$hide_window\n$float_window\n$quit" | rofi -x11 -dmenu -theme $path_to_theme -i -p " Window Options 󱂬 " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
+select=$(echo -e "$close_window\n$hide_window\n$float_window\n$move_window_workspace\n$quit" | rofi -x11 -dmenu -theme $path_to_theme -i -p " Window Options 󱂬 " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
 
 case $select in
 $close_window)
@@ -56,6 +57,9 @@ $float_window)
 		hl.dispatch(hl.dsp.window.resize({ x = monitor.width * 0.7, y = monitor.height * 0.7 }))
 	    end
 	'
+	;;
+$move_window_workspace)
+	~/.config/hypr/rofi_hyprland/rofi-window-ws-switch/workspace_input_number_window_switch.sh
 	;;
 $quit)
 	exit 0
