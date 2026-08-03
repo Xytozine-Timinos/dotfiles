@@ -24,8 +24,10 @@ while sleep 3; do
 	eth_iface=$(ip -o link show | awk -F': ' '/^[0-9]+: (en|eth)/ {print $2; exit}')
 	eth_up=$(ip link show "$eth_iface" 2>/dev/null | awk '/state/ {print $9}')
 	dns_address=$(cat /etc/resolv.conf | grep nameserver | sed "s/nameserver //g")
-	if [[ -z $dns_address ]]; then
+	gateway_address=$(ip route show default | awk '{print $3}')
+	if [[ -z $dns_address || -z $gateway_address ]]; then
 		dns_address="N/A"
+		gateway_address="N/A"
 	fi
 
 	if [[ -n "$eth_iface" && "$eth_up" == "UP" ]]; then
@@ -50,7 +52,7 @@ while sleep 3; do
 					echo ""
 				)
 
-				tooltip="󰈀  Ethernet\n  IP: $ipaddr\n󰒍  DNS: $dns_address\n$dynamic_sep_line\n  Network stats\n├ ↓ Download: $dl_speed\n├ ↑ Upload:   $ul_speed\n└ 󰹹 Netspeed: $net_speed"
+				tooltip="󰈀  Ethernet\n  IP: $ipaddr\n󰒍  DNS: $dns_address\n󰩩  Gateway: $gateway_address\n$dynamic_sep_line\n  Network stats\n├ ↓ Download: $dl_speed\n├ ↑ Upload:   $ul_speed\n└ 󰹹 Netspeed: $net_speed"
 			fi
 		fi
 
@@ -84,7 +86,7 @@ while sleep 3; do
 		*) strength_stat="Offline" ;;
 		esac
 
-		tooltip="󱈤  SSID: $ssid\n  IP: $ipaddr\n󰒍  DNS: $dns_address\n󰓅  Network Strength: $strength_stat"
+		tooltip="󱈤  SSID: $ssid\n  IP: $ipaddr\n󰒍  DNS: $dns_address\n󰩩  Gateway: $gateway_address\n󰓅  Network Strength: $strength_stat"
 
 		# Get the counts (using ${#var} is faster than calling 'wc')
 		wc_ssid=$((${#ssid} + 9))
