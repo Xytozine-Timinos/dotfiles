@@ -52,7 +52,19 @@ while sleep 3; do
 				# 	echo ""
 				# )
 
-				printf -v dynamic_sep_line '%.0s─' $(seq 1 $((${#ipaddr} + 12)))
+				wc_eth="10"
+				wc_ip=$((${#ipaddr} + 7))
+				wc_dns=$((${#dns_address} + 8))
+				wc_gw=$((${#gateway_address} + 12))
+
+				max_len=$wc_eth
+				for val in $wc_ip $wc_dns $wc_gw; do
+					if ((val > max_len)); then
+						max_len=$val
+					fi
+				done
+
+				printf -v dynamic_sep_line '%.0s─' $(seq 1 $max_len)
 
 				tooltip="󰈀  Ethernet\n  IP: $ipaddr\n󰒍  DNS: $dns_address\n󰩩  Gateway: $gateway_address\n$dynamic_sep_line\n  Network stats\n├ ↓ Download: $dl_speed\n├ ↑ Upload:   $ul_speed\n└ 󰹹 Netspeed: $net_speed"
 			fi
