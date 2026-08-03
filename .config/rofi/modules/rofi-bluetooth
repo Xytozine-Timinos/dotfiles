@@ -75,12 +75,14 @@ power_on() {
 toggle_power() {
 	if power_on; then
 		bluetoothctl power off
+		sleep 0.5
 		show_menu
 	else
 		if rfkill list bluetooth | grep -q 'blocked: yes'; then
 			rfkill unblock bluetooth && sleep 3
 		fi
 		bluetoothctl power on
+		sleep 0.5
 		show_menu
 	fi
 }
@@ -428,12 +430,12 @@ show_menu() {
 			numbers_of_line=$(echo -e "$connected_devices" | wc -l)
 			main_menu_height=505
 			main_menu_height=$((main_menu_height + (numbers_of_line * 25)))
-			main_menu_height="${main_menu_height}px"
-			chosen="$(echo -e "$options" | rofi -x11 -dmenu -mesg "$amount_currently_connected" -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -theme $path_to_theme -p " Bluetooth  ")"
+			main_menu_height="${main_menu_height}"
+			chosen="$(echo -e "$options" | rofi -x11 -dmenu -mesg "$amount_currently_connected" -i -theme-str "window {height: ${main_menu_height}px; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -theme $path_to_theme -p " Bluetooth  ")"
 		else
 			amount_currently_connected=""
-			main_menu_height="${main_menu_height}px"
-			chosen="$(echo -e "$options" | rofi -x11 -dmenu -i -theme-str "window {height: $main_menu_height; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -theme $path_to_theme -p " Bluetooth  ")"
+			main_menu_height="${main_menu_height}"
+			chosen="$(echo -e "$options" | rofi -x11 -dmenu -i -theme-str "window {height: ${main_menu_height}px; width: $main_menu_width; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -theme $path_to_theme -p " Bluetooth  ")"
 		fi
 
 		case "$chosen" in
