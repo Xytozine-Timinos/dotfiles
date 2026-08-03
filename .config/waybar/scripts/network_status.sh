@@ -45,12 +45,14 @@ while sleep 3; do
 				ul_speed=$(hr_speed $(((tx_bytes - prev_tx) / interval)))
 				net_speed=$(hr_speed $(((rx_bytes - prev_rx + tx_bytes - prev_tx) / interval)))
 
-				dynamic_sep_line=$(
-					for item in $(seq 1 $((${#ipaddr} + 12))); do
-						echo -n "─"
-					done
-					echo ""
-				)
+				# dynamic_sep_line=$(
+				# 	for item in $(seq 1 $((${#ipaddr} + 12))); do
+				# 		echo -n "─"
+				# 	done
+				# 	echo ""
+				# )
+
+				printf -v dynamic_sep_line '%.0s─' $(seq 1 $((${#ipaddr} + 12)))
 
 				tooltip="󰈀  Ethernet\n  IP: $ipaddr\n󰒍  DNS: $dns_address\n󰩩  Gateway: $gateway_address\n$dynamic_sep_line\n  Network stats\n├ ↓ Download: $dl_speed\n├ ↑ Upload:   $ul_speed\n└ 󰹹 Netspeed: $net_speed"
 			fi
@@ -91,6 +93,8 @@ while sleep 3; do
 		# Get the counts (using ${#var} is faster than calling 'wc')
 		wc_ssid=$((${#ssid} + 9))
 		wc_ipaddr=$((${#ipaddr} + 7))
+		wc_dns=$((${#dns_address} + 8))
+		wc_gateway=$((${#gateway_address} + 12))
 		wc_strength_stat=$((${#strength_stat} + 21))
 
 		# Regulator logic: Initialize max with the first value
@@ -102,12 +106,14 @@ while sleep 3; do
 			fi
 		done
 
-		dynamic_sep_line=$(
-			for item in $(seq 1 $max_len); do
-				echo -n "─"
-			done
-			echo ""
-		)
+		# dynamic_sep_line=$(
+		# 	for item in $(seq 1 $max_len); do
+		# 		echo -n "─"
+		# 	done
+		# 	echo ""
+		# )
+
+		printf -v dynamic_sep_line '%.0s─' $(seq 1 $max_len)
 
 		rx_bytes=$(</sys/class/net/$iface/statistics/rx_bytes)
 		tx_bytes=$(</sys/class/net/$iface/statistics/tx_bytes)
