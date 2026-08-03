@@ -8,7 +8,7 @@ prev_rx=0
 prev_tx=0
 prev_time=0
 
-# Moved helper function outside for efficiency
+# Helper to convert speed to human readable format
 hr_speed() {
 	if (($1 > 1048576)); then
 		printf "%.1f MB/s" "$(echo "$1/1048576" | bc -l)"
@@ -19,20 +19,47 @@ hr_speed() {
 	fi
 }
 
+# Accurate DNS detection function (handles VPNs & resolvectl)
+get_dns() {
+	local dev="$1"
+	local dns=""
+
+	if command -v resolvectl &>/dev/null; then
+		dns=$(resolvectl status 2>/dev/null | awk '/Current DNS Server:/ {print $4; exit}')
+		if [[ -z "$dns" ]]; then
+			dns=$(resolvectl status "$dev" 2>/dev/null | awk '/DNS Servers:/ {print $3; exit}')
+		fi
+	fi
+
+	if [[ -z "$dns" ]] && command -v nmcli &>/dev/null; then
+		dns=$(nmcli -g IP4.DNS device show "$dev" 2>/dev/null | awk '{print $1}')
+	fi
+
+	if [[ -z "$dns" ]]; then
+		dns=$(awk '/^nameserver/ && $2 !~ /^127\./ {print $2; exit}' /etc/resolv.conf)
+	fi
+
+	echo "${dns:-N/A}"
+}
+
 while sleep 3; do
 	# Detect Ethernet interface
 	eth_iface=$(ip -o link show | awk -F': ' '/^[0-9]+: (en|eth)/ {print $2; exit}')
 	eth_up=$(ip link show "$eth_iface" 2>/dev/null | awk '/state/ {print $9}')
-	dns_address=$(cat /etc/resolv.conf | grep nameserver | sed "s/nameserver //g")
 	gateway_address=$(ip route show default | awk '{print $3}')
-	if [[ -z $dns_address || -z $gateway_address ]]; then
-		dns_address="N/A"
-		gateway_address="N/A"
-	fi
+	gateway_address=${gateway_address:-"N/A"}
 
+	# --- ETHERNET BLOCK ---
 	if [[ -n "$eth_iface" && "$eth_up" == "UP" ]]; then
 		ipaddr=$(ip addr show dev "$eth_iface" | awk '/inet / {print $2; exit}' | cut -d'/' -f1)
 		ipaddr=${ipaddr:-"N/A"}
+		dns_address=$(get_dns "$eth_iface")
+
+		# Fast 3-packet probe for loss
+		target_host="${gateway_address}"
+		[[ "$target_host" == "N/A" || -z "$target_host" ]] && target_host="1.1.1.1"
+		pkt_loss=$(ping -c 3 -i 0.2 -W 1 "$target_host" 2>/dev/null | grep -oP '\d+(?=% packet loss)')
+		pkt_loss="${pkt_loss:-100}%"
 
 		rx_bytes=$(</sys/class/net/$eth_iface/statistics/rx_bytes)
 		tx_bytes=$(</sys/class/net/$eth_iface/statistics/tx_bytes)
@@ -45,20 +72,15 @@ while sleep 3; do
 				ul_speed=$(hr_speed $(((tx_bytes - prev_tx) / interval)))
 				net_speed=$(hr_speed $(((rx_bytes - prev_rx + tx_bytes - prev_tx) / interval)))
 
-				# dynamic_sep_line=$(
-				# 	for item in $(seq 1 $((${#ipaddr} + 12))); do
-				# 		echo -n "─"
-				# 	done
-				# 	echo ""
-				# )
-
-				wc_eth="10"
-				wc_ip=$((${#ipaddr} + 7))
-				wc_dns=$((${#dns_address} + 8))
-				wc_gw=$((${#gateway_address} + 12))
+				# Exact line length calculations for Ethernet
+				wc_eth=10                           # "󰈀  Ethernet"
+				wc_ip=$((${#ipaddr} + 7))           # "  IP: "
+				wc_dns=$((${#dns_address} + 8))     # "󰒍  DNS: "
+				wc_gw=$((${#gateway_address} + 12)) # "󰩩  Gateway: "
+				wc_loss=$((${#pkt_loss} + 10))      # "󰤢  Loss: "
 
 				max_len=$wc_eth
-				for val in $wc_ip $wc_dns $wc_gw; do
+				for val in $wc_ip $wc_dns $wc_gw $wc_loss; do
 					if ((val > max_len)); then
 						max_len=$val
 					fi
@@ -66,7 +88,7 @@ while sleep 3; do
 
 				printf -v dynamic_sep_line '%.0s─' $(seq 1 $max_len)
 
-				tooltip="󰈀  Ethernet\n  IP: $ipaddr\n󰒍  DNS: $dns_address\n󰩩  Gateway: $gateway_address\n$dynamic_sep_line\n  Network stats\n├ ↓ Download: $dl_speed\n├ ↑ Upload:   $ul_speed\n└ 󰹹 Netspeed: $net_speed"
+				tooltip="󰈀  Ethernet\n  IP: $ipaddr\n󰒍  DNS: $dns_address\n󰩩  Gateway: $gateway_address\n󰤢  Loss: $pkt_loss\n$dynamic_sep_line\n  Network stats\n├ ↓ Download: $dl_speed\n├ ↑ Upload:   $ul_speed\n└ 󰹹 Netspeed: $net_speed"
 			fi
 		fi
 
@@ -77,7 +99,7 @@ while sleep 3; do
 		continue
 	fi
 
-	# Fallback to Wi-Fi logic
+	# --- WI-FI FALLBACK BLOCK ---
 	iface=$(iw dev | awk '$1=="Interface"{print $2; exit}')
 
 	if [[ -n "$iface" && -d "/sys/class/net/$iface" ]]; then
@@ -90,6 +112,7 @@ while sleep 3; do
 
 		ipaddr=$(ip addr show dev "$iface" | awk '/inet / {print $2; exit}' | cut -d'/' -f1)
 		ipaddr=${ipaddr:-"N/A"}
+		dns_address=$(get_dns "$iface")
 
 		case $strength in
 		100 | 9[0-9]) strength_stat="Excellent" ;;
@@ -100,30 +123,28 @@ while sleep 3; do
 		*) strength_stat="Offline" ;;
 		esac
 
-		tooltip="󱈤  SSID: $ssid\n  IP: $ipaddr\n󰒍  DNS: $dns_address\n󰩩  Gateway: $gateway_address\n󰓅  Network Strength: $strength_stat"
+		# Fast 3-packet probe for loss
+		target_host="${gateway_address}"
+		[[ "$target_host" == "N/A" || -z "$target_host" ]] && target_host="1.1.1.1"
+		pkt_loss=$(ping -c 3 -i 0.2 -W 1 "$target_host" 2>/dev/null | grep -oP '\d+(?=% packet loss)')
+		pkt_loss="${pkt_loss:-100}%"
 
-		# Get the counts (using ${#var} is faster than calling 'wc')
+		tooltip="󱈤  SSID: $ssid\n  IP: $ipaddr\n󰒍  DNS: $dns_address\n󰩩  Gateway: $gateway_address\n󰓅  Network Strength: $strength_stat\n󰤢  Loss: $pkt_loss"
+
+		# Exact line length calculations for Wi-Fi
 		wc_ssid=$((${#ssid} + 9))
 		wc_ipaddr=$((${#ipaddr} + 7))
 		wc_dns=$((${#dns_address} + 8))
 		wc_gateway=$((${#gateway_address} + 12))
 		wc_strength_stat=$((${#strength_stat} + 21))
+		wc_loss=$((${#pkt_loss} + 10))
 
-		# Regulator logic: Initialize max with the first value
 		max_len=$wc_ssid
-
-		for val in $wc_ipaddr $wc_strength_stat; do
+		for val in $wc_ipaddr $wc_dns $wc_gateway $wc_strength_stat $wc_loss; do
 			if ((val > max_len)); then
 				max_len=$val
 			fi
 		done
-
-		# dynamic_sep_line=$(
-		# 	for item in $(seq 1 $max_len); do
-		# 		echo -n "─"
-		# 	done
-		# 	echo ""
-		# )
 
 		printf -v dynamic_sep_line '%.0s─' $(seq 1 $max_len)
 
