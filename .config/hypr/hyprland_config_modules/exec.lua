@@ -37,9 +37,9 @@ hl.on("hyprland.start", function()
 	-- Battery low notification daemon
 	hl.exec_cmd(home .. "/.config/dunst/scripts/battery-warning.sh")
 	-- Notifications
-	hl.exec_cmd(home .. "/.config/dunst/volume.sh volume_status")
-	hl.exec_cmd(home .. "/.config/dunst/volume.sh brightness_status")
-	hl.exec_cmd(home .. "/.config/dunst/bat_status.sh status")
+	-- hl.exec_cmd(home .. "/.config/dunst/volume.sh volume_status")
+	-- hl.exec_cmd(home .. "/.config/dunst/volume.sh brightness_status")
+	-- hl.exec_cmd(home .. "/.config/dunst/bat_status.sh status")
 	-- Welcome message
 	hl.exec_cmd(home .. "/.config/dunst/scripts/welcome-notif.sh")
 	-- Helpful startup tips
