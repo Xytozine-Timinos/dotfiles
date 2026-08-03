@@ -174,7 +174,7 @@ while sleep 3; do
 		prev_time=$cur_time
 
 		if ((strength == 0)); then
-			icon="󰤭 "
+			icon=" "
 			class="disconnected"
 		else
 			index=$((strength * 9 / 100))
