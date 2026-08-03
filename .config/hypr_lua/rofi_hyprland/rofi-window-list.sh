@@ -34,6 +34,10 @@ window_data=$(hyprctl -j clients | jq -r '
 
 window_list=$(echo "$window_data" | cut -f1)
 
+if [[ -z "$window_list" ]]; then
+	exit 0
+fi
+
 # Find index of active window for Rofi (0-based)
 active_row_num=$(echo "$window_data" | grep -n "$active_addr" | cut -d: -f1)
 selected_row=$((${active_row_num:-1} - 1))
