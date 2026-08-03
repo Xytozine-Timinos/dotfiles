@@ -107,7 +107,7 @@ $logout)
 
 			# Exit
 			sleep 0.5
-			hyprctl dispatch exit
+			# hyprctl dispatch exit
 			hyprctl dispatch 'hl.dsp.exit()'
 			pkill -u "$USER" -f "\.sh"
 

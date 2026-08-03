@@ -27,6 +27,6 @@ if [[ $auto_set_monitors == "true" ]]; then
 	# Apply settings with wlr-randr
 	while read -r name res rate; do
 		echo "Setting $name to ${res}@${rate}"
-		hyprctl keyword monitor "$name,${res}@${rate},auto,1"
+		hyprctl eval "hl.monitor({output = \"$name\", mode = \"${res}@${rate}\", position = \"auto\", scale = \"1\"})"
 	done <<<"$monitors"
 fi

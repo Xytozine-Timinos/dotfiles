@@ -78,6 +78,6 @@ $system_information)
 	~/.config/rofi/modules/rofi-os-about
 	;;
 $hyprland_custom_settings)
-	$TERMINAL -e nvim ~/.config/hypr/custom/user_config.conf &
+	$TERMINAL -e nvim ~/.config/hypr/custom/user_config.lua &
 	;;
 esac
