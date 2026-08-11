@@ -35,7 +35,7 @@
 		"format": "{}",
 		"exec": "~/.config/waybar/scripts/window_title.sh",
 		"return-type": "json",
-		"on-click": "setsid ~/.config/hypr/rofi_hyprland/rofi-window-list.sh &",
+		"on-click": "LAUNCHED_FROM_BAR=true setsid ~/.config/hypr/rofi_hyprland/rofi-window-list.sh &",
 		"on-click-right": "setsid ~/.config/waybar/scripts/right_click_window.sh &",
 		"tooltip": true
 	},

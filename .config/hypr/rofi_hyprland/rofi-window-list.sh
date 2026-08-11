@@ -4,16 +4,22 @@ CONFIG_FILE="$HOME/.config/dtf-config/config"
 [[ -f "$CONFIG_FILE" ]] && source "$CONFIG_FILE"
 bar_top=${bar_top:-false}
 
-if [[ $bar_top == "true" ]]; then
-	location="north west"
+if [[ $LAUNCHED_FROM_BAR == "true" ]]; then
+	if [[ $bar_top == "true" ]]; then
+		location="north west"
 
-	main_menu_x_offset=10px
-	main_menu_y_offset=70px
+		main_menu_x_offset=10px
+		main_menu_y_offset=70px
+	else
+		location="south west"
+
+		main_menu_x_offset=10px
+		main_menu_y_offset=-70px
+	fi
 else
-	location="south west"
-
-	main_menu_x_offset=10px
-	main_menu_y_offset=-70px
+	location="center"
+	main_menu_x_offset=0px
+	main_menu_y_offset=0px
 fi
 
 rofi_theme=${rofi_theme:-black}
