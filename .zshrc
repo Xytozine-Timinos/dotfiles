@@ -25,6 +25,7 @@ export MANPAGER='nvim +Man!'
 export ZSH="$HOME/.oh-my-zsh"
 export LANG=en_US.UTF-8
 export MANPATH="/usr/local/man:$MANPATH"
+export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
 
 # Source the user configured variable use_tmux from the ~/.config/dtf-config/config file
 : ${use_tmux:=false}
