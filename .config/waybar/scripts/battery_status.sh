@@ -51,6 +51,13 @@ CAPACITY="${BAT_DATA[0]}"
 STATUS="${BAT_DATA[1]}"
 V_RAW="${BAT_DATA[2]}"
 P_RAW="${BAT_DATA[3]}"
+# If power_now wasn't found, compute it from current_now * voltage_now
+if [[ -z "$P_RAW" ]]; then
+	I_RAW=$(cat "$BAT_PATH/current_now" 2>/dev/null)
+	if [[ -n "$I_RAW" && -n "$V_RAW" ]]; then
+		P_RAW=$((I_RAW * V_RAW / 1000000))
+	fi
+fi
 E_NOW="${BAT_DATA[4]}"
 E_FULL="${BAT_DATA[5]}"
 
@@ -103,7 +110,6 @@ elif [[ "$STATUS" == "Full" ]] || [[ "$CAPACITY" == 100 ]]; then
 	ICON="󰁹󱐋"
 	DISPLAY_TEXT="$ICON Full"
 fi
-
 
 # Final Output
 TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: $STATUS\n$TIME_INFO\n$dynamic_sep_line\n󰠠  Electrical\n├─ Wattage: ${WATT}W\n├─ Voltage: ${VOLT}V\n└─ Amps: ${AMPS}A"
