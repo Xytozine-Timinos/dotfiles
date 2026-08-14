@@ -110,7 +110,12 @@ while sleep 3; do
 		gateway_address=$(ip route show default dev "$iface" 2>/dev/null | awk '{print $3}')
 		gateway_address=${gateway_address:-"N/A"}
 
-		strength=$(awk -v iface="$iface" '$1==iface ":" {print int($3*100/70)}' /proc/net/wireless)
+		if [[ -e "/proc/net/wireless" ]]; then
+			strength=$(awk -v iface="$iface" '$1==iface ":" {print int($3*100/70)}' /proc/net/wireless)
+		else
+			strength=$(awk -v iface="$iface" '$1==iface ":" {print int($3*100/70)}' /proc/net/dev)
+		fi
+
 		strength=${strength:-0}
 		[[ $strength -gt 100 ]] && strength=100
 
