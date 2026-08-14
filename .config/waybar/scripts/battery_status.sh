@@ -60,6 +60,21 @@ if [[ -z "$P_RAW" ]]; then
 fi
 E_NOW="${BAT_DATA[4]}"
 E_FULL="${BAT_DATA[5]}"
+# Fallback for E_NOW / E_FULL (Energy in microwatt-hours)
+# If missing, read charge_now/charge_full and convert to energy: (charge * voltage) / 1,000,000
+if [[ -z "$E_NOW" ]]; then
+	C_NOW=$(cat "$BAT_PATH/charge_now" 2>/dev/null)
+	if [[ -n "$C_NOW" && -n "$V_RAW" ]]; then
+		E_NOW=$((C_NOW * V_RAW / 1000000))
+	fi
+fi
+
+if [[ -z "$E_FULL" ]]; then
+	C_FULL=$(cat "$BAT_PATH/charge_full" 2>/dev/null)
+	if [[ -n "$C_FULL" && -n "$V_RAW" ]]; then
+		E_FULL=$((C_FULL * V_RAW / 1000000))
+	fi
+fi
 
 # Time Calculation
 TIME_INFO="  Time left: N/A"
