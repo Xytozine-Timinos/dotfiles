@@ -212,9 +212,19 @@ chpwd() {
 ### DISPLAY ON STARTUP SECTION
 ####################################################
 #DISTRO NAME AND VERSION
-OS_NAME=$(source /etc/os-release && echo "$PRETTY_NAME")
-OS_CODENAME="<Codename: $(source /etc/os-release && echo "$VERSION_CODENAME")>"
-echo -e " \033[1;32m\033[0m \e[1;33mDistro:\033[0m $OS_NAME $OS_CODENAME"
+# Source /etc/os-release once in the current environment
+if [[ -r /etc/os-release ]]; then
+	source /etc/os-release
+fi
+
+# Build the codename string if VERSION_CODENAME exists
+OS_CODENAME=""
+if [[ -n "$VERSION_CODENAME" ]]; then
+	OS_CODENAME="<Codename: $VERSION_CODENAME>"
+fi
+
+# Print the formatted output
+echo -e " \033[1;32m\033[0m \033[1;33mDistro:\033[0m ${PRETTY_NAME:-Linux} $OS_CODENAME"
 
 #KERNEL VERSION
 if [[ -f /proc/version_signature ]]; then
