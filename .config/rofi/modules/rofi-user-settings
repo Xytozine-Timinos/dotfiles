@@ -94,6 +94,6 @@ $hyprland_custom_settings)
 	if [[ ! -d "$hyprland_custom_settings_path" ]]; then
 		mkdir $hyprland_custom_settings_path
 	fi
-	$TERMINAL -e nvim $hyprland_custom_settings_path &
+	$TERMINAL -e nvim ~/.config/hypr/custom/ &
 	;;
 esac
