@@ -61,7 +61,11 @@ $wm_reload)
 	fi
 	;;
 $usr_settings)
-	$TERMINAL -e nvim ~/.config/dtf-config/config &
+	dtf_config_path="~/.config/dtf-config/config"
+	if [[ ! -f $dtf_config_path ]]; then
+		touch $dtf_config_path
+	fi
+	$TERMINAL -e nvim $dtf_config_path &
 	;;
 $monitor_settings)
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
@@ -86,6 +90,10 @@ $system_information)
 	~/.config/rofi/modules/rofi-os-about
 	;;
 $hyprland_custom_settings)
-	$TERMINAL -e nvim ~/.config/hypr/custom/ &
+	hyprland_custom_settings_path="~/.config/hypr/custom/"
+	if [[ ! -d "$hyprland_custom_settings_path" ]]; then
+		mkdir $hyprland_custom_settings_path
+	fi
+	$TERMINAL -e nvim $hyprland_custom_settings_path &
 	;;
 esac
