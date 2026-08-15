@@ -6,9 +6,9 @@
 
 # Set command to ncal, or fallback to cal with supported vertical flags
 if command -v ncal &>/dev/null; then
-	CALENDAR_CMD=(ncal)
+	CALENDAR_CMD=(ncal -M)
 elif cal -v &>/dev/null; then
-	CALENDAR_CMD=(cal -v)
+	CALENDAR_CMD=(cal -v -m)
 else
 	CALENDAR_CMD=(cal -N)
 fi
@@ -61,7 +61,7 @@ format_calendar() {
 }
 
 print_month() {
-	calendar="$(${CALENDAR_CMD} -M -- $1 $2 | tail -n +2 | sed -e 's/ /_/g')"
+	calendar="$(${CALENDAR_CMD} -- $1 $2 | tail -n +2 | sed -e 's/ /_/g')"
 	echo "$(format_calendar "$calendar")"
 }
 
