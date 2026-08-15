@@ -44,7 +44,7 @@ fi
 
 # Read Battery Data
 # Read the output lines directly into an array
-mapfile -t BAT_DATA < <(cat "$BAT_PATH/capacity" "$BAT_PATH/status" "$BAT_PATH/voltage_now" "$BAT_PATH/power_now" "$BAT_PATH/energy_now" "$BAT_PATH/energy_full" 2>/dev/null)
+mapfile -t BAT_DATA < <(cat "$BAT_PATH/capacity" "$BAT_PATH/status" "$BAT_PATH/voltage_now" "$BAT_PATH/power_now" "$BAT_PATH/energy_now" "$BAT_PATH/energy_full" "$BAT_PATH/cycle_count" 2>/dev/null)
 
 # Assign variables from the array indices
 CAPACITY="${BAT_DATA[0]}"
@@ -60,6 +60,7 @@ if [[ -z "$P_RAW" ]]; then
 fi
 E_NOW="${BAT_DATA[4]}"
 E_FULL="${BAT_DATA[5]}"
+CYCLE_COUNT="${BAT_DATA[6]}"
 # Fallback for E_NOW / E_FULL (Energy in microwatt-hours)
 # If missing, read charge_now/charge_full and convert to energy: (charge * voltage) / 1,000,000
 if [[ -z "$E_NOW" ]]; then
@@ -127,5 +128,5 @@ elif [[ "$STATUS" == "Full" ]] || [[ "$CAPACITY" == 100 ]]; then
 fi
 
 # Final Output
-TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: $STATUS\n$TIME_INFO\n$dynamic_sep_line\n󰠠  Electrical\n├─ Wattage: ${WATT}W\n├─ Voltage: ${VOLT}V\n└─ Amps: ${AMPS}A"
+TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: $STATUS\n  Cycle Count: $CYCLE_COUNT\n$TIME_INFO\n$dynamic_sep_line\n󰠠  Electrical\n├─ Wattage: ${WATT}W\n├─ Voltage: ${VOLT}V\n└─ Amps: ${AMPS}A"
 echo "{\"text\": \"$DISPLAY_TEXT\", \"percentage\": $CAPACITY, \"class\": \"$CLASS\", \"tooltip\": \"$TOOLTIP\"}"
