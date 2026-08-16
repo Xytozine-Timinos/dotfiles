@@ -30,7 +30,7 @@ if hl.plugin.hyprbars ~= nil then
 		bg_color = "rgb(ff6f91)",
 		fg_color = _G.Bar_color,
 		size = 22,
-		icon = "",
+		icon = "",
 		action = "~/.config/hypr/scripts/kill_window.sh",
 	})
 	hl.plugin.hyprbars.add_button({
@@ -38,13 +38,19 @@ if hl.plugin.hyprbars ~= nil then
 		fg_color = _G.Bar_color,
 		size = 22,
 		icon = "󱂬",
-		action = "hyprctl dispatch togglefloating && hyprctl dispatch resizeactive exact 70% 70%",
+		action = [[bash -c "hyprctl eval '
+			    hl.dispatch(hl.dsp.window.float({ action = \"toggle\" }))
+			    local monitor = hl.get_active_monitor()
+			    if monitor then
+				hl.dispatch(hl.dsp.window.resize({ x = monitor.width * 0.7, y = monitor.height * 0.7 }))
+			    end
+			'"]],
 	})
 	hl.plugin.hyprbars.add_button({
 		bg_color = "rgb(a6e3a1)",
 		fg_color = _G.Bar_color,
 		size = 22,
-		icon = "",
+		icon = "",
 		action = "~/.config/hypr/scripts/hide_unhide_window.sh h",
 	})
 	hl.plugin.hyprbars.add_button({
