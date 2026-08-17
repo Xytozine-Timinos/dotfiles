@@ -7,25 +7,25 @@ blur=${blur:-true}
 transparent_window_when_unfocus=${transparent_window_when_unfocus:-true}
 
 if [[ $transparent_window_when_unfocus == "false" ]]; then
-	hyprctl keyword decoration:inactive_opacity 1
+	hyprctl eval 'hl.config({decoration = { inactive_opacity = 1 }})'
 else
-	hyprctl keyword decoration:inactive_opacity 0.95
+	hyprctl eval 'hl.config({decoration = { inactive_opacity = 0.95 }})'
 fi
 
 power_mode_status=$(powerprofilesctl get)
 if [[ $power_mode_status != "power-saver" ]]; then
 	if [[ $animations == "false" ]]; then
-		hyprctl keyword animations:enabled 0
+		hyprctl eval 'hl.config({animations = {enabled = false}})'
 	else
-		hyprctl keyword animations:enabled 1
+		hyprctl eval 'hl.config({animations = {enabled = true}})'
 	fi
 
 	if [[ $blur == "false" ]]; then
-		hyprctl keyword decoration:blur:enabled false
+		hyprctl eval 'hl.config({decoration = { blur = { enabled = false }}})'
 	else
-		hyprctl keyword decoration:blur:enabled true
+		hyprctl eval 'hl.config({decoration = { blur = { enabled = true }}})'
 	fi
 else
-	hyprctl keyword animations:enabled 0
-	hyprctl keyword decoration:blur:enabled false
+	hyprctl eval 'hl.config({animations = {enabled = false}})'
+	hyprctl eval 'hl.config({decoration = { blur = { enabled = false }}})'
 fi
