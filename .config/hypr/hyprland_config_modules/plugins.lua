@@ -21,7 +21,7 @@ if hl.plugin.hyprbars ~= nil then
 				bar_button_padding = 12,
 				bar_padding = 15,
 				bar_precedence_over_border = true,
-				on_double_click = "hyprctl dispatch fullscreen && notify-send 'Fullscreen!' 'Use Mod+F to undo it.' -t 2100",
+				on_double_click = "hyprctl dispatch 'hl.dsp.window.fullscreen({ action = \"toggle\" })' && notify-send 'Fullscreen!' 'Use Mod+F to undo it.' -t 2100",
 			},
 		},
 	})

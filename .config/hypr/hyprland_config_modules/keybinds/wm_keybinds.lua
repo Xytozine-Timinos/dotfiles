@@ -58,10 +58,10 @@ hl.bind(mod .. "+ s", hl.dsp.exec_cmd(home .. "/.config/rofi/modules/rofi-web-se
 hl.bind(mod .. " + i ", hl.dsp.exec_cmd(home .. "/.config/rofi/modules/rofi-user-settings"))
 
 -- Launch keybinds menu
-hl.bind(
-	mod .. "+ equal",
-	hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rofi-hyprland-keybinds/rofi-hypr-keybinds")
-)
+-- hl.bind(
+-- 	mod .. "+ equal",
+-- 	hl.dsp.exec_cmd(home .. "/.config/hypr/rofi_hyprland/rofi-hyprland-keybinds/rofi-hypr-keybinds")
+-- )
 
 -- Toggle waybar visibility
 hl.bind(
