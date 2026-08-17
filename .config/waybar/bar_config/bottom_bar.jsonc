@@ -98,6 +98,7 @@
 		"return-type": "json",
 		"interval": 2,
 		"on-click": "(~/.config/rofi/modules/rofi-power-mode & disown)",
+		"on-click-right": "(~/.config/rofi/modules/rofi-game-mode/rofi-game-mode & disown)",
 		"tooltip": true
 	},
 	"battery": {
