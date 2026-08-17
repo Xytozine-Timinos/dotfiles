@@ -1,4 +1,5 @@
 .config/nvim/lazy-lock.json
+.config/nvim/lua/custom/
 .config/tmux/plugins/
 .config/hypr/custom/
 .config/hypr/custom_script.sh
