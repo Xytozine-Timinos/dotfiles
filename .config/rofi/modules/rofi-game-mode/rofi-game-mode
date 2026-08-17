@@ -1,0 +1,70 @@
+#!/bin/bash
+source ~/.config/dtf-config/config
+
+bar_top=${bar_top:-false}
+rofi_theme=${rofi_theme:-black}
+
+if [[ $bar_top == "true" ]]; then
+	location="north east"
+
+	main_menu_x_offset=-110px
+	main_menu_y_offset=70px
+else
+	location="south east"
+
+	main_menu_x_offset=-110px
+	main_menu_y_offset=-70px
+fi
+
+if [[ $rofi_theme == "white" ]]; then
+	path_to_theme="~/.config/rofi/rofi_theme/white/white.rasi"
+else
+	path_to_theme="~/.config/rofi/rofi_theme/black/black.rasi"
+fi
+
+main_menu_height=165px
+main_menu_width=250px
+
+quit="Exit 󰈆 "
+
+gamemode_enable() {
+	hyprctl eval 'hl.config({animations = {enabled = false}})'
+	hyprctl eval 'hl.config({decoration = { blur = { enabled = false }}})'
+}
+
+gamemode_disable() {
+	hyprctl eval 'hl.config({animations = {enabled = true}})'
+	hyprctl eval 'hl.config({decoration = { blur = { enabled = true }}})'
+}
+
+main_menu() {
+	check_state=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
+	if [[ "$check_state" == "true" ]]; then
+		state="Off"
+	else
+		state="On"
+	fi
+
+	gamemode_option="Game Mode: $state"
+	select=$(echo -e "$gamemode_option\n$quit" | rofi -x11 -dmenu -theme $path_to_theme -i -p " Game Mode 󰮂  " -theme-str "listview {columns: 1; layout: vertical;}" -theme-str "window {width: $main_menu_width; height: $main_menu_height; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}")
+
+	case "$select" in
+	"Game Mode: Off")
+		notify-send "Game mode enabled!"
+		gamemode_enable
+		sleep 0.1
+		main_menu
+		;;
+	"Game Mode: On")
+		notify-send "Game mode disabled!"
+		gamemode_disable
+		sleep 0.1
+		main_menu
+		;;
+	*)
+		exit 0
+		;;
+	esac
+}
+
+main_menu
