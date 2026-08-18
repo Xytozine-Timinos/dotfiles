@@ -6,7 +6,7 @@ return {
 		image = { enabled = true },
 		bigfile = { enabled = true },
 		dashboard = { enabled = false },
-		explorer = { enabled = true },
+		explorer = { enabled = false },
 		indent = { enabled = true },
 		input = { enabled = true },
 		picker = { enabled = true },
