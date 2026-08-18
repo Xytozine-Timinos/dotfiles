@@ -6,7 +6,7 @@
 source ~/.config/dtf-config/config
 
 #when add new entry make sure to add 40 to height
-main_menu_height=380px
+main_menu_height=370px
 main_menu_width=270px
 full_menu_height=355px
 notification_timeout=1100
