@@ -20,6 +20,7 @@ return {
 					"⠀⠊⢫⣿⣏⣿⡌⣼⣄⢫⡌⣿⣿⣿⣿⣿⣦⡈⠲⣄⣤⣤⡡⢀⣠⣿⣿⣿⣿⣿⣿⣷⣼⣍⢬⣦⡙⣿⣿⣿⣿⣿⣯⢁⡄⠀⡀⡀⠀⠄⢈⣠⢪⠀⣿⣿⣿⣦⠀⢉⢂⠹⡿⣿⣿",
 					"⠀⠀⠄⢹⢃⢻⣟⠙⣿⣦⠱⢻⣿⣿⣿⣿⣿⣿⣷⣬⣍⣭⣥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⡙⢿⣼⡿⣿⣿⣿⣿⣿⣷⣄⠘⣱⢦⣤⡴⡿⢈⣼⣿⣿⣿⣇⣴⣶⣮⣅⢻⣿⡏",
 					"⠀⠀⠈⠹⣇⢡⢿⡆⠻⣿⣷⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣍⡻⣿⣟⣻⣿⣿⣿⣿⣷⣦⣥⣬⣤⣴⣾⣿⣿⣿⣿⣷⣿⣿⣿⣿⣷⡜⠃",
+					" 	     Xytozine/Azure neovim dotfiles configuration    	  "
 				},
 
 				-- content = {
@@ -69,7 +70,7 @@ return {
 					{ " Open Neotree", "Neotree", "Ctrl+e" },
 					{ "󰒲 Open Lazy", "Lazy", "Space+L" },
 					{ "󰢷 Open Mason", "Mason", "Space+M" },
-					{ "󰓜 Open Store", "Store", "Space+S" },
+					-- { "󰓜 Open Store", "Store", "Space+S" },
 				},
 				highlight = "String",
 				default_color = "",
