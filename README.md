@@ -1,6 +1,6 @@
 ## About
 
-___DEVELOPED ON UBUNTU 26.04 AND LINUX MINT - zena (Ubuntu 24.04 LTS)___<BR>
+___DEVELOPED ON UBUNTU 26.04 AND LINUX MINT - zena (Ubuntu 24.04 LTS). DEPLOYED & TESTED ON FEDORA___<BR>
 
 __Project Size__<BR>
 
