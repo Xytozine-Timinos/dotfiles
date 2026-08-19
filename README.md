@@ -20,9 +20,9 @@ __If you encounter any issue just open an issue on Codeberg, thanks!__<BR>
 > [!NOTE]
 > It is recommend for developers, ricers or people who want more technical to take a look at the `.config/rofi/rofi-modules`, scripts that are lied in `.config/hypr/scripts` to get some of my ideas.<BR>
 
-> [!NOTE]
-> This dotfiles repo is coded and made on the latest version of Ubuntu, so it is expected to have some compatibility issues with older versions of Ubutu and other distros like Debian or something like that so beware. Arch is fine though.<BR>
-> I suggest that if you use Debian based distros like Linux Mint, Ubuntu, use ([pacstall](https://pacstall.dev/)) to solve the issue.<BR>
+<!-- > [!NOTE] -->
+<!-- > This dotfiles repo is coded and made on the latest version of Ubuntu, so it is expected to have some compatibility issues with older versions of Ubutu and other distros like Debian or something like that so beware. Arch is fine though.<BR> -->
+<!-- > I suggest that if you use Debian based distros like Linux Mint, Ubuntu, use ([pacstall](https://pacstall.dev/)) to solve the issue.<BR> -->
 
 Posted on r/unixporn on 14 May 2026: <BR>
 https://www.reddit.com/r/unixporn/s/v6qrrSL9JR <BR>
