@@ -1,7 +1,12 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "main",
-	dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim", "folke/snacks.nvim" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-tree/nvim-web-devicons",
+		"MunifTanjim/nui.nvim",
+		"folke/snacks.nvim",
+	},
 	config = function()
 		local neotree = require("neo-tree")
 		neotree.setup({
@@ -131,6 +136,11 @@ return {
 			},
 
 			filesystem = {
+				filtered_items = {
+					visible = true,
+					hide_dotfiles = false,
+					hide_gitignored = true,
+				},
 				window = {
 					mappings = {
 						["y"] = "copy_to_clipboard",
