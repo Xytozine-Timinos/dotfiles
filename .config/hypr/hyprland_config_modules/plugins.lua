@@ -1,7 +1,3 @@
-local home = os.getenv("HOME")
-
-hl.exec_cmd(home .. "/.config/hypr/scripts/hyprland_plugins.sh")
-
 ----------------
 --- Hyprbars ---
 ----------------

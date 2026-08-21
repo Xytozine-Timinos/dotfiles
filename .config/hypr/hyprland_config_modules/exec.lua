@@ -75,3 +75,5 @@ hl.exec_cmd("libinput-gestures-setup restart")
 hl.exec_cmd(home .. "/.config/hypr/scripts/auto_sleep.sh")
 -- Inactive Opacity Change
 hl.exec_cmd(home .. "/.config/hypr/scripts/transparent_window_when_unfocus.sh")
+-- Hyprland Plugins
+hl.exec_cmd(home .. "/.config/hypr/scripts/hyprland_plugins.sh")
