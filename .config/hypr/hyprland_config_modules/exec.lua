@@ -59,6 +59,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd(home .. "/.config/hypr/scripts/easyeffects_on_start.sh")
 end)
 
+-- Hyprland Plugins
+hl.exec_cmd(home .. "/.config/hypr/scripts/hyprland_plugins.sh")
 -- Waybar
 hl.exec_cmd(home .. "/.config/waybar/startup.sh")
 -- Hyprsunset
@@ -75,5 +77,3 @@ hl.exec_cmd("libinput-gestures-setup restart")
 hl.exec_cmd(home .. "/.config/hypr/scripts/auto_sleep.sh")
 -- Inactive Opacity Change
 hl.exec_cmd(home .. "/.config/hypr/scripts/transparent_window_when_unfocus.sh")
--- Hyprland Plugins
-hl.exec_cmd(home .. "/.config/hypr/scripts/hyprland_plugins.sh")
