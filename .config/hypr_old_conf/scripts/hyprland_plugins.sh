@@ -6,6 +6,6 @@ hyprland_plugins=${hyprland_plugins:-false}
 
 if [[ $hyprland_plugins == "true" ]]; then
 	hyprpm reload
-	sleep 0.2
-	killall -SIGUSR2 waybar
+	# sleep 0.2
+	# killall -SIGUSR2 waybar
 fi
