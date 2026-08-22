@@ -67,6 +67,7 @@ $reboot_firmware)
 		systemctl --user stop hyprpolkitagent
 	fi
 	systemctl reboot --firmware-setup
+	;;
 $reboot)
 	if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 		systemctl --user stop hyprpolkitagent
