@@ -3,6 +3,7 @@
 CONFIG_FILE="$HOME/.config/dtf-config/config"
 [[ -f "$CONFIG_FILE" ]] && source "$CONFIG_FILE"
 bar_top=${bar_top:-false}
+quit="Exit 󰈆 "
 
 if [[ $LAUNCHED_FROM_BAR == "true" ]]; then
 	if [[ $bar_top == "true" ]]; then
@@ -51,7 +52,7 @@ selected_row=$((${active_row_num:-1} - 1))
 # Calculate dynamic height
 num_windows=$(echo "$window_list" | wc -l)
 max_h=710
-calc_h=$((100 + (num_windows * 38)))
+calc_h=$((130 + (num_windows * 38)))
 final_h=$((calc_h > max_h ? max_h : calc_h))
 
 # Calculate dynamic width (Target: 10.5px per char, Max: 2/3 screen)
@@ -67,7 +68,7 @@ elif ((calc_w > max_w)); then
 else final_w=$calc_w; fi
 
 # Open Rofi
-choice=$(echo "$window_list" | rofi -x11 -dmenu -i \
+choice=$(echo -e "$window_list\n$quit" | rofi -x11 -dmenu -i \
 	-p " Available Windows 󰖲 " \
 	-selected-row "$selected_row" \
 	-theme "$path_to_theme" \
