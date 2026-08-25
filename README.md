@@ -233,6 +233,10 @@ AVAILABLE CONFIG KEYS (ALL OF THESE BELOW ARE DEFAULT CONFIGS):
 # Welcome toast
 welcome_notification=true #(OPTIONS: true/false) (One time only)
 
+# Launch startup apps with xdg-autostart support
+(The apps that have their own autostart method built-in by clicking something like "Open on startup" in their settings)
+xdg_autostart=true #(OPTIONS: true/false) (At startup)
+
 # Changes polybar/waybar color to black or white
 bar_color=black #(OPTIONS: white/black) (Reload required)
 
