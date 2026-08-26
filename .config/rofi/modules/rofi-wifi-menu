@@ -230,7 +230,9 @@ connect_hidden_network() {
 
 main_menu_ethernet() {
 	# Detect active or available Ethernet interface name (e.g., eth0, enp3s0)
-	eth_dev=$(nmcli -t -f DEVICE,TYPE device | grep ':ethernet' | cut -d: -f1 | head -n1)
+	# eth_dev=$(nmcli -t -f DEVICE,TYPE device | grep ':ethernet' | cut -d: -f1 | head -n1)
+	# I do not want to rename all variables to i do it here
+	eth_dev=$CURRENT_INTERFACE
 
 	# Fallback in case no specific ethernet device is returned
 	if [[ -z "$eth_dev" ]]; then
@@ -277,7 +279,7 @@ main_menu_ethernet() {
 		nm-connection-editor
 		;;
 	$open_gateway_console)
-		gateway_address=$(ip route show default dev "$CURRENT_INTERFACE" 2>/dev/null | awk '{print $3}')
+		gateway_address=$(ip route show default dev "$eth_dev" 2>/dev/null | awk '{print $3}')
 		if [[ -z "$gateway_address" ]]; then
 			notify-send "Gateway Address Unavailable"
 		else
@@ -332,10 +334,12 @@ INTERFACE_TYPE=$(nmcli device show "$CURRENT_INTERFACE" 2>/dev/null | sed -n 's/
 if [[ $INTERFACE_TYPE == "wifi" ]]; then
 	notify-send "Current Interface Is Wifi 󰖩 "
 	display_msg="Interface: Wifi 󰖩 "
+	# CURRENT INTERFACE VARIABLE IS FETCHED INTO THE FUNCTION
 	main_menu_wifi
 elif [[ $INTERFACE_TYPE == "ethernet" ]]; then
 	notify-send "Current Interface Is Ethernet  "
 	display_msg="Interface: Ethernet  "
+	# CURRENT INTERFACE VARIABLE IS FETCHED INTO THE FUNCTION
 	main_menu_ethernet
 else
 	notify-send "No Used Interface Available 󰛵 "
