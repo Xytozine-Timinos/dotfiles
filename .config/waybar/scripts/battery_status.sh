@@ -37,7 +37,7 @@ dynamic_sep_line=$(
 
 # Desktop Handling
 if [ ! -d "$BAT_PATH" ]; then
-	TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: Plugged In\n  Time left: INF\n$dynamic_sep_line\n󰠠  Wattage: --W\n├─ Voltage: --V\n└─ Amps: --A"
+	TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: Plugged In\n  Time left: INF\n$dynamic_sep_line\n󰠠  Electrical\n├─ Wattage: --W\n├─ Voltage: --V\n└─ Amps: --A"
 	echo "{\"text\": \"󰚥 AC\", \"percentage\": 100, \"class\": \"desktop-ac\", \"tooltip\": \"$TOOLTIP\"}"
 	exit 0
 fi
