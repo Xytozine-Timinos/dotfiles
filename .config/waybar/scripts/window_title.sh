@@ -64,7 +64,8 @@ handle_title() {
 	pid=$(echo "$data" | jq -r '.pid')
 
 	if [ -z "$class" ] || [ "$class" = "null" ]; then
-		echo "{\"text\": \"󰖲\", \"tooltip\": \"  No active window\"}"
+		free_kb=$(get_free_ram_kb)
+		echo "{\"text\": \"󰖲\", \"tooltip\": \"  No active window\n  Available RAM: $(format_kb "$free_kb")\"}"
 		return
 	fi
 
