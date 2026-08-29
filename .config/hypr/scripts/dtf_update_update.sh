@@ -54,7 +54,7 @@ $TERMINAL -e bash -c "
     fi
 
     echo '--- Refreshing Dotfiles ---';
-    stow -D . && stow . || { echo 'Stow failed!'; read -p 'Press <ENTER> to exit...'; exit 1; };
+    stow -D . && stow --adopt . || { echo 'Stow failed!'; read -p 'Press <ENTER> to exit...'; exit 1; };
     
     sudo updatedb;
     hyprctl reload;
