@@ -103,6 +103,12 @@ hl.window_rule({
 	stay_focused = true,
 })
 
+-- Quickshell
+hl.window_rule({
+	match = {class = "^(quickshell)$"},
+	no_focus = true,
+})
+
 -- Steam floating windows
 local steam_float_titles = {
 	"^Friends$",
