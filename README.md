@@ -109,6 +109,15 @@ sudo apt update
 sudo apt install $(curl -s https://codeberg.org/xytozine/dotfiles/main/dependencies.txt)
 ```
 
+Install Quickshell (Optional but highly recommended, steps straight from the quickshell wiki)
+```
+sudo add-apt-repository ppa:avengemedia/danklinux
+sudo apt update
+sudo apt install quickshell #Latest Release Version
+# OR
+sudo apt install quickshell-git# Latest Dev Version
+```
+
 Install oh-my-zsh (command taken from the official [page](https://github.com/ohmyzsh/ohmyzsh))
 
 ```
