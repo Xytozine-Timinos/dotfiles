@@ -171,6 +171,7 @@ local float_classes = {
 	"protonvpn-app",
 	"com.github.wwmm.easyeffects",
 	"nm-connection-editor",
+	"auto-cpufreq-gtk",
 }
 
 -- Float windows based on title
