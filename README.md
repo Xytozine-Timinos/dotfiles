@@ -109,7 +109,7 @@ sudo apt update
 sudo apt install $(curl -s https://codeberg.org/xytozine/dotfiles/main/dependencies.txt)
 ```
 
-Install Quickshell (Optional but highly recommended, steps straight from the quickshell wiki)
+Install Quickshell (Only available on Ubuntu 26.04 and upwards) (Optional but highly recommended, steps straight from the quickshell wiki)
 ```
 sudo add-apt-repository ppa:avengemedia/danklinux
 sudo apt update
