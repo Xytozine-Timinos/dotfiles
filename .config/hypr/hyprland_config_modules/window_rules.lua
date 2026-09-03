@@ -195,6 +195,7 @@ local float_titles = {
 	"^Screen Layout Editor$",
 	"^Volume Control$",
 	"^Proton VPN$",
+	"^(solaar)$",
 }
 
 -- Fullscreen
