@@ -11,6 +11,7 @@ __About:__<BR>
 Been brewing since late __March 2024__ on Github<BR>
 Repo officially started in __1st June 2024__ on Github<BR>
 Moved to __Codeberg__ on 14/7/2026 <BR>
+Mirrored to __Github__ on 4/9/2026 <BR>
 
 The purpose of this project is to share my configs, my ideas as openly as possible. Feel free to open a VM or try it on your own machine!<BR>
 <BR>
