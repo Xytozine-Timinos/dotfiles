@@ -24,7 +24,7 @@ dunst_submenu() {
 
 	case $select6 in
 	$bat_status)
-		$TERMINAL -e nvim ~/.config/dunst/scripts/bat_status.sh
+		$TERMINAL -e nvim ~/.config/dunst/scripts/bat-status-daemon.sh
 		;;
 	$airplane_mode)
 		$TERMINAL -e nvim ~/.config/dunst/scripts/noti-airplane.sh
