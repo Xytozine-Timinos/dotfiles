@@ -130,3 +130,27 @@ fi
 # Final Output
 TOOLTIP="  Controller: ${CONTROLLER}\n󰓅  Mode: ${MODE}${TURBO_INFO}\n󱐋  Governor: ${GOVERNOR}\n  Status: $STATUS\n  Cycle Count: $CYCLE_COUNT\n$TIME_INFO\n$dynamic_sep_line\n󰠠  Electrical\n├─ Wattage: ${WATT}W\n├─ Voltage: ${VOLT}V\n└─ Amps: ${AMPS}A"
 echo "{\"text\": \"$DISPLAY_TEXT\", \"percentage\": $CAPACITY, \"class\": \"$CLASS\", \"tooltip\": \"$TOOLTIP\"}"
+
+# LOW BATTERY PERCENTAGE CHECK
+source ~/.config/dtf-config/config
+battery_warning_notification=${battery_warning_notification:-false}
+
+STATE_DIR="${XDG_RUNTIME_DIR:-/tmp}"
+STATE_FILE="$STATE_DIR/battery_notif_state"
+
+if [[ "$battery_warning_notification" == "true" ]]; then
+	# Load last-notified level (0 if none)
+	LAST_NOTIFIED=$(cat "$STATE_FILE" 2>/dev/null || echo 0)
+
+	if [[ "$STATUS" == "Discharging" ]] && [[ "$CAPACITY" -le 20 ]]; then
+		THRESHOLD=$([[ "$CAPACITY" -le 10 ]] && echo 10 || echo 20)
+		if [[ "$THRESHOLD" != "$LAST_NOTIFIED" ]]; then
+			notify-send "Low Battery  " "Please Charge Your Device!"
+			paplay "$CUSTOM_SOUND_PATH/battery-low.oga"
+			echo "$THRESHOLD" >"$STATE_FILE"
+		fi
+	elif [[ "$CAPACITY" -gt 20 ]]; then
+		# Reset once battery recovers past both thresholds
+		echo 0 >"$STATE_FILE"
+	fi
+fi
