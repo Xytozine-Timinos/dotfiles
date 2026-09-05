@@ -192,15 +192,25 @@ devconfig_func() {
 audio_player_qs_launch_func() {
 	local qs_state_file="/tmp/qs_state"
 	local state
-	state=$(cat "$qs_state_file" 2>/dev/null || echo 0)
 
-	if [[ "$state" == "0" ]]; then
-		qs &
-		echo 1 >"$qs_state_file"
+	if ! command -v qs &>/dev/null; then
+		notify-send "Error!" "\"qs\" binary not found!"
+		paplay $CUSTOM_SOUND_PATH/battery-low.oga
+		main_menu
 	else
-		killall qs
-		echo 0 >"$qs_state_file"
+		state=$(cat "$qs_state_file" 2>/dev/null || echo 0)
+
+		if [[ "$state" == "0" ]]; then
+			qs &
+			echo 1 >"$qs_state_file"
+			main_menu
+		else
+			killall qs
+			echo 0 >"$qs_state_file"
+			main_menu
+		fi
 	fi
+
 }
 
 main_menu
