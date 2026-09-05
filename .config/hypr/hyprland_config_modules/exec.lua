@@ -34,8 +34,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd(home .. "/.config/dunst/scripts/usb-watch.sh")
 	-- Plug, unplug power source daemon
 	hl.exec_cmd(home .. "/.config/dunst/scripts/bat-status-daemon.sh")
-	-- Battery low notification daemon
-	hl.exec_cmd(home .. "/.config/dunst/scripts/battery-warning.sh")
+	-- Battery low notification daemon (Merged into waybar module)
+	-- hl.exec_cmd(home .. "/.config/dunst/scripts/battery-warning.sh")
 	-- Notifications
 	-- hl.exec_cmd(home .. "/.config/dunst/volume.sh volume_status")
 	-- hl.exec_cmd(home .. "/.config/dunst/volume.sh brightness_status")
