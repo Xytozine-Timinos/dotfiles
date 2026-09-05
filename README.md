@@ -323,8 +323,11 @@ num_lock_notification=true #(OPTIONS: true/false)
 # Notifications for usb devices and check if the power is plug or not
 usb_notification=true #(OPTIONS: true/false) (Relaunch window manager required)
 
-# Battery warning daemon, warn when battery reaches 20%
-battery_warning_notification=false #(OPTIONS: true/false) (Relaunch window manager required)
+# Battery warning daemon, warn when battery reaches 20% and 10%
+battery_warning_notification=true #(OPTIONS: true/false) (Reload in time)
+
+# Battery charging/discharging notification
+battery_status_notification=true #(OPTIONS: true/false) (Reload in time)
 
 # Set power mode changes brightness for each mode: power-saving, balanced and perfomance
 brightness_changes_by_power_mode=false #(OPTIONS: true/false)
