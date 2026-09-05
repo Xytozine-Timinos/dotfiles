@@ -154,3 +154,40 @@ if [[ "$battery_warning_notification" == "true" ]]; then
 		echo 0 >"$STATE_FILE"
 	fi
 fi
+
+# BATTERY CHARGE/DISCHARGE NOTIFICATION
+battery_status_notification=${battery_status_notification:-false}
+STATUS_STATE_FILE="$STATE_DIR/battery_status_notif_state"
+# CHARGE / DISCHARGE STATUS CHANGE NOTIFICATION
+if [[ "$battery_status_notification" == "true" ]]; then
+	# Normalize the "effective" state we care about: Charging, Discharging, or Full
+	if [[ "$STATUS" == "Full" ]] || [[ "$CAPACITY" == 100 ]]; then
+		CURRENT_STATE="Full"
+	else
+		CURRENT_STATE="$STATUS"
+	fi
+
+	LAST_STATE=$(cat "$STATUS_STATE_FILE" 2>/dev/null || echo "")
+
+	if [[ "$CURRENT_STATE" != "$LAST_STATE" ]]; then
+		case "$CURRENT_STATE" in
+		Charging)
+			notify-send "Charger Connected 󰚥 " "Battery is now charging ($CAPACITY%)."
+			paplay "$CUSTOM_SOUND_PATH/power-plug.oga" 2>/dev/null
+			;;
+		Discharging)
+			# Only announce "unplugged" if we were previously charging/full,
+			# so we don't spam a notification on every single script run.
+			if [[ "$LAST_STATE" == "Charging" || "$LAST_STATE" == "Full" ]]; then
+				notify-send "Charger Disconnected 󰂑 " "Battery is now discharging ($CAPACITY%)."
+				paplay "$CUSTOM_SOUND_PATH/power-unplug.oga" 2>/dev/null
+			fi
+			;;
+		Full)
+			notify-send "Battery Fully Charged 󰁹 " "You can unplug your charger."
+			paplay "$CUSTOM_SOUND_PATH/bell.oga" 2>/dev/null
+			;;
+		esac
+		echo "$CURRENT_STATE" >"$STATUS_STATE_FILE"
+	fi
+fi
