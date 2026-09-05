@@ -99,7 +99,7 @@ main_menu() {
 	set_mode_power_saver() {
 		powerprofilesctl set power-saver
 		if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
-			hyprctl eval 'hl.config({animations = {enabled = false}})'
+			# hyprctl eval 'hl.config({animations = {enabled = false}})'
 			hyprctl eval 'hl.config({decoration = { blur = { enabled = false }}})'
 			pkill -f "kitty.*--class=kitty-bg"
 		fi
