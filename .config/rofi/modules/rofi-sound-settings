@@ -4,8 +4,8 @@
 
 source ~/.config/dtf-config/config
 
-main_menu_height=325px
-main_menu_width=370px
+main_menu_height=360px
+main_menu_width=540px
 manual_menu_height=90px
 manual_menu_width=480px
 
@@ -73,9 +73,10 @@ outputdev_opt="󰜟  Outpur Device  "
 inputdev_opt="󱦉  Input Device  "
 devconfig_opt="  Device Configuration  "
 manual_volume_opt="   Set Volume Level  "
+desktop_audio_player="󰖯  Toggle Desktop Audio Player (QuickShell)"
 pavucontrol_opt="󰖯  Pulseaudio Control GUI"
 
-opt_list="$manual_volume_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$pavucontrol_opt\n$quit"
+opt_list="$manual_volume_opt\n$outputdev_opt\n$inputdev_opt\n$devconfig_opt\n$desktop_audio_player\n$pavucontrol_opt\n$quit"
 
 ouput_dev_card=$(pactl list cards | grep "device.name" | sed 's/device.name =//g' | sed 's/"//g' | sed 's/\t//g' | sed 's/ //g')
 current_output_dev=$(pactl list sinks short | grep RUNNING | awk '{print $2}' | sed 's/bluez_output.//g' | sed 's/\..*//')
@@ -101,6 +102,9 @@ main_menu() {
 		;;
 	$pavucontrol_opt)
 		pavucontrol
+		;;
+	$desktop_audio_player)
+		audio_player_qs_launch_func
 		;;
 	esac
 }
@@ -182,6 +186,20 @@ devconfig_func() {
 	first_try=$(pactl set-card-profile alsa_card.pci-0000_00_1f.3-platform-skl_hda_dsp_generic "$select_profile")
 	if [[ $first_try == "" ]]; then
 		second_try=$(pactl set-card-profile bluez_card.$current_output_dev "$select_profile")
+	fi
+}
+
+audio_player_qs_launch_func() {
+	local qs_state_file="/tmp/qs_state"
+	local state
+	state=$(cat "$qs_state_file" 2>/dev/null || echo 0)
+
+	if [[ "$state" == "0" ]]; then
+		qs &
+		echo 1 >"$qs_state_file"
+	else
+		killall qs
+		echo 0 >"$qs_state_file"
 	fi
 }
 
