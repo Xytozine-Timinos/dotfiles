@@ -12,8 +12,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
 	-- Polkit agent, required for graphical apps
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
-	-- Waybar
-	hl.exec_cmd(home .. "/.config/waybar/startup.sh")
 	-- Hyprsunset
 	hl.exec_cmd(home .. "/.config/hypr/scripts/hyprsunset_launch.sh")
 	-- Animations option on/off
