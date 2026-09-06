@@ -59,10 +59,10 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd(home .. "/.config/hypr/scripts/easyeffects_on_start.sh")
 	-- xdg-autostart application on startup
 	hl.exec_cmd(home .. "/.config/hypr/scripts/start_xdg_autostart_application.sh")
+	-- Hyprland Plugins
+	hl.exec_cmd(home .. "/.config/hypr/scripts/hyprland_plugins.sh")
 end)
 
--- Hyprland Plugins
-hl.exec_cmd(home .. "/.config/hypr/scripts/hyprland_plugins.sh")
 -- Waybar
 hl.exec_cmd(home .. "/.config/waybar/startup.sh")
 -- Hyprsunset
