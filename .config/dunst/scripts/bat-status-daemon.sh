@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # --- Configuration ---
-# source ~/.config/dtf-config/config
+source ~/.config/dtf-config/config
+battery_status_notification=${battery_status_notification:-false}
 
 # --- Singleton Logic ---
 # if ps aux | grep "bat-status-daemon.sh" | grep -v grep | grep -v "$$" >/dev/null; then
@@ -35,7 +36,7 @@ udevadm monitor --udev --subsystem-match=power_supply |
 	while read -r _ _ action devpath _; do
 
 		if [[ "$devpath" =~ "AC" ]] || [[ "$devpath" =~ "BAT" ]]; then
-			
+
 			sleep 2
 			CURRENT_STATE=$(get_battery_state)
 
@@ -46,12 +47,16 @@ udevadm monitor --udev --subsystem-match=power_supply |
 
 				case "$CURRENT_STATE" in
 				"Charging")
-					notify-send "Charging 󰂅" "${BATTERY_LEVEL}% - Connected to power." -t 2500 -u low
-					paplay $CUSTOM_SOUND_PATH/power-plug.oga
+					if [[ "$battery_status_notification" == true ]]; then
+						notify-send "Charging 󰂅" "${BATTERY_LEVEL}% - Connected to power." -t 2500 -u low
+						paplay $CUSTOM_SOUND_PATH/power-plug.oga
+					fi
 					;;
 				"Discharging")
-					notify-send "Discharging 󰁹" "${BATTERY_LEVEL}% - Running on battery." -t 2500 -u normal
-					paplay $CUSTOM_SOUND_PATH/power-unplug.oga
+					if [[ "$battery_status_notification" == true ]]; then
+						notify-send "Discharging 󰁹" "${BATTERY_LEVEL}% - Running on battery." -t 2500 -u normal
+						paplay $CUSTOM_SOUND_PATH/power-unplug.oga
+					fi
 					;;
 				*) ;;
 				esac

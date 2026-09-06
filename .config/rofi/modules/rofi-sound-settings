@@ -203,10 +203,12 @@ audio_player_qs_launch_func() {
 		if [[ "$state" == "0" ]]; then
 			qs &
 			echo 1 >"$qs_state_file"
+			notify-send "Music Player: On"
 			main_menu
 		else
 			killall qs
 			echo 0 >"$qs_state_file"
+			notify-send "Music Player: Off"
 			main_menu
 		fi
 	fi

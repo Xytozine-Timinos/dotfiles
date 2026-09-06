@@ -1,5 +1,6 @@
 local mod = "SUPER"
 local alt = "ALT"
+local ctrl = "CONTROL"
 local home = os.getenv("HOME")
 
 ---------------------------------
@@ -11,6 +12,7 @@ hl.bind(mod .. " + SHIFT + r", hl.dsp.exec_cmd('notify-send "Hyprland Manually R
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(alt .. " + mouse:272", hl.dsp.window.resize(), { mouse = true })
+hl.bind(ctrl .. " + mouse:272", hl.dsp.window.resize(), { mouse = true })
 hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Lock screen via hyprlock

@@ -10,6 +10,8 @@ hl.exec_cmd(home .. "/.config/hypr/scripts/monitor.sh")
 hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user stop betterlockscreen@" .. user .. ".service")
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
+	-- Hyprland Plugins
+	hl.exec_cmd(home .. "/.config/hypr/scripts/hyprland_plugins.sh")
 	-- Polkit agent, required for graphical apps
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	-- Waybar
@@ -33,7 +35,7 @@ hl.on("hyprland.start", function()
 	-- Usb media notification daemon
 	hl.exec_cmd(home .. "/.config/dunst/scripts/usb-watch.sh")
 	-- Plug, unplug power source daemon
-	-- hl.exec_cmd(home .. "/.config/dunst/scripts/bat-status-daemon.sh")
+	hl.exec_cmd(home .. "/.config/dunst/scripts/bat-status-daemon.sh")
 	-- Battery low notification daemon (Merged into waybar module)
 	-- hl.exec_cmd(home .. "/.config/dunst/scripts/battery-warning.sh")
 	-- Notifications
@@ -59,8 +61,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd(home .. "/.config/hypr/scripts/easyeffects_on_start.sh")
 	-- xdg-autostart application on startup
 	hl.exec_cmd(home .. "/.config/hypr/scripts/start_xdg_autostart_application.sh")
-	-- Hyprland Plugins
-	hl.exec_cmd(home .. "/.config/hypr/scripts/hyprland_plugins.sh")
 end)
 
 -- Waybar
