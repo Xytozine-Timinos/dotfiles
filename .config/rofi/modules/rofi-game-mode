@@ -30,11 +30,18 @@ quit="Exit 󰈆 "
 gamemode_enable() {
 	hyprctl eval 'hl.config({animations = {enabled = false}})'
 	hyprctl eval 'hl.config({decoration = { blur = { enabled = false }}})'
+	if [[ -n $(command -v powerprofilesctl) ]]; then
+		powerprofilesctl set performance
+		notify-send -t 1100 -h string:x-dunst-stack-tag:power_mode_status "Power set to performance mode 󰓅"
+	fi
 }
 
 gamemode_disable() {
 	hyprctl eval 'hl.config({animations = {enabled = true}})'
 	hyprctl eval 'hl.config({decoration = { blur = { enabled = true }}})'
+	if [[ -n $(command -v powerprofilesctl) ]]; then
+		notify-send -t 1755 -h string:x-dunst-stack-tag:game_mode "Please set your power profiles to your likings"
+	fi
 }
 
 main_menu() {
@@ -50,13 +57,13 @@ main_menu() {
 
 	case "$select" in
 	"Game Mode: Off")
-		notify-send "Game mode enabled!"
+		notify-send -h string:x-dunst-stack-tag:game_mode "Game mode enabled!"
 		gamemode_enable
 		sleep 0.1
 		main_menu
 		;;
 	"Game Mode: On")
-		notify-send "Game mode disabled!"
+		notify-send -h string:x-dunst-stack-tag:game_mode "Game mode disabled!"
 		gamemode_disable
 		sleep 0.1
 		main_menu
