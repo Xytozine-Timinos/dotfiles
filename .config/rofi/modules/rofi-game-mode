@@ -57,13 +57,13 @@ main_menu() {
 
 	case "$select" in
 	"Game Mode: Off")
-		notify-send -h string:x-dunst-stack-tag:game_mode "Game mode enabled!"
+		notify-send "Game mode enabled!"
 		gamemode_enable
 		sleep 0.1
 		main_menu
 		;;
 	"Game Mode: On")
-		notify-send -h string:x-dunst-stack-tag:game_mode "Game mode disabled!"
+		notify-send "Game mode disabled!"
 		gamemode_disable
 		sleep 0.1
 		main_menu
