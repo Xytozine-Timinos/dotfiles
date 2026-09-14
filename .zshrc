@@ -161,6 +161,10 @@ if [[ $- == *i* ]]; then
 		alias cdi="zi"
 	fi
 
+	if [[ $TERM == "xterm-kitty" ]] || [[ $TERMINAL == "kitty" ]]; then
+		alias ssh="kitty +kitten ssh"
+	fi
+
 	# Reset caret to line after exit neovim
 	nvim() {
 		command nvim "$@"
