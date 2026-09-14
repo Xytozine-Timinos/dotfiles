@@ -34,7 +34,7 @@ hl.bind(mod .. "+ escape", hl.dsp.exec_cmd(home .. "/.config/rofi/modules/rofi-p
 hl.bind(mod .. "+ m", hl.dsp.exec_cmd("waypaper"))
 
 -- Launch waydroid
-hl.bind(mod .. "+ w", hl.dsp.exec_cmd("waydroid show-full-ui"))
+hl.bind(mod .. "+ w", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/waydroid-launch.sh"))
 
 -- Launch rofimoji (emoji picker using rofi)
 hl.bind(mod .. "+ slash", hl.dsp.exec_cmd(home .. "/.config/rofi/scripts/emoji_picker.sh"))
