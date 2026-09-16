@@ -72,7 +72,7 @@ quit="Exit 󰈆 "
 outputdev_opt="󰜟  Outpur Device  "
 inputdev_opt="󱦉  Input Device  "
 devconfig_opt="  Device Configuration  "
-manual_volume_opt="   Set Volume Level  "
+manual_volume_opt="  Set Volume Level  "
 desktop_audio_player="󰖯  Toggle Desktop Audio Player (QuickShell)"
 pavucontrol_opt="󰖯  Pulseaudio Control GUI"
 
