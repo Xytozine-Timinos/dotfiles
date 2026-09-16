@@ -3,6 +3,8 @@ source ~/.config/dtf-config/config
 
 bar_top=${bar_top:-false}
 rofi_theme=${rofi_theme:-black}
+animations=${animations:-false}
+blur=${blur:-false}
 
 if [[ $bar_top == "true" ]]; then
 	location="north east"
@@ -29,7 +31,8 @@ quit="Exit 󰈆 "
 
 gamemode_enable() {
 	hyprctl eval 'hl.config({animations = {enabled = false}})'
-	hyprctl eval 'hl.config({decoration = { blur = { enabled = false }}})'
+	hyprctl eval 'hl.config({decoration = { rounding = 0, blur = { enabled = false }}})'
+	hyprctl eval 'hl.config({general = {gaps_in = 0, gaps_out = 0, border_size = 0, gaps_workspaces = 0}})'
 	if [[ -n $(command -v powerprofilesctl) ]]; then
 		powerprofilesctl set performance
 		notify-send -t 1100 -h string:x-dunst-stack-tag:power_mode_status "Power set to performance mode 󰓅"
@@ -37,8 +40,18 @@ gamemode_enable() {
 }
 
 gamemode_disable() {
-	hyprctl eval 'hl.config({animations = {enabled = true}})'
-	hyprctl eval 'hl.config({decoration = { blur = { enabled = true }}})'
+	if [[ $animations == "true" ]]; then
+		hyprctl eval 'hl.config({animations = {enabled = true}})'
+	else
+		hyprctl eval 'hl.config({animations = {enabled = false}})'
+	fi
+	if [[ $blur == "true" ]]; then
+		hyprctl eval 'hl.config({decoration = { blur = {enabled = true }}})'
+	else
+		hyprctl eval 'hl.config({decoration = { blur = {enabled = false }}})'
+	fi
+	hyprctl eval 'hl.config({decoration = { rounding = 5 }})'
+	hyprctl eval 'hl.config({general = {gaps_in = 5, gaps_out = 10, border_size = 3, gaps_workspaces = 15}})'
 	if [[ -n $(command -v powerprofilesctl) ]]; then
 		notify-send -t 1755 -h string:x-dunst-stack-tag:game_mode "Please set your power profiles to your likings"
 	fi
