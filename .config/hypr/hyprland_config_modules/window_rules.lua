@@ -196,6 +196,7 @@ local float_titles = {
 	"^Volume Control$",
 	"^Proton VPN$",
 	"^(solaar)$",
+	"^(Active connection found)$"
 }
 
 -- Fullscreen
