@@ -70,13 +70,13 @@ main_menu() {
 
 	case "$select" in
 	"Game Mode: Off")
-		notify-send "Game mode enabled!"
+		notify-send "Game mode enabled!  "
 		gamemode_enable
 		sleep 0.1
 		main_menu
 		;;
 	"Game Mode: On")
-		notify-send "Game mode disabled!"
+		notify-send "Game mode disabled!  "
 		gamemode_disable
 		sleep 0.1
 		main_menu
