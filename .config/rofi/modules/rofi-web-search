@@ -44,6 +44,7 @@ flathub="  Flathub 󰌧 "
 nerdfonts="󰛖  Nerd Fonts 󰌧 "
 this_dotfiles_codeberg="  This Dotfiles Repo (Codeberg) 󰌧 "
 this_dotfiles_github="  This Dotfiles Repo (Github) 󰌧 "
+hyprland_wiki="  Hyprland Wiki 󰌧 "
 back="Back 󰌍"
 quit="Exit 󰈆 "
 
@@ -237,7 +238,7 @@ ai() {
 }
 
 main() {
-	select=$(echo -e "$web\n$yt\n$ai\n$codeberg\n$github\n$flathub\n$virustotal\n$nerdfonts\n$this_dotfiles_codeberg\n$this_dotfiles_github\n$quit" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 510px; width: 455px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcuts & Search  ")
+	select=$(echo -e "$web\n$yt\n$ai\n$codeberg\n$github\n$flathub\n$virustotal\n$nerdfonts\n$hyprland_wiki\n$this_dotfiles_codeberg\n$this_dotfiles_github\n$quit" | rofi -x11 -dmenu -theme $path_to_theme -theme-str "window {height: 545px; width: 455px; location: $location; x-offset: $main_menu_x_offset; y-offset: $main_menu_y_offset;}" -theme-str "listview {columns: 1; layout: vertical;}" -p " Web Shortcuts & Search  ")
 
 	case $select in
 	$web)
@@ -275,6 +276,9 @@ main() {
 	$codeberg)
 		codeberg
 		;;
+	$hyprland_wiki)
+		xdg-open https://wiki.hypr.land/Configuring/Start &
+		exit 0
 	esac
 }
 
