@@ -1,3 +1,11 @@
+## List of things will be covered in this ReadMe:
+- [About](#about)
+- [Preview](#preview)
+- [Installation (PLEASE READ CAREFULLY)](#installation)
+- [Hyprland Plugins](#hyprland-plugins-not-recommend-due-to-mismatch-abi-hell)
+- [Usage](#usage)
+- [Configuration](#configuration)
+
 ## About
 
 ___DEVELOPED ON UBUNTU 26.04 AND LINUX MINT - zena (Ubuntu 24.04 LTS). DEPLOYED & TESTED ON FEDORA___<BR>
