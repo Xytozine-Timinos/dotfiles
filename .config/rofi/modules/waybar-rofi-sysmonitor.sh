@@ -22,7 +22,7 @@ else
 	main_menu_y_offset=-70px
 fi
 
-main_menu_height=250px
+main_menu_height=245px
 main_menu_width=450px
 
 temperature="  Temperature"
