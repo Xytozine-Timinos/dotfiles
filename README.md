@@ -1,3 +1,7 @@
+Official links for this dotfiles:
+- https://codeberg.org/Xytozine/dotfiles
+- https://github.com/Xytozine-Timinos/dotfiles
+
 ## List of things will be covered in this ReadMe:
 - [About](#about)
 - [Preview](#preview)
