@@ -276,7 +276,7 @@ else
 	PS2='     \> '
 
 	PROMPT='
-<Hostname: %m> - [%l]
+<Hostname: %m> - [tty%l]
  %~ >  '
 
 	RPROMPT='|%T|'
