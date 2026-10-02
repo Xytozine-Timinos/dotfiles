@@ -149,7 +149,7 @@ if [[ $- == *i* ]]; then
 
 	#ALIASES
 
-	if command -v lsd >/dev/null 2>&1; then
+	if command -v lsd >/dev/null 2>&1 && { [[ "$XDG_SESSION_TYPE" == "wayland" ]] || [[ "$XDG_SESSION_TYPE" == "x11" ]]; }; then
 		alias ls="lsd -t"
 		alias lss="command ls"
 	fi
@@ -249,45 +249,38 @@ fi
 ####################################################
 
 #PROMPT
+if [[ $XDG_SESSION_TYPE == "wayland" ]] || [[ $XDG_SESSION_TYPE == "x11" ]]; then
+	autoload -Uz vcs_info
+	precmd() { vcs_info; }
+	zstyle ':vcs_info:git:*' formats '%b '
 
-autoload -Uz vcs_info
-precmd() { vcs_info; }
-zstyle ':vcs_info:git:*' formats '%b '
+	newline=$'\n'
+	ZSH_THEME_GIT_PROMPT_PREFIX="${newline} %F{#ff6f91}%B󰊢%f%b %F{#e0e6ed}%B(%f%b %F{#94e2d5}%B"
+	ZSH_THEME_GIT_PROMPT_SUFFIX="%f%b%F{#e0e6ed}%B )%f%b"
+	ZSH_THEME_GIT_PROMPT_CLEAN=" %F{#a6e3a1}%B%f%b"
+	ZSH_THEME_GIT_PROMPT_DIRTY=" %F{#ff6f91}%B%f%b"
+	ZSH_THEME_GIT_PROMPT_ADDED=" %F{#ff6f91}%B󰆺%f%b"
+	ZSH_THEME_GIT_PROMPT_AHEAD=" %F{#94e2d5}%B%f%b"
+	ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" %F{#94e2d5}%B %f%b"
+	ZSH_THEME_GIT_PROMPT_BEHIND=" %F{#f9e2af}%B%f%b"
+	ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" %F{#f9e2af}%B %f%b"
 
-#PS1="%B%F{black}╭ %B%F{white}%n%F{red}@%F{white}%m%f%F{red} - %F{black}  %F{red}- %F{white}%B%~%b%f%F{black}%B "$'\n'"╰%F{white}%B%F{red}➜ %b%f"
+	PS2='%B%F{#797d8a}     ↪%f%b '
 
-newline=$'\n'
-ZSH_THEME_GIT_PROMPT_PREFIX="${newline} %F{#ff6f91}%B󰊢%f%b %F{#e0e6ed}%B(%f%b %F{#94e2d5}%B"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%f%b%F{#e0e6ed}%B )%f%b"
-ZSH_THEME_GIT_PROMPT_CLEAN=" %F{#a6e3a1}%B%f%b"
-ZSH_THEME_GIT_PROMPT_DIRTY=" %F{#ff6f91}%B%f%b"
-ZSH_THEME_GIT_PROMPT_ADDED=" %F{#ff6f91}%B󰆺%f%b"
-ZSH_THEME_GIT_PROMPT_AHEAD=" %F{#94e2d5}%B%f%b"
-ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" %F{#94e2d5}%B %f%b"
-ZSH_THEME_GIT_PROMPT_BEHIND=" %F{#f9e2af}%B%f%b"
-ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" %F{#f9e2af}%B %f%b"
-
-PS2='%B%F{#797d8a}     ↪%f%b '
-
-# PROMPT=' $(git_prompt_info)
-#  %B%F{yellow} %f %F{white}%~%f
-#  ┗┅%B%F{red}%f '
-
-PROMPT='$(git_prompt_info)
+	PROMPT='$(git_prompt_info)
   %B%(?:%F{#a6e3a1}%f:%F{#ff6f91}%f) %F{#f9e2af}<%f%F{#89b4fa} %f%F{#94e2d5}%m%f%F{#f9e2af}>%f
   %F{#e0e6ed}%~%f %(?:%F{#a6e3a1}λ%f%b:%F{#ff6f91}λ%f%b)  '
 
-# PROMPT='$(git_prompt_info)
-#  %B%F{#e0e6ed}%~%f  %(?:%F{#a6e3a1}λ%f%b:%F{#ff6f91}λ%f%b)  '
+	RPROMPT='%(?:%B%F{#a6e3a1}|%f%F{#e0e6ed}%f%T%F{#a6e3a1}|%f%b %B%F{#a6e3a1}✔%f%b:%B%F{#ff6f91}|%f%F{#e0e6ed}%f%T%F{#ff6f91}|%f%b %B%F{#ff6f91}✗%f%b)%F{#e0e6ed}%f '
+else
+	PS2='     \> '
 
-# PROMPT='$(git_prompt_info)
-#   %B%F{#ff6f91} %f%F{#f7a8b8}%n%f %F{#797d8a}-%f %F{#89b4fa} %f%F{#94e2d5}%m%f%b
-#   %B%F{#e0e6ed}%~%f  %(?:%F{#a6e3a1}λ%f%b:%F{#ff6f91}λ%f%b)  '
+	PROMPT='
+<Hostname: %m> - [%l]
+ %~ >  '
 
-#PROMPT='  $(git_prompt_info)
-#  %B%F{white}%~%f%b  %B%F{red}%f%b  '
-
-RPROMPT='%(?:%B%F{#a6e3a1}|%f%F{#e0e6ed}%f%T%F{#a6e3a1}|%f%b %B%F{#a6e3a1}✔%f%b:%B%F{#ff6f91}|%f%F{#e0e6ed}%f%T%F{#ff6f91}|%f%b %B%F{#ff6f91}✗%f%b)%F{#e0e6ed}%f '
+	RPROMPT='|%T|'
+fi
 
 if [[ -d "$HOME/.config/dtf-config" ]]; then
 	[[ -r "$HOME/.config/dtf-config/zsh-custom-config" ]] && source "$HOME/.config/dtf-config/zsh-custom-config"
