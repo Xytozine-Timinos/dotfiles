@@ -101,8 +101,10 @@ for i = 1, 10 do
 end
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "+1" }))
-hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "-1" }))
+hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "+1" }))
+hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "-1" }))
+hl.bind(mod .. " + mouse_left", hl.dsp.focus({ workspace = "+1" }))
+hl.bind(mod .. " + mouse_right", hl.dsp.focus({ workspace = "-1" }))
 
 -- Reposition window in a workspace
 hl.bind(mod .. "+ SHIFT + left", hl.dsp.window.move({ direction = "l" }))
