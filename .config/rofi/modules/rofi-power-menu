@@ -41,7 +41,7 @@ host=$(hostname)
 # Options
 shutdown='  Power off'
 reboot='  Reboot'
-reboot_firmware='  Reboot to UEFI/BIOS'
+reboot_firmware='  Reboot to UEFI/BIOS'
 lock='  Lock'
 suspend='󰤄  Suspend'
 logout='󰍃  Log out'
