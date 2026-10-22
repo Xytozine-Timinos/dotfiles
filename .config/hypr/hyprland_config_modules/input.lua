@@ -18,7 +18,7 @@ hl.config({
 	cursor = {
 		hide_on_touch = true,
 		hide_on_tablet = true,
-		no_hardware_cursors = 0,
+		no_hardware_cursors = 1,
 		use_cpu_buffer = 2,
 		no_break_fs_vrr = 1,
 		min_refresh_rate = 30, --hz
