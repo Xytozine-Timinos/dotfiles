@@ -277,7 +277,7 @@ main() {
 		codeberg
 		;;
 	$hyprland_wiki)
-		xdg-open https://wiki.hypr.land/Configuring/Start &
+		xdg-open https://wiki.hypr.land &
 		exit 0
 	esac
 }
