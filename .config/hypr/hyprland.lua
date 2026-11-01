@@ -11,7 +11,7 @@ local main_cfg_dir = home .. "/.config/hypr/hyprland_config_modules/"
 -- Add the main_cfg_dir to the search path
 package.path = package.path .. ";" .. main_cfg_dir .. "?.lua"
 -- We use -printf to get the path relative to the main_cfg_dir
-local p = io.popen("find " .. main_cfg_dir .. ' -maxdepth 2 -name "*.lua" -printf "%P\n"')
+local p = io.popen("find " .. main_cfg_dir .. ' -maxdepth 3 -name "*.lua" -printf "%P\n"')
 if p then
 	for file in p:lines() do
 		-- Remove the .lua extension
@@ -28,7 +28,7 @@ end
 
 -- Add the custom dir to the search path
 package.path = package.path .. ";" .. custom_dir .. "?.lua"
-local p_custom = io.popen("find " .. custom_dir .. ' -maxdepth 1 -name "*.lua"')
+local p_custom = io.popen("find " .. custom_dir .. ' -maxdepth 3 -name "*.lua"')
 if p_custom then
 	for file in p_custom:lines() do
 		-- Extract just the filename without the path or .lua extension
