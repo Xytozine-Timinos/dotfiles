@@ -234,18 +234,18 @@ tooltip label {
 	color: #d2d7ea;
 }
 
-#tray:hover,
-#battery:hover,
-#custom-battery:hover,
+box:hover > #tray,
+box:hover > #battery,
+box:hover > #custom-battery,
 #clock:hover,
-#window:hover,
-#custom-window:hover,
-#custom-bluetooth:hover,
-#custom-temperature:hover,
-#custom-notification-center:hover,
-#custom-hyprsunset:hover,
-#custom-audio:hover,
-#custom-power:hover {
+box:hover > #window,
+box:hover > #custom-window,
+box:hover > #custom-bluetooth,
+box:hover > #custom-temperature,
+box:hover > #custom-notification-center,
+box:hover > #custom-hyprsunset,
+box:hover > #custom-audio,
+box:hover > #custom-power {
 	padding: 0 13px;
 	margin: 10px 4px;
 	border-radius: 4px;
@@ -253,8 +253,8 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
-#custom-search:hover,
-#custom-hyprland-settings:hover {
+box:hover > #custom-search,
+box:hover > #custom-hyprland-settings {
 	padding: 0px 16px 0px 11px;
 	margin: 10px 4px;
 	border-radius: 4px;
@@ -262,7 +262,7 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
-#custom-apps:hover {
+box:hover > #custom-apps {
 	padding: 0px 14px 0px 13px;
 	margin: 10px 4px;
 	border-radius: 4px;
@@ -270,7 +270,7 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
-#custom-network:hover {
+box:hover > #custom-network {
 	padding: 0px 8px 0px 13px;
 	margin: 10px 4px;
 	border-radius: 4px;
@@ -278,7 +278,7 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
-#custom-network.ethernet:hover {
+box:hover > #custom-network.ethernet {
 	padding: 0px 5px 0px 13px;
 	margin: 10px 4px;
 	border-radius: 4px;
@@ -286,39 +286,39 @@ tooltip label {
 	transition: all 0.2s ease;
 }
 
-#custom-notification-center:hover,
-#custom-power:hover,
-#custom-bluetooth.powered-off:hover,
-#custom-bluetooth.no-devices:hover,
-#custom-bluetooth.one-device:hover {
+box:hover > #custom-notification-center,
+box:hover > #custom-power,
+box:hover > #custom-bluetooth.powered-off,
+box:hover > #custom-bluetooth.no-devices,
+box:hover > #custom-bluetooth.one-device {
 	min-width: 27px;
 }
 
 /* #custom-hyprsunset:hover, */
-#custom-network:hover {
+box:hover > #custom-network {
 	min-width: 37px;
 }
 
-#battery:hover,
-#custom-battery:hover,
-#custom-bluetooth.multiple-devices:hover {
+box:hover > #battery,
+box:hover > #custom-battery,
+box:hover > #custom-bluetooth.multiple-devices {
 	min-width: 47px;
 }
 
-#custom-battery.desktop-ac:hover {
+box:hover > #custom-battery.desktop-ac {
 	min-width: 67px;
 }
 
-#custom-audio:hover,
-#battery:hover,
-#custom-battery:hover,
-#custom-temperature:hover {
+box:hover > #custom-audio,
+box:hover > #battery,
+box:hover > #custom-battery,
+box:hover > #custom-temperature {
 	min-width: 87px;
 }
 
-#custom-audio.high:hover,
-#battery.LVL0:hover,
-#custom-battery.LVL0:hover {
+box:hover > #custom-audio.high,
+box:hover > #battery.LVL0,
+box:hover > #custom-battery.LVL0 {
 	min-width: 97px;
 }
 
@@ -326,93 +326,278 @@ tooltip label {
 	min-width: 100px;
 }
 
-#custom-temperature.critical:hover,
-#custom-power:hover,
-#custom-network.strength-0:hover,
-#battery.LVL5:hover,
-#custom-battery.LVL5:hover {
+box:hover > #custom-temperature.critical,
+box:hover > #custom-power,
+box:hover > #custom-network.strength-0,
+box:hover > #battery.LVL5,
+box:hover > #custom-battery.LVL5 {
 	background-color: #ff6f91;
 }
 
-#custom-temperature.warning:hover,
-#custom-network.strength-4:hover,
-#custom-network.strength-5:hover,
-#battery.LVL3:hover,
-#custom-battery.LVL3:hover,
-#custom-hyprsunset:hover {
+box:hover > #custom-temperature.warning,
+box:hover > #custom-network.strength-4,
+box:hover > #custom-network.strength-5,
+box:hover > #battery.LVL3,
+box:hover > #custom-battery.LVL3,
+box:hover > #custom-hyprsunset {
 	background-color: #f9e2af;
 }
 
-#custom-temperature.normal:hover {
+box:hover > #custom-temperature.normal {
 	background-color: #89dceb;
 }
 
-#custom-bluetooth.powered-off:hover,
-#custom-network.disconnected:hover,
-#custom-notification-center.clear:hover,
-#custom-audio.muted:hover {
+box:hover > #custom-bluetooth.powered-off,
+box:hover > #custom-network.disconnected,
+box:hover > #custom-notification-center.clear,
+box:hover > #custom-audio.muted {
 	background-color: #7f849c;
 }
 
-#custom-apps:hover,
-#custom-bluetooth.no-devices:hover {
+box:hover > #custom-apps,
+box:hover > #custom-bluetooth.no-devices {
 	background-color: #74c7ec;
 }
 
-#custom-bluetooth.one-device:hover,
-#custom-bluetooth.multiple-devices:hover {
+box:hover > #custom-bluetooth.one-device,
+box:hover > #custom-bluetooth.multiple-devices {
 	background-color: #2193ff;
 }
 
-#custom-network.strength-1:hover,
-#custom-audio.high:hover,
-#battery.LVL4:hover,
-#custom-battery.LVL4:hover {
+box:hover > #custom-network.strength-1,
+box:hover > #custom-audio.high,
+box:hover > #battery.LVL4,
+box:hover > #custom-battery.LVL4 {
 	background-color: #f38ba8;
 }
 
-#custom-network.strength-2:hover,
-#custom-audio.medium:hover {
+box:hover > #custom-network.strength-2,
+box:hover > #custom-audio.medium {
 	background-color: #eba0ac;
 }
 
-#custom-search:hover,
-#custom-network.strength-3:hover {
+box:hover > #custom-search,
+box:hover > #custom-network.strength-3 {
 	background-color: #f7a8b8;
 }
 
-#custom-network.strength-6:hover,
-#custom-network.strength-7:hover,
-#battery.LVL2:hover,
-#custom-battery.LVL2:hover {
+box:hover > #custom-network.strength-6,
+box:hover > #custom-network.strength-7,
+box:hover > #battery.LVL2,
+box:hover > #custom-battery.LVL2 {
 	background-color: #94e2d5;
 }
 
-#custom-network.ethernet:hover,
-#custom-network.strength-8:hover,
-#custom-network.strength-9:hover,
-#battery.LVL0:hover,
-#battery.LVL1:hover,
-#custom-battery.LVL0:hover,
-#custom-battery.LVL1:hover,
-#custom-battery.desktop-ac:hover {
+box:hover > #custom-network.ethernet,
+box:hover > #custom-network.strength-8,
+box:hover > #custom-network.strength-9,
+box:hover > #battery.LVL0,
+box:hover > #battery.LVL1,
+box:hover > #custom-battery.LVL0,
+box:hover > #custom-battery.LVL1,
+box:hover > #custom-battery.desktop-ac {
 	background-color: #a6e3a1;
 }
 
 #clock:hover,
-#custom-notification-center.unclear:hover {
+box:hover > #custom-notification-center.unclear {
 	background-color: #f5e0dc;
 }
 
-#window:hover,
-#custom-window:hover {
+box:hover > #window,
+box:hover > #custom-window {
 	background-color: #e0e6ed;
 }
 
-#custom-hyprland-settings:hover {
+box:hover > #custom-hyprland-settings {
 	background-color: #a6adc8;
 }
 
-#custom-audio.low:hover {
+box:hover > #custom-audio.low {
 	background-color: #bac2de;
 }
+
+
+/* If fixed, use this */
+/* #tray:hover, */
+/* #battery:hover, */
+/* #custom-battery:hover, */
+/* #clock:hover, */
+/* #window:hover, */
+/* #custom-window:hover, */
+/* #custom-bluetooth:hover, */
+/* #custom-temperature:hover, */
+/* #custom-notification-center:hover, */
+/* #custom-hyprsunset:hover, */
+/* #custom-audio:hover, */
+/* #custom-power:hover { */
+/* 	padding: 0 13px; */
+/* 	margin: 10px 4px; */
+/* 	border-radius: 4px; */
+/* 	color: rgba(22, 22, 29, 0.91); */
+/* 	transition: all 0.2s ease; */
+/* } */
+/**/
+/* #custom-search:hover, */
+/* #custom-hyprland-settings:hover { */
+/* 	padding: 0px 16px 0px 11px; */
+/* 	margin: 10px 4px; */
+/* 	border-radius: 4px; */
+/* 	color: rgba(22, 22, 29, 0.91); */
+/* 	transition: all 0.2s ease; */
+/* } */
+/**/
+/* #custom-apps:hover { */
+/* 	padding: 0px 14px 0px 13px; */
+/* 	margin: 10px 4px; */
+/* 	border-radius: 4px; */
+/* 	color: rgba(22, 22, 29, 0.91); */
+/* 	transition: all 0.2s ease; */
+/* } */
+/**/
+/* #custom-network:hover { */
+/* 	padding: 0px 8px 0px 13px; */
+/* 	margin: 10px 4px; */
+/* 	border-radius: 4px; */
+/* 	color: rgba(22, 22, 29, 0.91); */
+/* 	transition: all 0.2s ease; */
+/* } */
+/**/
+/* #custom-network.ethernet:hover { */
+/* 	padding: 0px 5px 0px 13px; */
+/* 	margin: 10px 4px; */
+/* 	border-radius: 4px; */
+/* 	color: rgba(22, 22, 29, 0.91); */
+/* 	transition: all 0.2s ease; */
+/* } */
+/**/
+/* #custom-notification-center:hover, */
+/* #custom-power:hover, */
+/* #custom-bluetooth.powered-off:hover, */
+/* #custom-bluetooth.no-devices:hover, */
+/* #custom-bluetooth.one-device:hover { */
+/* 	min-width: 27px; */
+/* } */
+/**/
+/* #custom-hyprsunset:hover, */
+/* #custom-network:hover { */
+/* 	min-width: 37px; */
+/* } */
+/**/
+/* #battery:hover, */
+/* #custom-battery:hover, */
+/* #custom-bluetooth.multiple-devices:hover { */
+/* 	min-width: 47px; */
+/* } */
+/**/
+/* #custom-battery.desktop-ac:hover { */
+/* 	min-width: 67px; */
+/* } */
+/**/
+/* #custom-audio:hover, */
+/* #battery:hover, */
+/* #custom-battery:hover, */
+/* #custom-temperature:hover { */
+/* 	min-width: 87px; */
+/* } */
+/**/
+/* #custom-audio.high:hover, */
+/* #battery.LVL0:hover, */
+/* #custom-battery.LVL0:hover { */
+/* 	min-width: 97px; */
+/* } */
+/**/
+/* #clock:hover { */
+/* 	min-width: 100px; */
+/* } */
+/**/
+/* #custom-temperature.critical:hover, */
+/* #custom-power:hover, */
+/* #custom-network.strength-0:hover, */
+/* #battery.LVL5:hover, */
+/* #custom-battery.LVL5:hover { */
+/* 	background-color: #ff6f91; */
+/* } */
+/**/
+/* #custom-temperature.warning:hover, */
+/* #custom-network.strength-4:hover, */
+/* #custom-network.strength-5:hover, */
+/* #battery.LVL3:hover, */
+/* #custom-battery.LVL3:hover, */
+/* #custom-hyprsunset:hover { */
+/* 	background-color: #f9e2af; */
+/* } */
+/**/
+/* #custom-temperature.normal:hover { */
+/* 	background-color: #89dceb; */
+/* } */
+/**/
+/* #custom-bluetooth.powered-off:hover, */
+/* #custom-network.disconnected:hover, */
+/* #custom-notification-center.clear:hover, */
+/* #custom-audio.muted:hover { */
+/* 	background-color: #7f849c; */
+/* } */
+/**/
+/* #custom-apps:hover, */
+/* #custom-bluetooth.no-devices:hover { */
+/* 	background-color: #74c7ec; */
+/* } */
+/**/
+/* #custom-bluetooth.one-device:hover, */
+/* #custom-bluetooth.multiple-devices:hover { */
+/* 	background-color: #2193ff; */
+/* } */
+/**/
+/* #custom-network.strength-1:hover, */
+/* #custom-audio.high:hover, */
+/* #battery.LVL4:hover, */
+/* #custom-battery.LVL4:hover { */
+/* 	background-color: #f38ba8; */
+/* } */
+/**/
+/* #custom-network.strength-2:hover, */
+/* #custom-audio.medium:hover { */
+/* 	background-color: #eba0ac; */
+/* } */
+/**/
+/* #custom-search:hover, */
+/* #custom-network.strength-3:hover { */
+/* 	background-color: #f7a8b8; */
+/* } */
+/**/
+/* #custom-network.strength-6:hover, */
+/* #custom-network.strength-7:hover, */
+/* #battery.LVL2:hover, */
+/* #custom-battery.LVL2:hover { */
+/* 	background-color: #94e2d5; */
+/* } */
+/**/
+/* #custom-network.ethernet:hover, */
+/* #custom-network.strength-8:hover, */
+/* #custom-network.strength-9:hover, */
+/* #battery.LVL0:hover, */
+/* #battery.LVL1:hover, */
+/* #custom-battery.LVL0:hover, */
+/* #custom-battery.LVL1:hover, */
+/* #custom-battery.desktop-ac:hover { */
+/* 	background-color: #a6e3a1; */
+/* } */
+/**/
+/* #clock:hover, */
+/* #custom-notification-center.unclear:hover { */
+/* 	background-color: #f5e0dc; */
+/* } */
+/**/
+/* #window:hover, */
+/* #custom-window:hover { */
+/* 	background-color: #e0e6ed; */
+/* } */
+/**/
+/* #custom-hyprland-settings:hover { */
+/* 	background-color: #a6adc8; */
+/* } */
+/**/
+/* #custom-audio.low:hover { */
+/* 	background-color: #bac2de; */
+/* } */
